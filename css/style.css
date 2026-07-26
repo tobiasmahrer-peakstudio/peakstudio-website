@@ -502,7 +502,7 @@ p{ margin: 0 0 1em; }
 }
 .case-meta__grid{
   display:grid; grid-template-columns: repeat(4, 1fr);
-  gap: 20px; padding-top: 34px; padding-bottom: 34px;
+  gap: 20px; padding-top: 44px; padding-bottom: 44px;
 }
 .case-meta__item{ display:flex; flex-direction:column; gap:6px; }
 .case-meta__label{
@@ -714,7 +714,7 @@ p{ margin: 0 0 1em; }
   .hero__actions .btn{ text-align:center; }
   .footer__inner, .footer__bottom{ flex-direction:column; align-items:flex-start; }
 
-  .case-meta__grid{ grid-template-columns: 1fr 1fr; }
+  .case-meta__grid{ grid-template-columns: 1fr 1fr; gap: 28px 20px; padding-top: 40px; padding-bottom: 40px; }
   .case-gallery{ grid-template-columns: 1fr; }
   .case-gallery__item--a, .case-gallery__item--b, .case-gallery__item--c, .case-gallery__item--d{
     grid-column: span 1; aspect-ratio: 4/5;

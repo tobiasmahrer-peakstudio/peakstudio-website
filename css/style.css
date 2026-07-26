@@ -543,6 +543,8 @@ p{ margin: 0 0 1em; }
 .case-reel__text .eyebrow{ color: var(--turquoise); }
 .case-reel__text h2{ color: var(--cream); font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
 .case-reel__text p{ color: var(--cream-dim); max-width: 460px; font-size: 1.02rem; }
+.case-reel .case-story p{ color: var(--cream); }
+.case-reel .case-story .eyebrow{ color: var(--turquoise); }
 
 .phone-mock{
   width: 250px; aspect-ratio: 9/19.3; border-radius: 34px;

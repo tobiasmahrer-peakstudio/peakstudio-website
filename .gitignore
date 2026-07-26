@@ -1,0 +1,10 @@
+.DS_Store
+.claude/
+Logos_PeakStudio/
+
+# Raw source footage folders (not used by the deployed site)
+Videos/Cross Championsship/
+Videos/Davos/
+Videos/Franjo/
+Videos/KHuber/
+Videos/LST Iffigsee Kampagne/

@@ -381,7 +381,7 @@ p{ margin: 0 0 1em; }
   display:flex; flex-direction:column;
 }
 .team-card__media{ aspect-ratio: 4/3.2; overflow:hidden; }
-.team-card__media img{ width:100%; height:100%; object-fit:cover; object-position: top center; }
+.team-card__media img{ width:100%; height:100%; object-fit:cover; object-position: center 25%; }
 .team-card__body{ padding: 30px; }
 .team-card__body h3{ font-size: 1.4rem; margin-bottom: 4px; }
 .team-card__role{ color: var(--turquoise); font-weight:600; font-family: var(--font-display); font-size: .85rem; margin-bottom: 14px; }

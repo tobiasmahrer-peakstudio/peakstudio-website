@@ -12,38 +12,31 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="../css/style.css?v=8">
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<div class="grain"></div>
-
-<!-- ===== HEADER ===== -->
-<header class="header" id="header">
-  <div class="container header__inner">
-    <a href="../index.html" class="logo">
-      <span class="logo__word">peak</span><span class="logo__word logo__word--accent">studio</span>
-    </a>
-
-    <nav class="nav" id="nav">
-      <a href="../index.html#arbeiten" class="nav__link">Arbeiten</a>
-      <a href="../index.html#leistungen" class="nav__link">Leistungen</a>
-      <a href="../index.html#ueber-uns" class="nav__link">Über uns</a>
-      <a href="../index.html#kontakt" class="nav__link">Kontakt</a>
+<header class="site-header" id="header">
+  <div class="container site-header__inner">
+    <a href="../index.html" class="logo-mark"><img src="../images/logo/peak-logo-black.png" alt="peak studio"></a>
+    <nav class="site-nav" id="nav">
+      <a href="index.html" class="is-active">Arbeiten</a>
+      <a href="../index.html#leistungen">Leistungen</a>
+      <a href="../index.html#ueber-uns">Über uns</a>
+      <a href="../index.html#kontakt">Kontakt</a>
     </nav>
-
-    <a href="../index.html#kontakt" class="btn btn--small btn--primary header__cta">Projekt anfragen</a>
-
-    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header__right">
+      <a href="mailto:tobiasmahrer@outlook.com" class="header__mail only-desktop">tobiasmahrer@outlook.com</a>
+      <a href="../index.html#kontakt" class="btn btn--small btn--primary only-desktop">Projekt anfragen</a>
+      <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </header>
 
 <div class="mobile-nav" id="mobileNav">
-  <a href="../index.html#arbeiten">Arbeiten</a>
+  <a href="index.html">Arbeiten</a>
   <a href="../index.html#leistungen">Leistungen</a>
   <a href="../index.html#ueber-uns">Über uns</a>
   <a href="../index.html#kontakt">Kontakt</a>
@@ -51,179 +44,89 @@
 </div>
 
 <main>
-
-  <!-- ===== HERO ===== -->
-  <section class="case-hero">
-    <div class="case-hero__bg">
-      <img src="../images/work-stmoritz-hero.jpg" alt="Athlet im orangen Swiss-Skicross-Tour-Rennanzug geht entlang der roten Streckenbegrenzung">
-      <div class="case-hero__scrim"></div>
-    </div>
-    <div class="container case-hero__content">
-      <p class="case-breadcrumb">
-        <a href="../index.html#arbeiten">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Zurück zu allen Arbeiten
-        </a>
-      </p>
-      <span class="tag tag--turquoise">Sport · Event</span>
-      <h1 class="case-hero__title">Swiss-Ski — Junior World Championships</h1>
-      <p class="case-hero__sub">Acht Tage FIS Cross Junior World Championships in St. Moritz — Ski Cross &amp; Snowboard Cross, hautnah mit der Kamera begleitet.</p>
-    </div>
-  </section>
-
-  <!-- ===== META BAR ===== -->
-  <section class="case-meta">
-    <div class="container case-meta__grid">
-      <div class="case-meta__item">
-        <span class="case-meta__label">Kunde</span>
-        <span class="case-meta__value">Swiss-Ski</span>
-      </div>
-      <div class="case-meta__item">
-        <span class="case-meta__label">Ort</span>
-        <span class="case-meta__value">St. Moritz, Schweiz</span>
-      </div>
-      <div class="case-meta__item">
-        <span class="case-meta__label">Jahr</span>
-        <span class="case-meta__value">2026</span>
-      </div>
-      <div class="case-meta__item">
-        <span class="case-meta__label">Leistungen</span>
-        <span class="case-meta__value">Eventfotografie, tägliche Aftermovies, Off-Snow-Content, Reels</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== STORY ===== -->
-  <section class="case-body">
+  <section class="case-top">
     <div class="container">
-      <div class="case-story reveal">
-        <p class="eyebrow">Das Projekt</p>
-        <h2>Acht Tage mitten im Renngeschehen</h2>
-        <p>Acht Tage lang haben wir die FIS Cross Junior World Championships in St. Moritz — vom 13. bis 21. März 2026 auf der Corviglia — mit der Kamera begleitet: mittendrin im Renngeschehen, im Start- und Zielraum, überall dort, wo die Emotionen am grössten waren.</p><p>Pro Wettkampftag entstand ein eigenes Aftermovie sowie Social-Media-Content mit Athlet:innen und Helfer:innen, dazu Off-Snow-Content mit dem Team im Hotel. Zum Abschluss der Titelkämpfe entstand ein grosses Gesamt-Aftermovie sowie drei persönliche Behind-the-Scenes-Reels.</p>
-      </div>
-
-      <div class="case-gallery">
-        <div class="case-gallery__item case-gallery__item--a reveal"><img src="../images/work-stmoritz-track.jpg" alt="Athleten gehen die Rennstrecke im Schnee ab, Berge im Hintergrund" loading="lazy"></div>
-        <div class="case-gallery__item case-gallery__item--b reveal"><img src="../images/work-stmoritz-flags.jpg" alt="Helvetia-Sponsorenflaggen im Schnee" loading="lazy"></div>
-        <div class="case-gallery__item case-gallery__item--c reveal"><img src="../images/work-stmoritz-athlete.jpg" alt="Athlet in orangem Rennanzug wird von Helfer betreut" loading="lazy"></div>
-        <div class="case-gallery__item case-gallery__item--d reveal"><img src="../images/work-stmoritz-tunnel.jpg" alt="Zwei Personen als Silhouette in einem beleuchteten Starttunnel" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="case-reel">
-    <div class="container">
-      <div class="case-story reveal" style="margin-bottom:50px;">
-        <p class="eyebrow">Das Aftermovie</p>
-        <h2>Das Aftermovie</h2>
-        <p>Klick auf Play für den vollen Ton — am besten mit Kopfhörern.</p>
-      </div>
-      <div class="film-frame reveal">
-        <img src="../images/work-stmoritz-aftermovie-poster.jpg" alt="Pistenraupe wirbelt Schnee auf einem Berggipfel auf, monochrome Aufnahme">
-        <video src="../videos/stmoritz-aftermovie.mp4" poster="../images/work-stmoritz-aftermovie-poster.jpg" preload="none" playsinline></video>
-        <div class="film-frame__scrim"></div>
-        <button class="film-frame__play" data-play-video aria-label="Video abspielen">
-          <span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="case-reel">
-    <div class="container">
-      <div class="case-story reveal" style="margin-bottom:0;">
-        <p class="eyebrow">Die Reels</p>
-        <h2>Drei Blicke hinter die Kulissen</h2>
-        <p>Kurze Behind-the-Scenes-Reels vom Renntag — persönlich, direkt, ungefiltert.</p>
-      </div>
-      <div class="reel-wall__grid">
-        <div class="reel-wall__item reveal">
-          <div class="phone-mock phone-mock--sm">
-            <video src="../videos/stmoritz-ch-words.mp4" poster="../images/work-stmoritz-chwords-poster.jpg" preload="none" playsinline></video>
-            <div class="phone-mock__scrim"></div>
-            <button class="phone-mock__play" data-play-video aria-label="Video abspielen">
-              <span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></span>
-            </button>
-          </div>
-          <span class="reel-wall__caption">Znüni, Zvieri, Znacht</span>
+      <a href="index.html" class="case-back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zurück zu allen Arbeiten</a>
+      <div class="case-top__row">
+        <div>
+          <p class="eyebrow">Sport · Event</p>
+          <h1 class="case-top__title">Swiss-Ski — Junior World Championships</h1>
+          <p class="case-top__sub">Acht Tage FIS Cross Junior World Championships in St. Moritz — Ski Cross &amp; Snowboard Cross, hautnah mit der Kamera begleitet.</p>
         </div>
-        <div class="reel-wall__item reveal">
-          <div class="phone-mock phone-mock--sm">
-            <video src="../videos/stmoritz-nils.mp4" poster="../images/work-stmoritz-nils-poster.jpg" preload="none" playsinline></video>
-            <div class="phone-mock__scrim"></div>
-            <button class="phone-mock__play" data-play-video aria-label="Video abspielen">
-              <span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></span>
-            </button>
-          </div>
-          <span class="reel-wall__caption">Arbeiterporträt</span>
-        </div>
-        <div class="reel-wall__item reveal">
-          <div class="phone-mock phone-mock--sm">
-            <video src="../videos/stmoritz-ski-einzel.mp4" poster="../images/work-stmoritz-skieinzel-poster.jpg" preload="none" playsinline></video>
-            <div class="phone-mock__scrim"></div>
-            <button class="phone-mock__play" data-play-video aria-label="Video abspielen">
-              <span><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></span>
-            </button>
-          </div>
-          <span class="reel-wall__caption">Renntag Recap</span>
+        <div class="case-top__meta">
+          <div><span>Kunde</span><span>Swiss-Ski</span></div>
+          <div><span>Ort</span><span>St. Moritz, Schweiz</span></div>
+          <div><span>Jahr</span><span>2026</span></div>
+          <div><span>Leistungen</span><span>Eventfoto, Aftermovies, Reels</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== DELIVERABLES ===== -->
+  <section class="masonry">
+    <div class="masonry__item"><img src="../images/work-stmoritz-hero.jpg" alt="Athlet im orangen Rennanzug an der Streckenbegrenzung" loading="lazy"></div>
+    <div class="masonry__item masonry__video" data-play-video>
+      <img src="../images/work-stmoritz-aftermovie-poster.jpg" alt="Aftermovie Swiss-Ski JWC">
+      <video src="../videos/stmoritz-aftermovie.mp4" preload="none" playsinline></video>
+      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+    </div>
+    <div class="masonry__item"><img src="../images/work-stmoritz-track.jpg" alt="Athleten gehen die Rennstrecke im Schnee ab" loading="lazy"></div>
+    <div class="masonry__item masonry__video" data-play-video>
+      <img src="../images/work-stmoritz-chwords-poster.jpg" alt="Znüni, Zvieri, Znacht Reel">
+      <video src="../videos/stmoritz-ch-words.mp4" preload="none" playsinline></video>
+      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+    </div>
+    <div class="masonry__item"><img src="../images/work-stmoritz-flags.jpg" alt="Sponsorenflaggen im Schnee" loading="lazy"></div>
+    <div class="masonry__item"><img src="../images/work-stmoritz-athlete.jpg" alt="Athlet in orangem Rennanzug wird von Helfer betreut" loading="lazy"></div>
+    <div class="masonry__item masonry__video" data-play-video>
+      <img src="../images/work-stmoritz-nils-poster.jpg" alt="Arbeiterporträt Reel">
+      <video src="../videos/stmoritz-nils.mp4" preload="none" playsinline></video>
+      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+    </div>
+    <div class="masonry__item"><img src="../images/work-stmoritz-tunnel.jpg" alt="Silhouetten in einem beleuchteten Starttunnel" loading="lazy"></div>
+    <div class="masonry__item masonry__video" data-play-video>
+      <img src="../images/work-stmoritz-skieinzel-poster.jpg" alt="Renntag Recap Reel">
+      <video src="../videos/stmoritz-ski-einzel.mp4" preload="none" playsinline></video>
+      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+    </div>
+  </section>
+
   <section class="case-deliverables">
     <div class="container">
-      <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
-        <p class="eyebrow" style="justify-content:center; display:flex;">Leistungen im Detail</p>
-        <h2>Was wir geliefert haben</h2>
-      </div>
-      <div class="case-deliverables__grid">
-        <div class="deliverable reveal"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Renn- und Actionfotografie</span></div>
-        <div class="deliverable reveal"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tägliche Aftermovies &amp; Social-Media-Content</span></div>
-        <div class="deliverable reveal"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Off-Snow-Content mit dem Team</span></div>
-        <div class="deliverable reveal"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Cineastisches Gesamt-Aftermovie</span></div>
-        <div class="deliverable reveal"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Drei Behind-the-Scenes-Reels</span></div>
+      <p class="eyebrow">Was wir geliefert haben</p>
+      <div class="case-deliverables__list">
+        <span>Renn- und Actionfotografie</span>
+        <span>Tägliche Aftermovies &amp; Social-Media-Content</span>
+        <span>Off-Snow-Content mit dem Team</span>
+        <span>Cineastisches Gesamt-Aftermovie</span>
+        <span>Drei Behind-the-Scenes-Reels</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== PREV / NEXT ===== -->
   <section class="case-nav">
-    <a href="ec-davos.html" class="case-nav__link">
-      <img src="../images/work-ecdavos-jump.jpg" alt="">
-      <span class="case-nav__eyebrow">← Vorheriges Projekt</span>
-      <span class="case-nav__title">Davos Open — Swiss Freeski Tour</span>
-    </a>
-    <a href="franjo-redbull-ktm.html" class="case-nav__link case-nav__link--next">
-      <img src="../images/work-franjo-hero-tor2.jpg" alt="">
-      <span class="case-nav__eyebrow">Nächstes Projekt →</span>
-      <span class="case-nav__title">Franjo × Redbull × KTM</span>
-    </a>
+    <a href="ec-davos.html"><div class="case-nav__bg"><img src="../images/work-ecdavos-jump.jpg" alt=""></div><span class="case-nav__eyebrow">← Vorheriges Projekt</span><span class="case-nav__title">Davos Open — Swiss Freeski Tour</span></a>
+    <a href="franjo-redbull-ktm.html"><div class="case-nav__bg"><img src="../images/work-franjo-hero-tor2.jpg" alt=""></div><span class="case-nav__eyebrow">Nächstes Projekt →</span><span class="case-nav__title">Franjo × Redbull × KTM</span></a>
   </section>
-
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="container footer__inner">
-    <a href="../index.html" class="logo">
-      <span class="logo__word">peak</span><span class="logo__word logo__word--accent">studio</span>
-    </a>
-    <nav class="footer__nav">
-      <a href="../index.html#arbeiten">Arbeiten</a>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a href="../index.html" class="logo-mark"><img src="../images/logo/peak-logo-black.png" alt="peak studio"></a>
+    <nav class="site-footer__nav">
+      <a href="index.html">Arbeiten</a>
       <a href="../index.html#leistungen">Leistungen</a>
       <a href="../index.html#ueber-uns">Über uns</a>
       <a href="../index.html#kontakt">Kontakt</a>
     </nav>
-    <div class="footer__social">
+    <div class="site-footer__social">
       <a href="https://instagram.com/tobiasmahrer" target="_blank" rel="noopener">@tobiasmahrer</a>
       <a href="https://instagram.com/flouschmid" target="_blank" rel="noopener">@flouschmid</a>
     </div>
   </div>
-  <div class="container footer__bottom">
+  <div class="container site-footer__bottom">
     <p>© 2026 peak studio · Thun, Schweiz</p>
-    <p>performance · precision · people</p>
+    <p class="tagline-serif">performance · precision · people</p>
   </div>
 </footer>
 

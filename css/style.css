@@ -735,6 +735,7 @@ h1 em, h2 em, h3 em{
 .growth-chart__period strong{ color:var(--white); font-weight:600; }
 
 .growth-svg{ width:100%; height:auto; overflow:visible; }
+.growth-svg__preline{ fill:none; stroke:rgba(255,255,255,.35); stroke-width:2; stroke-dasharray:2 6; stroke-linecap:round; }
 .growth-svg__line{ fill:none; stroke:rgba(255,255,255,.85); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 .growth-svg__projection{ fill:none; stroke:rgba(255,255,255,.5); stroke-width:2; stroke-dasharray:2 6; stroke-linecap:round; }
 .growth-svg__arrow-tip{

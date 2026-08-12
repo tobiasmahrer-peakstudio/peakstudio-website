@@ -862,15 +862,6 @@ h1 em, h2 em, h3 em{
 .leist-item__trigger:hover,
 .leist-item.is-open .leist-item__trigger{ padding-left:16px; }
 
-.leist-item__num{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:22px;
-  color:var(--gray);
-  flex:none;
-  width:34px;
-  transition:color .3s var(--ease);
-}
 .leist-item__title{
   font-size:clamp(34px, 6.4vw, 84px);
   font-weight:800;
@@ -881,9 +872,7 @@ h1 em, h2 em, h3 em{
   transition:color .3s var(--ease);
 }
 .leist-item__trigger:hover .leist-item__title,
-.leist-item.is-open .leist-item__title,
-.leist-item__trigger:hover .leist-item__num,
-.leist-item.is-open .leist-item__num{ color:var(--black); }
+.leist-item.is-open .leist-item__title{ color:var(--black); }
 
 .leist-item__caption{
   margin-left:auto;
@@ -913,28 +902,43 @@ h1 em, h2 em, h3 em{
 }
 .leist-item.is-open .leist-item__panel{ grid-template-rows:1fr; }
 .leist-item__panel-inner{ overflow:hidden; }
+.leist-item.is-open .leist-item__panel-inner{ padding-bottom:36px; }
 .leist-item__desc{
   max-width:62ch;
-  padding:0 0 8px 62px;
-  font-size:16px;
+  padding:0;
+  font-size:15.5px;
   line-height:1.65;
   color:var(--gray-dark);
 }
-.leist-item__value{
-  max-width:62ch;
-  padding:0 0 34px 62px;
-  font-size:15px;
-  line-height:1.6;
-  color:var(--black);
+.leist-item__list-label{
+  margin:26px 0 12px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--gray);
 }
-.leist-item__value em{ font-style:italic; font-family:var(--serif); font-size:16px; margin-right:4px; }
+.leist-item__list{
+  list-style:none;
+  display:grid;
+  gap:10px 32px;
+  max-width:74ch;
+}
+.leist-item__list li{
+  font-size:14.5px;
+  line-height:1.55;
+  color:var(--gray-dark);
+}
+.leist-item__list strong{ color:var(--black); font-weight:600; }
 
 .leist-list__cta{ margin-top:48px; }
 
+@media (min-width:700px){
+  .leist-item__list{ grid-template-columns:1fr 1fr; }
+}
+
 @media (max-width:700px){
   .leist-item__trigger{ gap:16px; }
-  .leist-item__num{ width:24px; font-size:16px; }
-  .leist-item__desc, .leist-item__value{ padding-left:0; }
 }
 
 /* ============================================================

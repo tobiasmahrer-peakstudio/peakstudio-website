@@ -82,6 +82,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // leistungen accordion
+  const leistItems = document.querySelectorAll('.leist-item');
+  if (leistItems.length) {
+    leistItems.forEach(item => {
+      const trigger = item.querySelector('.leist-item__trigger');
+      trigger.addEventListener('click', () => {
+        const wasOpen = item.classList.contains('is-open');
+        leistItems.forEach(other => {
+          other.classList.remove('is-open');
+          other.querySelector('.leist-item__trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
   // header background state on scroll (kept subtle, css handles blur already)
   const header = document.getElementById('header');
   if (header) {

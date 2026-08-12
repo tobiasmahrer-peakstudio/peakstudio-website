@@ -110,32 +110,4 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
   }
-
-  // custom cursor — small "view" dot over work tiles / case rows
-  const cursorTargets = document.querySelectorAll('[data-cursor]');
-  if (cursorTargets.length && matchMedia('(hover:hover)').matches) {
-    const dot = document.createElement('div');
-    dot.className = 'cursor-dot';
-    dot.innerHTML = '<span></span>';
-    document.body.appendChild(dot);
-    const label = dot.querySelector('span');
-
-    let x = 0, y = 0, cx = 0, cy = 0;
-    window.addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; });
-    const tick = () => {
-      cx += (x - cx) * 0.2;
-      cy += (y - cy) * 0.2;
-      dot.style.transform = `translate(${cx}px, ${cy}px)`;
-      requestAnimationFrame(tick);
-    };
-    tick();
-
-    cursorTargets.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        label.textContent = el.getAttribute('data-cursor') || 'Ansehen';
-        dot.classList.add('is-active');
-      });
-      el.addEventListener('mouseleave', () => dot.classList.remove('is-active'));
-    });
-  }
 });

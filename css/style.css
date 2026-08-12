@@ -946,7 +946,7 @@ h1 em, h2 em, h3 em{
   margin-bottom:14px;
 }
 .leist-item__proof-logos{ display:flex; align-items:center; gap:30px; flex-wrap:wrap; }
-.leist-item__proof-logos img{ height:20px; width:auto; object-fit:contain; opacity:.8; }
+.leist-item__proof-logos img{ height:20px; width:auto; max-width:110px; flex-shrink:0; object-fit:contain; opacity:.8; }
 .leist-item__proof--placeholder .leist-item__proof-label{
   font-family:var(--serif); font-style:italic; font-weight:400;
   text-transform:none; letter-spacing:0; font-size:14px; color:var(--gray); margin-bottom:0;

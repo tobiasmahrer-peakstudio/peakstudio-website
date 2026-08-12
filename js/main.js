@@ -13,9 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     mobileNav.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
-        mobileNav.classList.remove('is-open');
-        burger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+        // deferred so the browser can start following the link before
+        // the menu hides itself (visibility:hidden mid-click can abort
+        // navigation on iOS Safari)
+        setTimeout(() => {
+          mobileNav.classList.remove('is-open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }, 0);
       });
     });
   }
@@ -54,6 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contactForm');
   const formNote = document.getElementById('formNote');
   if (contactForm && formNote) {
+    const serviceParam = new URLSearchParams(window.location.search).get('service');
+    if (serviceParam) {
+      const messageField = document.getElementById('message');
+      if (messageField && !messageField.value) {
+        messageField.value = `Ich interessiere mich für: ${serviceParam}\n\n`;
+      }
+    }
+
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');

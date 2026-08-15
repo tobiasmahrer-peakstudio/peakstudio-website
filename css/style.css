@@ -264,11 +264,6 @@ h1 em, h2 em, h3 em{
 }
 .rotator__word.is-active{
   opacity:1;
-  transition-delay:.2s;
-}
-.rotator__word.is-leaving{
-  opacity:0;
-  transition-delay:0s;
 }
 
 .intro__side{ display:flex; flex-direction:column; gap:22px; }

@@ -32,21 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // hero word rotator
+  // hero word rotator — fully fade out before fading in the next word
   const rotator = document.querySelector('.rotator');
   if (rotator) {
     const words = rotator.querySelectorAll('.rotator__word');
     if (words.length > 1) {
+      const FADE_MS = 900;
+      const HOLD_MS = 1500;
       let current = 0;
-      setInterval(() => {
+      const cycle = () => {
         const next = (current + 1) % words.length;
         words[current].classList.remove('is-active');
-        words[current].classList.add('is-leaving');
-        words[next].classList.add('is-active');
-        const leaving = words[current];
-        setTimeout(() => leaving.classList.remove('is-leaving'), 900);
-        current = next;
-      }, 1500);
+        setTimeout(() => {
+          words[next].classList.add('is-active');
+          current = next;
+          setTimeout(cycle, HOLD_MS);
+        }, FADE_MS);
+      };
+      setTimeout(cycle, HOLD_MS);
     }
   }
 

@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         words[current].classList.add('is-leaving');
         words[next].classList.add('is-active');
         const leaving = words[current];
-        setTimeout(() => leaving.classList.remove('is-leaving'), 500);
+        setTimeout(() => leaving.classList.remove('is-leaving'), 900);
         current = next;
       }, 1500);
     }

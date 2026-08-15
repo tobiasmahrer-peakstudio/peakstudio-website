@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (rotator) {
     const words = rotator.querySelectorAll('.rotator__word');
     if (words.length > 1) {
-      const FADE_MS = 900;
+      const FADE_OUT_MS = 400; // matches .rotator__word transition duration
       const HOLD_MS = 1500;
       let current = 0;
       const cycle = () => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
           words[next].classList.add('is-active');
           current = next;
           setTimeout(cycle, HOLD_MS);
-        }, FADE_MS);
+        }, FADE_OUT_MS);
       };
       setTimeout(cycle, HOLD_MS);
     }

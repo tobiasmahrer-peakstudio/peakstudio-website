@@ -258,12 +258,13 @@ h1 em, h2 em, h3 em{
 .rotator__word{
   grid-area:1/1;
   opacity:0;
-  transition:opacity .9s var(--ease);
+  transition:opacity .4s var(--ease);
   white-space:nowrap;
   pointer-events:none;
 }
 .rotator__word.is-active{
   opacity:1;
+  transition:opacity .9s var(--ease);
 }
 
 .intro__side{ display:flex; flex-direction:column; gap:22px; }

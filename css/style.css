@@ -150,7 +150,6 @@ h1 em, h2 em, h3 em{
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
-  transition:transform .3s var(--ease);
 }
 .site-header__inner{
   display:grid;
@@ -221,7 +220,31 @@ h1 em, h2 em, h3 em{
   .header__mail{ display:none; }
   .burger{ display:flex; }
   .site-header__inner{ grid-template-columns:auto 1fr auto; }
-  .site-header.is-hidden{ transform:translateY(-100%); }
+
+  /* fixed (not sticky) on mobile: avoids iOS Safari's dynamic toolbar
+     fighting the sticky recalculation, which caused the header to get
+     stuck mid-transition. padding-top uses the safe-area inset so the
+     header's own background extends correctly behind the notch /
+     Dynamic Island instead of leaving a gap or getting clipped. */
+  .site-header{
+    position:fixed;
+    top:0; left:0; right:0;
+    padding-top:env(safe-area-inset-top, 0px);
+    transform:translateY(0);
+    transition:transform .35s var(--ease);
+    will-change:transform;
+  }
+  .site-header.is-hidden{
+    transform:translateY(-100%);
+  }
+  /* compensate the space the header no longer reserves in flow now
+     that it's fixed instead of sticky */
+  body{
+    padding-top:calc(76px + env(safe-area-inset-top, 0px));
+  }
+  .mobile-nav{
+    top:calc(76px + env(safe-area-inset-top, 0px));
+  }
 }
 
 /* ============================================================

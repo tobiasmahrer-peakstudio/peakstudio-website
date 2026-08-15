@@ -143,25 +143,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // header background state on scroll, plus hide-on-scroll-down /
-  // show-on-scroll-up (only visually active on mobile widths, see css)
+  // show-on-scroll-up (only visually active on mobile widths, see css).
+  // rAF-throttled and clamped against iOS rubber-band overscroll so it
+  // can't get stuck mid-transition.
   const header = document.getElementById('header');
   if (header) {
-    let lastY = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
+    const HIDE_AFTER = 80; // px scrolled before hiding is allowed
+    const THRESHOLD = 6;   // ignore jitter smaller than this
+    let lastY = Math.max(window.scrollY, 0);
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const y = Math.max(window.scrollY, 0);
       header.classList.toggle('is-scrolled', y > 8);
 
-      if (!mobileNav || !mobileNav.classList.contains('is-open')) {
-        const delta = y - lastY;
-        if (y > 80 && delta > 4) {
-          header.classList.add('is-hidden');
-        } else if (delta < -4 || y <= 80) {
-          header.classList.remove('is-hidden');
-        }
+      if (mobileNav && mobileNav.classList.contains('is-open')) {
+        lastY = y;
+        return;
+      }
+
+      const delta = y - lastY;
+      if (y <= HIDE_AFTER) {
+        header.classList.remove('is-hidden');
+      } else if (delta > THRESHOLD) {
+        header.classList.add('is-hidden');
+      } else if (delta < -THRESHOLD) {
+        header.classList.remove('is-hidden');
       }
       lastY = y;
     };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+
+    update();
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
   }
 });

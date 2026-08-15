@@ -1,5 +1,12 @@
 // peak studio — main.js
 
+// enable smooth scrolling only after the initial page load/anchor jump has
+// settled, so cross-page links to #kontakt land instantly instead of
+// animating through the whole page
+window.addEventListener('load', () => {
+  document.documentElement.classList.add('smooth-scroll');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // mobile nav toggle

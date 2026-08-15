@@ -22,7 +22,8 @@
 }
 
 *,*::before,*::after{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+html{ scroll-behavior:auto; }
+html.smooth-scroll{ scroll-behavior:smooth; }
 body{
   position:relative;
   margin:0;
@@ -970,6 +971,166 @@ h1 em, h2 em, h3 em{
   .leist-item__proof{ margin-top:32px; padding-top:26px; }
   .leist-item__proof-logos{ gap:24px; }
   .leist-item__cta{ margin-top:28px; }
+}
+
+/* ============================================================
+   Pricing — Web Design Pakete
+   ============================================================ */
+.leist-pricing{
+  margin-top:40px;
+  padding-top:32px;
+  border-top:1px solid var(--line);
+}
+.leist-pricing__title{
+  font-size:clamp(24px,3vw,32px);
+  line-height:1.1;
+  max-width:14ch;
+  margin-top:8px;
+}
+.leist-pricing__sub{
+  font-size:15px;
+  line-height:1.6;
+  color:var(--gray-dark);
+  max-width:56ch;
+  margin-top:14px;
+}
+
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  margin-top:40px;
+  align-items:start;
+}
+
+.pricing-card{
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:36px 30px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  min-width:0;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+}
+.pricing-card:hover{
+  border-color:var(--gray);
+  transform:translateY(-4px);
+}
+.pricing-card--featured{
+  background:radial-gradient(130% 100% at 100% 0%, #333230 0%, var(--black) 55%);
+  border-color:var(--black);
+  color:var(--white);
+  box-shadow:0 40px 70px -32px rgba(0,0,0,.5);
+}
+@media (min-width:901px){
+  .pricing-card--featured{ transform:translateY(-16px); padding-top:44px; padding-bottom:44px; }
+  .pricing-card--featured:hover{ transform:translateY(-20px); }
+}
+.pricing-card--featured:hover{ border-color:var(--black); }
+
+.pricing-card__badge{
+  position:absolute;
+  top:0; left:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+  background:var(--black);
+  color:var(--white);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:7px 16px;
+  border-radius:999px;
+  border:1px solid var(--black);
+}
+.pricing-card--featured .pricing-card__badge{
+  background:var(--white);
+  color:var(--black);
+  border-color:var(--white);
+}
+
+.pricing-card__name{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--gray);
+}
+.pricing-card--featured .pricing-card__name{ color:rgba(255,255,255,.6); }
+
+.pricing-card__price{
+  font-size:clamp(28px,3vw,34px);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  margin-top:10px;
+}
+.pricing-card__price span{
+  font-size:16px;
+  font-weight:500;
+  color:var(--gray);
+  margin-left:2px;
+}
+.pricing-card--featured .pricing-card__price span{ color:rgba(255,255,255,.5); }
+
+.pricing-card__desc{
+  font-size:14px;
+  line-height:1.6;
+  color:var(--gray-dark);
+  margin-top:14px;
+  min-height:64px;
+}
+.pricing-card--featured .pricing-card__desc{ color:rgba(255,255,255,.75); }
+
+.pricing-card__list{
+  list-style:none;
+  margin:24px 0 28px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  flex:1;
+}
+.pricing-card--featured .pricing-card__list{ border-top-color:rgba(255,255,255,.18); }
+
+.pricing-card__list li{
+  font-size:13.5px;
+  line-height:1.5;
+  color:var(--gray-dark);
+  padding-left:22px;
+  position:relative;
+}
+.pricing-card--featured .pricing-card__list li{ color:rgba(255,255,255,.85); }
+
+.pricing-card__list li::before{
+  content:'';
+  position:absolute;
+  left:0; top:5px;
+  width:11px; height:11px;
+  border:1.4px solid var(--black);
+  border-left:none; border-top:none;
+  transform:rotate(45deg) translateY(-1px);
+  border-width:0 1.6px 1.6px 0;
+}
+.pricing-card--featured .pricing-card__list li::before{ border-color:var(--white); }
+
+.pricing-card--featured .btn--primary{ background:var(--white); color:var(--black); border-color:var(--white); }
+.pricing-card--featured .btn--primary:hover{ background:transparent; color:var(--white); }
+
+.pricing-note{
+  margin-top:22px;
+  font-size:13px;
+  color:var(--gray);
+}
+.pricing-note .link-arrow{ color:var(--black); margin-left:2px; }
+
+@media (max-width:900px){
+  .pricing-grid{ grid-template-columns:1fr; gap:20px; }
+}
+@media (max-width:520px){
+  .pricing-card{ padding:30px 22px; }
 }
 
 /* ============================================================

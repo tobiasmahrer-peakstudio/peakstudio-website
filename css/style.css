@@ -250,6 +250,30 @@ h1 em, h2 em, h3 em{
   color:var(--black);
   letter-spacing:0;
 }
+.rotator{
+  display:inline-grid;
+  vertical-align:top;
+  overflow:hidden;
+}
+.rotator__word{
+  grid-area:1/1;
+  opacity:0;
+  transform:translateY(0.3em);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.rotator__word.is-active{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.12s;
+}
+.rotator__word.is-leaving{
+  opacity:0;
+  transform:translateY(-0.3em);
+  transition-delay:0s;
+}
+
 .intro__side{ display:flex; flex-direction:column; gap:22px; }
 .intro__desc{
   font-size:15px;

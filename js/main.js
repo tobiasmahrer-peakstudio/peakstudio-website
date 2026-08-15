@@ -32,6 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // hero word rotator
+  const rotator = document.querySelector('.rotator');
+  if (rotator) {
+    const words = rotator.querySelectorAll('.rotator__word');
+    if (words.length > 1) {
+      let current = 0;
+      setInterval(() => {
+        const next = (current + 1) % words.length;
+        words[current].classList.remove('is-active');
+        words[current].classList.add('is-leaving');
+        words[next].classList.add('is-active');
+        const leaving = words[current];
+        setTimeout(() => leaving.classList.remove('is-leaving'), 500);
+        current = next;
+      }, 1000);
+    }
+  }
+
   // scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {

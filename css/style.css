@@ -150,6 +150,7 @@ h1 em, h2 em, h3 em{
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
+  transition:transform .3s var(--ease);
 }
 .site-header__inner{
   display:grid;
@@ -220,6 +221,7 @@ h1 em, h2 em, h3 em{
   .header__mail{ display:none; }
   .burger{ display:flex; }
   .site-header__inner{ grid-template-columns:auto 1fr auto; }
+  .site-header.is-hidden{ transform:translateY(-100%); }
 }
 
 /* ============================================================

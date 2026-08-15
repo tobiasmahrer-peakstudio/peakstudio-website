@@ -142,11 +142,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // header background state on scroll (kept subtle, css handles blur already)
+  // header background state on scroll, plus hide-on-scroll-down /
+  // show-on-scroll-up (only visually active on mobile widths, see css)
   const header = document.getElementById('header');
   if (header) {
+    let lastY = window.scrollY;
     const onScroll = () => {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      const y = window.scrollY;
+      header.classList.toggle('is-scrolled', y > 8);
+
+      if (!mobileNav || !mobileNav.classList.contains('is-open')) {
+        const delta = y - lastY;
+        if (y > 80 && delta > 4) {
+          header.classList.add('is-hidden');
+        } else if (delta < -4 || y <= 80) {
+          header.classList.remove('is-hidden');
+        }
+      }
+      lastY = y;
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

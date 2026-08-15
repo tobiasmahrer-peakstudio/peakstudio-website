@@ -489,12 +489,7 @@ h1 em, h2 em, h3 em{
 .team-card__body h3{ font-size:21px; font-weight:600; letter-spacing:-0.01em; }
 .team-card__role{ font-size:11.5px; color:var(--gray); margin-top:6px; text-transform:uppercase; letter-spacing:0.06em; }
 .team-card__bio{ font-size:14px; color:var(--gray-dark); margin-top:14px; line-height:1.65; max-width:44ch; }
-.team-card__insta{
-  display:inline-flex; margin-top:18px; font-size:12px; font-weight:600;
-  letter-spacing:0.03em; border-bottom:1px solid var(--gray); padding-bottom:2px;
-  transition:border-color .2s, color .2s;
-}
-.team-card__insta:hover{ border-color:var(--black); }
+.team-card__contact{ margin-top:18px; }
 
 @media (max-width:700px){
   .team{ grid-template-columns:1fr; gap:48px; }

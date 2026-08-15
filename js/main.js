@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const leaving = words[current];
         setTimeout(() => leaving.classList.remove('is-leaving'), 500);
         current = next;
-      }, 1000);
+      }, 1500);
     }
   }
 

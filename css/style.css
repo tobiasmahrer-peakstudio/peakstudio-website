@@ -230,12 +230,17 @@ h1 em, h2 em, h3 em{
     position:fixed;
     top:0; left:0; right:0;
     padding-top:env(safe-area-inset-top, 0px);
-    transform:translateY(0);
+    transform:translate3d(0,0,0);
     transition:transform .35s var(--ease);
     will-change:transform;
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
   }
   .site-header.is-hidden{
-    transform:translateY(-100%);
+    /* translate3d (not translateY) forces this onto its own GPU layer —
+       plain 2D transforms on a fixed element can fall behind during
+       momentum scrolling in iOS Safari and get visually stuck mid-hide */
+    transform:translate3d(0,-100%,0);
   }
   /* compensate the space the header no longer reserves in flow now
      that it's fixed instead of sticky */

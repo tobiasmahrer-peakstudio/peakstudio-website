@@ -123,6 +123,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // projekte filter
+  const projFilter = document.getElementById('projFilter');
+  const projList = document.getElementById('projList');
+  if (projFilter && projList) {
+    const items = projList.querySelectorAll('.proj-item');
+    projFilter.addEventListener('click', (e) => {
+      const btn = e.target.closest('.proj-filter__btn');
+      if (!btn) return;
+      const filter = btn.dataset.filter;
+      projFilter.querySelectorAll('.proj-filter__btn').forEach(b => {
+        b.classList.toggle('is-active', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      items.forEach(item => {
+        item.style.display = (filter === 'all' || item.dataset.cat === filter) ? '' : 'none';
+      });
+    });
+  }
+
   // leistungen accordion
   const leistItems = document.querySelectorAll('.leist-item');
   if (leistItems.length) {

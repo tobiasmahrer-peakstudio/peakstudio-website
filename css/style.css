@@ -941,6 +941,14 @@ h1 em, h2 em, h3 em{
    ============================================================ */
 .reel-showcase{ padding:44px 0 56px; }
 .reel-showcase__intro{ font-size:15px; color:var(--gray-dark); line-height:1.7; max-width:70ch; margin-bottom:22px; }
+.case-photos{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:28px; }
+.case-photos__item{ height:320px; flex:0 0 auto; border-radius:4px; overflow:hidden; background:var(--off); }
+.case-photos__item img{ height:100%; width:auto; max-width:100%; display:block; object-fit:cover; }
+@media (max-width:640px){
+  .case-photos{ flex-direction:column; }
+  .case-photos__item{ height:auto; width:100%; }
+  .case-photos__item img{ width:100%; height:auto; }
+}
 .reel-links{ display:flex; flex-wrap:wrap; gap:10px; }
 .reel-link{
   display:inline-flex; align-items:center; gap:8px;

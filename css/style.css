@@ -1686,6 +1686,12 @@ body.home-v2{ padding-top:0; }
    no opaque/light swap on scroll, no border line. It only ever hides
    (below) or reappears, always in this same transparent style. */
 .home-v2 .site-header{
+  /* sticky still reserves its own height in normal flow, which pushed the
+     hero video down and left a gap above it — fixed removes the header
+     from flow entirely so the video can start at the true top of the page,
+     with the header floating over it instead of sitting in front of it */
+  position:fixed;
+  top:0; left:0; right:0;
   background:transparent;
   border-bottom:0;
   backdrop-filter:none;

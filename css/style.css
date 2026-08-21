@@ -1579,6 +1579,95 @@ h1 em, h2 em, h3 em{
 }
 
 /* ============================================================
+   Shooting tile system — Leistungen > Shooting
+   ============================================================ */
+.shoot-grid{
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  gap:14px;
+  margin-top:40px;
+}
+
+.shoot-tile{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:6px;
+  min-height:150px;
+  padding:22px 24px;
+  border:1px solid var(--line);
+  color:var(--black);
+  transition:border-color .35s var(--ease), transform .35s var(--ease);
+}
+.shoot-tile--w3{ grid-column:span 3; }
+.shoot-tile--w4{ grid-column:span 4; }
+.shoot-tile--w5{ grid-column:span 5; }
+.shoot-tile--w7{ grid-column:span 7; min-height:190px; }
+.shoot-tile.shoot-tile--offset.is-visible{ transform:translateY(-10px); }
+
+.shoot-tile__arrow{
+  position:absolute;
+  top:20px; right:24px;
+  font-size:16px;
+  color:var(--black);
+  opacity:0;
+  transform:translate(-4px,-4px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.shoot-tile__title{
+  font-size:clamp(21px,2.1vw,29px);
+  font-weight:800;
+  letter-spacing:-0.01em;
+  text-transform:uppercase;
+}
+.shoot-tile__tags{
+  font-size:12.5px;
+  color:var(--gray-dark);
+  transition:color .3s var(--ease);
+}
+
+@media (hover:hover){
+  .shoot-tile:hover{ border-color:var(--black); transform:translateY(-4px); }
+  .shoot-tile--offset:hover{ transform:translateY(-14px); }
+  .shoot-tile:hover .shoot-tile__tags{ color:var(--black); }
+  .shoot-tile:hover .shoot-tile__arrow{ opacity:1; transform:translate(0,0); }
+}
+.shoot-tile:active{ transform:scale(.98); }
+
+.shoot-usp{
+  margin-top:32px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.shoot-usp__title{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+}
+.shoot-usp__desc{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--gray-dark);
+  margin-top:6px;
+  max-width:56ch;
+}
+
+@media (max-width:900px){
+  .shoot-grid{ grid-template-columns:repeat(2, 1fr); }
+  .shoot-tile--w3, .shoot-tile--w4, .shoot-tile--w5, .shoot-tile--w7{ grid-column:span 1; }
+  .shoot-tile.shoot-tile--offset.is-visible{ transform:none; }
+  .shoot-tile--offset:active{ transform:scale(.98); }
+}
+
+@media (max-width:520px){
+  .shoot-grid{ grid-template-columns:1fr; gap:10px; }
+  .shoot-tile{ min-height:120px; padding:18px 20px; }
+  .shoot-tile--w7{ min-height:120px; }
+}
+
+/* ============================================================
    Utility spacing
    ============================================================ */
 .mt-0{ margin-top:0 !important; }

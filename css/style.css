@@ -157,7 +157,7 @@ h1 em, h2 em, h3 em{
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
   border-bottom:0;
-  transition:transform .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease);
+  transition:transform .35s var(--ease), opacity .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease);
   will-change:transform;
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;
@@ -165,8 +165,15 @@ h1 em, h2 em, h3 em{
 .site-header.is-hidden{
   /* translate3d (not translateY) forces this onto its own GPU layer —
      plain 2D transforms on a fixed element can fall behind during
-     momentum scrolling in iOS Safari and get visually stuck mid-hide */
+     momentum scrolling in iOS Safari and get visually stuck mid-hide.
+     opacity:0 + pointer-events:none on top of the transform is required
+     because Safari can leave a "ghost" of the backdrop-filter blur
+     painted at the old position when only a transform moves the box —
+     most visible right at the Dynamic Island / notch cutout. Fading
+     opacity too forces a full repaint that clears the ghost. */
   transform:translate3d(0,-100%,0);
+  opacity:0;
+  pointer-events:none;
 }
 /* fixed header no longer reserves space in flow, so every page compensates
    with this padding — the home page (full-bleed video hero) cancels it */

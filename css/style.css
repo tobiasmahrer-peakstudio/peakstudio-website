@@ -1139,8 +1139,6 @@ h1 em, h2 em, h3 em{
    ============================================================ */
 .leist-pricing{
   margin-top:40px;
-  padding-top:32px;
-  border-top:1px solid var(--line);
 }
 .leist-pricing__title{
   font-size:clamp(24px,3vw,32px);
@@ -1298,9 +1296,7 @@ h1 em, h2 em, h3 em{
    Event Journey — Leistungen > Events
    ============================================================ */
 .ej{
-  margin-top:48px;
-  padding-top:36px;
-  border-top:1px solid var(--line);
+  margin-top:40px;
 }
 
 .ej__headline{
@@ -1435,7 +1431,7 @@ h1 em, h2 em, h3 em{
 }
 
 @media (max-width:860px){
-  .ej{ margin-top:40px; padding-top:30px; }
+  .ej{ margin-top:32px; }
   .ej__track{
     display:flex;
     flex-direction:column;
@@ -1476,9 +1472,7 @@ h1 em, h2 em, h3 em{
    Social Media goals — Leistungen > Social Media
    ============================================================ */
 .sm-goals{
-  margin-top:48px;
-  padding-top:36px;
-  border-top:1px solid var(--line);
+  margin-top:40px;
 }
 
 .sm-goals__grid{
@@ -1573,7 +1567,7 @@ h1 em, h2 em, h3 em{
 }
 
 @media (max-width:700px){
-  .sm-goals{ margin-top:40px; padding-top:30px; }
+  .sm-goals{ margin-top:32px; }
   .sm-goals__grid{ grid-template-columns:1fr; gap:16px; }
   .sm-card{ aspect-ratio:4/5; }
 }

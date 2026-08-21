@@ -142,9 +142,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // leistungen accordion
+  // leistungen accordion — other panels collapsing above/below the clicked
+  // one shift the page by a different amount every time (depending on which
+  // panel was open and how tall each panel is), which reads as random
+  // jumping. Once the collapse animation settles, scroll the clicked title
+  // to the same fixed spot below the header every time, so it feels uniform
+  // regardless of what was open before.
   const leistItems = document.querySelectorAll('.leist-item');
   if (leistItems.length) {
+    const header = document.getElementById('header');
+    const COLLAPSE_MS = 460; // matches .leist-item__panel grid-template-rows transition (.45s)
+
     leistItems.forEach(item => {
       const trigger = item.querySelector('.leist-item__trigger');
       trigger.addEventListener('click', () => {
@@ -156,6 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!wasOpen) {
           item.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
+          setTimeout(() => {
+            const headerH = header ? header.offsetHeight : 0;
+            const y = trigger.getBoundingClientRect().top + window.scrollY - headerH - 16;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }, COLLAPSE_MS);
         }
       });
     });

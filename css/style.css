@@ -1696,10 +1696,19 @@ body.home-v2{ padding-top:0; }
   border-bottom:0;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  transition:transform .35s var(--ease);
+  transition:transform .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease);
 }
 .home-v2 .site-header.is-hidden{
   transform:translate3d(0,-100%,0);
+}
+/* scrolling up reveals the header with a frosted dark glass background so
+   the (always-white) logo/nav stay legible over whatever content is
+   underneath; at the very top (not scrolled) it fades back to fully
+   transparent since that's directly over the video there */
+.home-v2 .site-header.is-scrolled{
+  background:rgba(13,13,12,.4);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 }
 .home-v2 .logo-mark__img--dark{ display:none; }
 .home-v2 .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }

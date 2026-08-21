@@ -1689,7 +1689,13 @@ body.home-v2{ padding-top:0; }
   border-bottom-color:transparent;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  transition:background .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s var(--ease);
+  transition:background .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s var(--ease), transform .35s var(--ease);
+}
+/* hide-on-scroll-down is normally mobile-only (header is fixed there); on
+   this page it also applies at desktop widths, so scrolling down over the
+   video just makes the header disappear instead of turning solid */
+.home-v2 .site-header.is-hidden{
+  transform:translate3d(0,-100%,0);
 }
 .home-v2 .site-header.is-scrolled{
   background:rgba(250,249,246,.86);

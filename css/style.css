@@ -1641,23 +1641,19 @@ body{
    transparent header instead of starting below it */
 body.is-home{ padding-top:0; }
 
-/* on the home page the header starts fully transparent (it's directly
-   over the video) instead of the light frosted bar every other page
-   gets — no border line either. It still hides/reveals via the base
-   .is-hidden rule, always in this same transparent resting style. */
+/* on the home page the header is fully transparent (it's directly over
+   the video) instead of the light frosted bar every other page gets — no
+   border line either. It stays this exact look at all times: it's only
+   ever visible near the very top (see .is-hidden / main.js), which is
+   always over the video, so there's no scrolled-past-the-video state
+   that would need a different, more legible background. Deliberately NOT
+   swapping to a frosted/darker look on scroll — the header should always
+   look exactly like it does on load, and only ever slide away, never
+   change appearance. */
 .is-home .site-header{
   background:transparent;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-}
-/* scrolling up reveals the header with a frosted dark glass background so
-   the (always-white) logo/nav stay legible over whatever content is
-   underneath; at the very top (not scrolled) it fades back to fully
-   transparent since that's directly over the video there */
-.is-home .site-header.is-scrolled{
-  background:rgba(13,13,12,.4);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
 }
 /* .notch-cover is NOT left transparent here even though the resting home
    header is: iOS Safari won't actually composite <video> content behind
@@ -1677,11 +1673,6 @@ body.is-home{ padding-top:0; }
   background:linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.65) 100%);
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-}
-.is-home .site-header.is-scrolled ~ .notch-cover{
-  background:linear-gradient(180deg, rgba(13,13,12,.6) 0%, rgba(13,13,12,.4) 100%);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
 }
 .is-home .logo-mark__img--dark{ display:none; }
 .is-home .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }

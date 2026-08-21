@@ -192,11 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const update = () => {
       ticking = false;
-      const y = Math.max(window.scrollY, 0);
-      header.classList.toggle('is-scrolled', y > 8);
-
       if (mobileNav && mobileNav.classList.contains('is-open')) return;
 
+      const y = Math.max(window.scrollY, 0);
       header.classList.toggle('is-hidden', y > HIDE_AFTER);
     };
 

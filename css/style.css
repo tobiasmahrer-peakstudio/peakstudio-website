@@ -1741,18 +1741,18 @@ body.home-v2{ padding-top:0; }
 .hero-video__content{
   position:relative;
   z-index:1;
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:60px;
-  align-items:end;
+  width:100%;
   padding-top:140px;
-  padding-bottom:90px;
+  padding-bottom:110px;
+}
+.hero-video__inner{
+  max-width:520px;
 }
 .hero-video__title{
-  font-size:clamp(42px, 5.8vw, 88px);
-  line-height:0.98;
+  font-size:clamp(38px, 4.8vw, 68px);
+  line-height:1.02;
   font-weight:700;
-  letter-spacing:-0.035em;
+  letter-spacing:-0.03em;
   color:var(--white);
 }
 .hero-video__title em{
@@ -1762,14 +1762,14 @@ body.home-v2{ padding-top:0; }
   color:var(--white);
   letter-spacing:0;
 }
-.hero-video__side{ display:flex; flex-direction:column; gap:22px; }
 .hero-video__desc{
-  font-size:15px;
-  line-height:1.65;
-  color:rgba(255,255,255,.82);
+  margin-top:20px;
+  font-size:14.5px;
+  line-height:1.6;
+  color:rgba(255,255,255,.75);
   max-width:38ch;
 }
-.hero-video__socials{ display:flex; gap:22px; }
+.hero-video__socials{ display:flex; gap:22px; margin-top:22px; }
 .hero-video__socials a{
   font-size:12px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;
   color:var(--white); padding-bottom:3px;
@@ -1792,7 +1792,11 @@ body.home-v2{ padding-top:0; }
   .hero-video__tag::before{ animation:none; }
 }
 @media (max-width:900px){
-  .hero-video__content{ grid-template-columns:1fr; gap:28px; padding-top:110px; padding-bottom:60px; }
+  .hero-video__content{ padding-top:110px; padding-bottom:64px; }
+  .hero-video__inner{ max-width:none; }
+  /* keep the hero uncluttered on small screens — title only, the rest of
+     the page (nav, footer) still gets you to Kontakt/Instagram */
+  .hero-video__desc, .hero-video__socials{ display:none; }
 }
 
 .services.services--light{ background:var(--bg); color:var(--black); }

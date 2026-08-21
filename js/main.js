@@ -161,6 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // event journey — click/tap toggles each phase's services (hover handles desktop)
+  document.querySelectorAll('.ej__phase-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const phase = trigger.closest('.ej__phase');
+      const isActive = phase.classList.toggle('is-active');
+      trigger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+  });
+
   // header background state on scroll, plus hide-on-scroll-down /
   // show-on-scroll-up (only visually active on mobile widths, see css).
   // rAF-throttled and clamped against iOS rubber-band overscroll so it

@@ -1682,42 +1682,24 @@ h1 em, h2 em, h3 em{
    run full-bleed under the transparent header instead of starting below it */
 body.home-v2{ padding-top:0; }
 
+/* header stays fully transparent at all times and on all breakpoints —
+   no opaque/light swap on scroll, no border line. It only ever hides
+   (below) or reappears, always in this same transparent style. */
 .home-v2 .site-header{
-  /* a faint dark tint on top of the video's own scrim, so the logo/nav
-     stay legible even on a bright frame, without looking like a solid bar */
-  background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,0));
-  border-bottom-color:transparent;
+  background:transparent;
+  border-bottom:0;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  transition:background .3s var(--ease), border-color .3s var(--ease), backdrop-filter .3s var(--ease), transform .35s var(--ease);
+  transition:transform .35s var(--ease);
 }
-/* hide-on-scroll-down is normally mobile-only (header is fixed there); on
-   this page it also applies at desktop widths, so scrolling down over the
-   video just makes the header disappear instead of turning solid */
 .home-v2 .site-header.is-hidden{
   transform:translate3d(0,-100%,0);
 }
-.home-v2 .site-header.is-scrolled{
-  background:rgba(250,249,246,.86);
-  border-bottom-color:var(--line);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-.home-v2 .site-header .logo-mark{ position:relative; }
-.home-v2 .logo-mark__img{ height:30px; width:auto; }
-.home-v2 .logo-mark__img--light{ position:absolute; inset:0; opacity:1; transition:opacity .3s var(--ease); }
-.home-v2 .logo-mark__img--dark{ opacity:0; transition:opacity .3s var(--ease); }
-.home-v2 .site-header.is-scrolled .logo-mark__img--light{ opacity:0; }
-.home-v2 .site-header.is-scrolled .logo-mark__img--dark{ opacity:1; }
+.home-v2 .logo-mark__img--dark{ display:none; }
 .home-v2 .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }
 .home-v2 .site-nav a:hover, .home-v2 .site-nav a.is-active{ color:var(--white); }
 .home-v2 .site-nav a.is-active::after{ background:var(--white); }
-.home-v2 .burger span{ background:var(--white); transition:background .3s var(--ease); }
-.home-v2 .site-header.is-scrolled .site-nav a{ color:var(--gray-dark); }
-.home-v2 .site-header.is-scrolled .site-nav a:hover,
-.home-v2 .site-header.is-scrolled .site-nav a.is-active{ color:var(--black); }
-.home-v2 .site-header.is-scrolled .site-nav a.is-active::after{ background:var(--black); }
-.home-v2 .site-header.is-scrolled .burger span{ background:var(--black); }
+.home-v2 .burger span{ background:var(--white); }
 
 .hero-video{
   position:relative;

@@ -1515,6 +1515,7 @@ h1 em, h2 em, h3 em{
   display:block;
   aspect-ratio:3/4;
   overflow:hidden;
+  border-radius:20px;
   background:var(--off);
   color:var(--white);
   transition:transform .5s var(--ease), box-shadow .5s var(--ease);

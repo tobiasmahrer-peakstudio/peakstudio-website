@@ -384,6 +384,7 @@ h1 em, h2 em, h3 em{
   transition:opacity .25s, transform .25s;
 }
 .clients__track img:hover{ opacity:1; transform:scale(1.05); }
+.clients__track img.clients__logo--lenk{ height:48px; width:110px; }
 
 @keyframes marquee{
   from{ transform:translateX(0); }
@@ -395,6 +396,7 @@ h1 em, h2 em, h3 em{
 @media (max-width:560px){
   .clients__track{ gap:36px; }
   .clients__track img{ height:26px; width:96px; }
+  .clients__track img.clients__logo--lenk{ height:38px; width:88px; }
 }
 
 /* ============================================================

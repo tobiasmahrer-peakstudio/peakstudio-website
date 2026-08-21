@@ -181,6 +181,24 @@ h1 em, h2 em, h3 em{
   opacity:0;
   pointer-events:none;
 }
+/* a separate, never-transformed bar pinned over just the notch / Dynamic
+   Island strip. The header above hides/reveals via a transform, but iOS
+   Safari doesn't repaint that top sliver in sync with it — for a frame or
+   two while the header is animating back in on scroll-up, the page
+   underneath (video, etc.) flashes through right behind the cutout. This
+   bar never transforms and always matches the header's current
+   background, so there's never a gap for anything to flash through.
+   Height is 0 (invisible) on devices with no safe-area inset. */
+.notch-cover{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:env(safe-area-inset-top, 0px);
+  z-index:101;
+  pointer-events:none;
+  background:rgba(250,249,246,.86);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
 /* fixed header no longer reserves space in flow, so every page compensates
    with this padding — the home page (full-bleed video hero) cancels it */
 body{
@@ -1629,6 +1647,15 @@ body.is-home{ padding-top:0; }
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }
+/* .notch-cover mirrors the header's own two resting states here — it
+   never transforms, so it has to already be the right colour rather than
+   transition into it (see the .notch-cover rule above for why). */
+.is-home .notch-cover{ background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; }
+.is-home .site-header.is-scrolled ~ .notch-cover{
+  background:rgba(13,13,12,.4);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
 .is-home .logo-mark__img--dark{ display:none; }
 .is-home .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }
 .is-home .site-nav a:hover, .is-home .site-nav a.is-active{ color:var(--white); }
@@ -1648,6 +1675,11 @@ body.is-home{ padding-top:0; }
      over an already-darkened video/scrim — these pages have a plain
      light background right behind it, so it needs much more opacity to
      actually read as a dark bar instead of a grey smear */
+  background:rgba(13,13,12,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.header-dark .notch-cover{
   background:rgba(13,13,12,.94);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);

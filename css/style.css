@@ -1665,15 +1665,21 @@ body.is-home{ padding-top:0; }
    deliberate WebKit restriction on video hardware layers, not something
    fixable from here), so a transparent cover let the plain page
    background show through as a pale gap right at the cutout instead of
-   the video. Matching the scrim's darkest tone keeps it looking like a
-   continuation of the video instead of a hole. */
+   the video. A flat fill would still read as a visible seam against the
+   video the moment the colour isn't a pixel-perfect match, so instead
+   this fades — darkest at the very top edge, lightening down to exactly
+   the shade .hero-video__scrim opens at (rgba(0,0,0,.65) at its own
+   0px). Since .notch-cover's bottom edge sits exactly where the scrim's
+   top edge starts, the two gradients hand off at identical values with
+   no seam: one continuous fade from pure dark behind the cutout down to
+   clear video, instead of a hard-edged block. */
 .is-home .notch-cover{
-  background:rgba(0,0,0,.65);
+  background:linear-gradient(180deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.65) 100%);
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
 }
 .is-home .site-header.is-scrolled ~ .notch-cover{
-  background:rgba(13,13,12,.4);
+  background:linear-gradient(180deg, rgba(13,13,12,.6) 0%, rgba(13,13,12,.4) 100%);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }

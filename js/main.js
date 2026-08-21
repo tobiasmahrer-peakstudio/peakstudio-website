@@ -174,15 +174,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // header background state on scroll, plus hide-on-scroll-down /
-  // show-on-scroll-up (only visually active on mobile widths, see css).
+  // header visibility on scroll (mobile widths only, see css): shows only
+  // near the very top of the page, hides once scrolled past it — and,
+  // deliberately, does NOT come back on scroll-up mid-page. An earlier
+  // version re-revealed the header any time you scrolled up, floating it
+  // back in over whatever content was currently on screen; on iOS Safari
+  // that reveal is exactly what triggered the header visibly detaching /
+  // flashing near the notch. Only ever showing it right at the top avoids
+  // that interaction entirely — you get the header back by scrolling to
+  // the top, not by any upward flick anywhere on the page.
   // rAF-throttled and clamped against iOS rubber-band overscroll so it
   // can't get stuck mid-transition.
   const header = document.getElementById('header');
   if (header) {
     const HIDE_AFTER = 80; // px scrolled before hiding is allowed
-    const THRESHOLD = 6;   // ignore jitter smaller than this
-    let lastY = Math.max(window.scrollY, 0);
     let ticking = false;
 
     const update = () => {
@@ -190,20 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const y = Math.max(window.scrollY, 0);
       header.classList.toggle('is-scrolled', y > 8);
 
-      if (mobileNav && mobileNav.classList.contains('is-open')) {
-        lastY = y;
-        return;
-      }
+      if (mobileNav && mobileNav.classList.contains('is-open')) return;
 
-      const delta = y - lastY;
-      if (y <= HIDE_AFTER) {
-        header.classList.remove('is-hidden');
-      } else if (delta > THRESHOLD) {
-        header.classList.add('is-hidden');
-      } else if (delta < -THRESHOLD) {
-        header.classList.remove('is-hidden');
-      }
-      lastY = y;
+      header.classList.toggle('is-hidden', y > HIDE_AFTER);
     };
 
     update();

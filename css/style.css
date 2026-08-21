@@ -1622,6 +1622,29 @@ body.is-home{ padding-top:0; }
 .is-home .site-nav a.is-active::after{ background:var(--white); }
 .is-home .burger span{ background:var(--white); }
 
+/* ============================================================
+   Dark header — Projekte, Leistungen, Kontakt
+   Same look and behaviour as the home page's scrolled state (dark
+   frosted glass, white logo/nav), but permanent since these pages have
+   no video hero to fade in from — the header just floats as its own
+   dark bar above the (unrelated, lighter) page content, which starts
+   below it via the usual body padding-top, not behind it.
+   ============================================================ */
+.header-dark .site-header{
+  /* home's scrolled state only needs 40% opacity because it always sits
+     over an already-darkened video/scrim — these pages have a plain
+     light background right behind it, so it needs much more opacity to
+     actually read as a dark bar instead of a grey smear */
+  background:rgba(13,13,12,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.header-dark .site-header .logo-mark img{ filter:invert(1); }
+.header-dark .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }
+.header-dark .site-nav a:hover, .header-dark .site-nav a.is-active{ color:var(--white); }
+.header-dark .site-nav a.is-active::after{ background:var(--white); }
+.header-dark .burger span{ background:var(--white); }
+
 .hero-video{
   position:relative;
   height:82vh;

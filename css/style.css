@@ -15,9 +15,6 @@
   --pad: 40px;
   --ease: cubic-bezier(.16,1,.3,1);
   --serif: 'Instrument Serif', Georgia, serif;
-  /* how far the header/notch-cover overscan above the viewport — see the
-     comment on .site-header for why */
-  --header-overscan: 120px;
 }
 
 @media (max-width: 900px){
@@ -153,16 +150,17 @@ h1 em, h2 em, h3 em{
      mid-transition), and lets it hide/reveal on scroll via transform.
      padding-top uses the safe-area inset so the header's own background
      extends correctly behind the notch / Dynamic Island.
-     top/padding-top also overscan by --header-overscan: iOS Safari's own
-     toolbar (the URL bar) resizes the visual viewport as it shows/hides,
-     and mid-resize it can momentarily expose a sliver of page above a
-     plain top:0 fixed header, so the page looks like it's "floating"
-     loose from under it. Starting the box above the viewport and padding
-     the content back down by the same amount means there's always opaque
-     header background ready to cover that sliver, however big it gets. */
+     (An earlier version also started this box above the viewport via a
+     negative top/extra padding, to pre-cover a Safari toolbar-resize gap.
+     Reverted — Safari doesn't reliably paint the part of a fixed element
+     that starts outside the initial viewport until a scroll forces a
+     repaint, which showed up as a plain gap at the very top on first
+     load. Now that the header only ever shows right at the top instead
+     of floating in anywhere mid-scroll, that gap it was covering for
+     doesn't happen in the first place, so the overscan isn't needed.) */
   position:fixed;
-  top:calc(-1 * var(--header-overscan)); left:0; right:0; z-index:100;
-  padding-top:calc(env(safe-area-inset-top, 0px) + var(--header-overscan));
+  top:0; left:0; right:0; z-index:100;
+  padding-top:env(safe-area-inset-top, 0px);
   background:rgba(250,249,246,.86);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
@@ -198,13 +196,13 @@ h1 em, h2 em, h3 em{
    underneath (video, etc.) flashes through right behind the cutout. This
    bar never transforms and always matches the header's current
    background, so there's never a gap for anything to flash through.
-   Height is 0 (invisible) on devices with no safe-area inset. It
-   overscans above the viewport by the same --header-overscan as the
-   header, for the same reason — see the comment on .site-header. */
+   Height is 0 (invisible) on devices with no safe-area inset. (No longer
+   overscans above the viewport — see the comment on .site-header for
+   why that was reverted.) */
 .notch-cover{
   position:fixed;
-  top:calc(-1 * var(--header-overscan)); left:0; right:0;
-  height:calc(env(safe-area-inset-top, 0px) + var(--header-overscan));
+  top:0; left:0; right:0;
+  height:env(safe-area-inset-top, 0px);
   z-index:101;
   pointer-events:none;
   background:rgba(250,249,246,.86);

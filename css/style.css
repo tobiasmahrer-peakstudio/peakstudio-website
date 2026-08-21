@@ -1504,23 +1504,10 @@ h1 em, h2 em, h3 em{
   border-top:1px solid var(--line);
 }
 
-.sm-goals__headline{
-  font-size:clamp(26px,3.4vw,40px);
-  line-height:1.12;
-  max-width:18ch;
-}
-.sm-goals__sub{
-  font-size:14.5px;
-  color:var(--gray-dark);
-  margin-top:12px;
-  max-width:52ch;
-}
-
 .sm-goals__grid{
   display:grid;
   grid-template-columns:repeat(4, 1fr);
   gap:14px;
-  margin-top:40px;
 }
 
 .sm-card{
@@ -1609,7 +1596,7 @@ h1 em, h2 em, h3 em{
 
 @media (max-width:700px){
   .sm-goals{ margin-top:40px; padding-top:30px; }
-  .sm-goals__grid{ grid-template-columns:1fr; gap:16px; margin-top:32px; }
+  .sm-goals__grid{ grid-template-columns:1fr; gap:16px; }
   .sm-card{ aspect-ratio:4/5; }
 }
 

@@ -145,11 +145,33 @@ h1 em, h2 em, h3 em{
    ============================================================ */
 
 .site-header{
-  position:sticky; top:0; z-index:100;
+  /* fixed (not sticky) everywhere: avoids iOS Safari's dynamic toolbar
+     fighting the sticky recalculation (which could get the header stuck
+     mid-transition), and lets it hide/reveal on scroll via transform.
+     padding-top uses the safe-area inset so the header's own background
+     extends correctly behind the notch / Dynamic Island. */
+  position:fixed;
+  top:0; left:0; right:0; z-index:100;
+  padding-top:env(safe-area-inset-top, 0px);
   background:rgba(250,249,246,.86);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
+  border-bottom:0;
+  transition:transform .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease);
+  will-change:transform;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+}
+.site-header.is-hidden{
+  /* translate3d (not translateY) forces this onto its own GPU layer —
+     plain 2D transforms on a fixed element can fall behind during
+     momentum scrolling in iOS Safari and get visually stuck mid-hide */
+  transform:translate3d(0,-100%,0);
+}
+/* fixed header no longer reserves space in flow, so every page compensates
+   with this padding — the home page (full-bleed video hero) cancels it */
+body{
+  padding-top:calc(76px + env(safe-area-inset-top, 0px));
 }
 .site-header__inner{
   display:grid;
@@ -199,7 +221,9 @@ h1 em, h2 em, h3 em{
 .burger span{ width:22px; height:1.5px; background:var(--black); transition:.25s; }
 
 .mobile-nav{
-  position:fixed; inset:76px 0 0 0; z-index:99;
+  position:fixed;
+  top:calc(76px + env(safe-area-inset-top, 0px)); right:0; bottom:0; left:0;
+  z-index:99;
   background:var(--bg);
   display:flex; flex-direction:column;
   padding:32px var(--pad);
@@ -220,66 +244,12 @@ h1 em, h2 em, h3 em{
   .header__mail{ display:none; }
   .burger{ display:flex; }
   .site-header__inner{ grid-template-columns:auto 1fr auto; }
-
-  /* fixed (not sticky) on mobile: avoids iOS Safari's dynamic toolbar
-     fighting the sticky recalculation, which caused the header to get
-     stuck mid-transition. padding-top uses the safe-area inset so the
-     header's own background extends correctly behind the notch /
-     Dynamic Island instead of leaving a gap or getting clipped. */
-  .site-header{
-    position:fixed;
-    top:0; left:0; right:0;
-    padding-top:env(safe-area-inset-top, 0px);
-    transform:translate3d(0,0,0);
-    transition:transform .35s var(--ease);
-    will-change:transform;
-    -webkit-backface-visibility:hidden;
-    backface-visibility:hidden;
-  }
-  .site-header.is-hidden{
-    /* translate3d (not translateY) forces this onto its own GPU layer —
-       plain 2D transforms on a fixed element can fall behind during
-       momentum scrolling in iOS Safari and get visually stuck mid-hide */
-    transform:translate3d(0,-100%,0);
-  }
-  /* compensate the space the header no longer reserves in flow now
-     that it's fixed instead of sticky */
-  body{
-    padding-top:calc(76px + env(safe-area-inset-top, 0px));
-  }
-  .mobile-nav{
-    top:calc(76px + env(safe-area-inset-top, 0px));
-  }
 }
 
 /* ============================================================
-   Home — intro row (Other-style)
+   Home — hero title word rotator + shared rec-dot animation
+   (used by .hero-video__title / .hero-video__tag further down)
    ============================================================ */
-
-.intro{
-  padding:76px 0 0;
-}
-.intro__row{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:60px;
-  align-items:end;
-  border-bottom:1px solid var(--line);
-  padding-bottom:60px;
-}
-.intro__title{
-  font-size:clamp(42px, 5.8vw, 88px);
-  line-height:0.98;
-  font-weight:700;
-  letter-spacing:-0.035em;
-}
-.intro__title em{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:400;
-  color:var(--black);
-  letter-spacing:0;
-}
 .rotator{
   display:inline-grid;
   vertical-align:top;
@@ -296,62 +266,9 @@ h1 em, h2 em, h3 em{
   opacity:1;
   transition:opacity .9s var(--ease);
 }
-
-.intro__side{ display:flex; flex-direction:column; gap:22px; }
-.intro__desc{
-  font-size:15px;
-  line-height:1.65;
-  color:var(--gray-dark);
-  max-width:38ch;
-}
-.intro__socials{ display:flex; gap:22px; }
-.intro__socials a{
-  font-size:12px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;
-  color:var(--black); padding-bottom:3px;
-  background-image:linear-gradient(currentColor,currentColor);
-  background-size:100% 1px; background-position:0 100%; background-repeat:no-repeat;
-  transition:background-size .3s var(--ease), opacity .3s;
-}
-.intro__socials a:hover{ background-size:0% 1px; opacity:.6; }
-
-@media (max-width:900px){
-  .intro{ padding-top:40px; }
-  .intro__row{ grid-template-columns:1fr; gap:28px; padding-bottom:36px; }
-}
-
-/* ============================================================
-   Home — reel bar (video strip under intro)
-   ============================================================ */
-.reel-strip{
-  position:relative;
-  height:56vh;
-  min-height:380px;
-  max-height:640px;
-  overflow:hidden;
-}
-.reel-strip video, .reel-strip img{
-  width:100%; height:100%; object-fit:cover;
-}
-.reel-strip__scrim{
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.35));
-}
-.reel-strip__tag{
-  position:absolute; left:var(--pad); bottom:22px;
-  color:var(--white);
-  font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
-  display:flex; align-items:center; gap:8px;
-}
-.reel-strip__tag::before{
-  content:''; width:7px; height:7px; border-radius:50%; background:#e11; display:inline-block;
-  animation:rec-blink 1.6s ease-in-out infinite;
-}
 @keyframes rec-blink{
   0%, 100%{ opacity:1; box-shadow:0 0 7px 2px rgba(238,17,17,.75); }
   50%{ opacity:.3; box-shadow:0 0 0 0 rgba(238,17,17,0); }
-}
-@media (prefers-reduced-motion:reduce){
-  .reel-strip__tag::before{ animation:none; }
 }
 
 /* ============================================================
@@ -1672,49 +1589,38 @@ h1 em, h2 em, h3 em{
 }
 
 /* ============================================================
-   EXPERIMENTAL — index-v2.html only (scoped to .home-v2)
-   Full-bleed video hero, transparent-over-video header, logo bar
-   moved to the footer, light Leistungen section.
+   Home page — full-bleed video hero with transparent-over-video
+   header, client logo bar under the video, light Leistungen section.
    ============================================================ */
 
-/* on mobile the header is fixed (out of flow), so the base stylesheet
-   pads body to compensate — cancel that here since the hero is meant to
-   run full-bleed under the transparent header instead of starting below it */
-body.home-v2{ padding-top:0; }
+/* the base stylesheet pads body to compensate for the fixed header —
+   cancel that here since the hero is meant to run full-bleed under the
+   transparent header instead of starting below it */
+body.is-home{ padding-top:0; }
 
-/* header stays fully transparent at all times and on all breakpoints —
-   no opaque/light swap on scroll, no border line. It only ever hides
-   (below) or reappears, always in this same transparent style. */
-.home-v2 .site-header{
-  /* sticky still reserves its own height in normal flow, which pushed the
-     hero video down and left a gap above it — fixed removes the header
-     from flow entirely so the video can start at the true top of the page,
-     with the header floating over it instead of sitting in front of it */
-  position:fixed;
-  top:0; left:0; right:0;
+/* on the home page the header starts fully transparent (it's directly
+   over the video) instead of the light frosted bar every other page
+   gets — no border line either. It still hides/reveals via the base
+   .is-hidden rule, always in this same transparent resting style. */
+.is-home .site-header{
   background:transparent;
-  border-bottom:0;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  transition:transform .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease);
-}
-.home-v2 .site-header.is-hidden{
-  transform:translate3d(0,-100%,0);
 }
 /* scrolling up reveals the header with a frosted dark glass background so
    the (always-white) logo/nav stay legible over whatever content is
    underneath; at the very top (not scrolled) it fades back to fully
    transparent since that's directly over the video there */
-.home-v2 .site-header.is-scrolled{
+.is-home .site-header.is-scrolled{
   background:rgba(13,13,12,.4);
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }
-.home-v2 .logo-mark__img--dark{ display:none; }
-.home-v2 .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }
-.home-v2 .site-nav a:hover, .home-v2 .site-nav a.is-active{ color:var(--white); }
-.home-v2 .site-nav a.is-active::after{ background:var(--white); }
-.home-v2 .burger span{ background:var(--white); }
+.is-home .logo-mark__img--dark{ display:none; }
+.is-home .site-nav a{ color:rgba(255,255,255,.85); transition:color .3s var(--ease); }
+.is-home .site-nav a:hover, .is-home .site-nav a.is-active{ color:var(--white); }
+.is-home .site-nav a.is-active::after{ background:var(--white); }
+.is-home .burger span{ background:var(--white); }
 
 .hero-video{
   position:relative;
@@ -1799,12 +1705,11 @@ body.home-v2{ padding-top:0; }
   .hero-video__desc, .hero-video__socials{ display:none; }
 }
 
-/* clients marquee sits directly above this section on index-v2 — the
+/* clients marquee sits directly above this section on the home page — the
    default spacing (52px + 130px) left a huge dark gap between the logos
-   and "Leistungen", tighten both sides */
-/* equal top/bottom so the logo row sits centred in the bar (a
-   bottom-only reduction previously made it hug the bottom edge) */
-.home-v2 .clients{ padding-top:32px; padding-bottom:32px; }
+   and "Leistungen"; tighten both sides, kept equal top/bottom so the logo
+   row stays centred in the bar */
+.is-home .clients{ padding-top:32px; padding-bottom:32px; }
 .services.services--light{ background:var(--bg); color:var(--black); padding-top:56px; }
 .services.services--light .eyebrow{ color:var(--gray); }
 .services.services--light h2{ color:var(--black); }

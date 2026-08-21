@@ -1659,10 +1659,19 @@ body.is-home{ padding-top:0; }
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
 }
-/* .notch-cover mirrors the header's own two resting states here — it
-   never transforms, so it has to already be the right colour rather than
-   transition into it (see the .notch-cover rule above for why). */
-.is-home .notch-cover{ background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; }
+/* .notch-cover is NOT left transparent here even though the resting home
+   header is: iOS Safari won't actually composite <video> content behind
+   the notch / Dynamic Island cutout no matter what the CSS says (it's a
+   deliberate WebKit restriction on video hardware layers, not something
+   fixable from here), so a transparent cover let the plain page
+   background show through as a pale gap right at the cutout instead of
+   the video. Matching the scrim's darkest tone keeps it looking like a
+   continuation of the video instead of a hole. */
+.is-home .notch-cover{
+  background:rgba(0,0,0,.65);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
 .is-home .site-header.is-scrolled ~ .notch-cover{
   background:rgba(13,13,12,.4);
   backdrop-filter:blur(14px);

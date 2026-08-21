@@ -1799,7 +1799,11 @@ body.home-v2{ padding-top:0; }
   .hero-video__desc, .hero-video__socials{ display:none; }
 }
 
-.services.services--light{ background:var(--bg); color:var(--black); }
+/* clients marquee sits directly above this section on index-v2 — the
+   default spacing (52px + 130px) left a huge dark gap between the logos
+   and "Leistungen", tighten both sides */
+.home-v2 .clients{ padding-bottom:28px; }
+.services.services--light{ background:var(--bg); color:var(--black); padding-top:56px; }
 .services.services--light .eyebrow{ color:var(--gray); }
 .services.services--light h2{ color:var(--black); }
 .services.services--light h2 em{ color:var(--black); }

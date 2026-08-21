@@ -157,7 +157,13 @@ h1 em, h2 em, h3 em{
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
   border-bottom:0;
-  transition:transform .35s var(--ease), opacity .35s var(--ease), background .35s var(--ease), backdrop-filter .35s var(--ease);
+  /* backdrop-filter is deliberately NOT in this transition: animating blur
+     while the transform is also animating is what makes iOS Safari jump
+     the header during momentum scrolling (WebKit can't composite a
+     blur-radius change and a position change on the same fixed element at
+     once) — letting the blur snap instantly keeps the transform reveal
+     smooth, which is the one that actually needs to look nice. */
+  transition:transform .35s var(--ease), opacity .35s var(--ease), background .35s var(--ease);
   will-change:transform;
   -webkit-backface-visibility:hidden;
   backface-visibility:hidden;

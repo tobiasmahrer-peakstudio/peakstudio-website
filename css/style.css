@@ -15,6 +15,9 @@
   --pad: 40px;
   --ease: cubic-bezier(.16,1,.3,1);
   --serif: 'Instrument Serif', Georgia, serif;
+  /* how far the header/notch-cover overscan above the viewport — see the
+     comment on .site-header for why */
+  --header-overscan: 120px;
 }
 
 @media (max-width: 900px){
@@ -149,10 +152,17 @@ h1 em, h2 em, h3 em{
      fighting the sticky recalculation (which could get the header stuck
      mid-transition), and lets it hide/reveal on scroll via transform.
      padding-top uses the safe-area inset so the header's own background
-     extends correctly behind the notch / Dynamic Island. */
+     extends correctly behind the notch / Dynamic Island.
+     top/padding-top also overscan by --header-overscan: iOS Safari's own
+     toolbar (the URL bar) resizes the visual viewport as it shows/hides,
+     and mid-resize it can momentarily expose a sliver of page above a
+     plain top:0 fixed header, so the page looks like it's "floating"
+     loose from under it. Starting the box above the viewport and padding
+     the content back down by the same amount means there's always opaque
+     header background ready to cover that sliver, however big it gets. */
   position:fixed;
-  top:0; left:0; right:0; z-index:100;
-  padding-top:env(safe-area-inset-top, 0px);
+  top:calc(-1 * var(--header-overscan)); left:0; right:0; z-index:100;
+  padding-top:calc(env(safe-area-inset-top, 0px) + var(--header-overscan));
   background:rgba(250,249,246,.86);
   backdrop-filter:blur(10px);
   -webkit-backdrop-filter:blur(10px);
@@ -188,11 +198,13 @@ h1 em, h2 em, h3 em{
    underneath (video, etc.) flashes through right behind the cutout. This
    bar never transforms and always matches the header's current
    background, so there's never a gap for anything to flash through.
-   Height is 0 (invisible) on devices with no safe-area inset. */
+   Height is 0 (invisible) on devices with no safe-area inset. It
+   overscans above the viewport by the same --header-overscan as the
+   header, for the same reason — see the comment on .site-header. */
 .notch-cover{
   position:fixed;
-  top:0; left:0; right:0;
-  height:env(safe-area-inset-top, 0px);
+  top:calc(-1 * var(--header-overscan)); left:0; right:0;
+  height:calc(env(safe-area-inset-top, 0px) + var(--header-overscan));
   z-index:101;
   pointer-events:none;
   background:rgba(250,249,246,.86);

@@ -521,8 +521,8 @@ h1 em, h2 em, h3 em{
 }
 .team-card{ display:flex; flex-direction:column; }
 .team-card__media{ aspect-ratio:4/5; overflow:hidden; background:var(--off); }
-.team-card__media img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1); transition:filter .5s, transform 1s var(--ease); }
-.team-card:hover .team-card__media img{ filter:grayscale(0); transform:scale(1.02); }
+.team-card__media img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+.team-card:hover .team-card__media img{ transform:scale(1.02); }
 .team-card__body{ padding:24px 0 0; margin-top:24px; }
 .team-card__body h3{ font-size:21px; font-weight:600; letter-spacing:-0.01em; }
 .team-card__role{ font-size:11.5px; color:var(--gray); margin-top:6px; text-transform:uppercase; letter-spacing:0.06em; }

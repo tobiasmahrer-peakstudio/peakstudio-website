@@ -358,10 +358,10 @@ h1 em, h2 em, h3 em{
    Clients
    ============================================================ */
 
-.clients{ padding:52px 0; border-bottom:1px solid var(--line); overflow:hidden; }
+.clients{ padding:52px 0; background:var(--black); overflow:hidden; }
 .clients__label{
   font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--gray); margin-bottom:28px; text-align:center;
+  color:rgba(255,255,255,.5); margin-bottom:28px; text-align:center;
 }
 .clients__marquee{
   width:100%;
@@ -373,14 +373,14 @@ h1 em, h2 em, h3 em{
   display:flex;
   align-items:center;
   width:max-content;
-  gap:72px;
+  gap:56px;
   animation:marquee 32s linear infinite;
 }
 .clients__marquee:hover .clients__track{ animation-play-state:paused; }
 .clients__track img{
-  height:30px; width:auto; object-fit:contain;
+  height:32px; width:128px; object-fit:contain;
   flex-shrink:0;
-  opacity:.85;
+  opacity:.8;
   transition:opacity .25s, transform .25s;
 }
 .clients__track img:hover{ opacity:1; transform:scale(1.05); }
@@ -393,8 +393,8 @@ h1 em, h2 em, h3 em{
   .clients__track{ animation:none; }
 }
 @media (max-width:560px){
-  .clients__track{ gap:44px; }
-  .clients__track img{ height:24px; }
+  .clients__track{ gap:36px; }
+  .clients__track img{ height:26px; width:96px; }
 }
 
 /* ============================================================

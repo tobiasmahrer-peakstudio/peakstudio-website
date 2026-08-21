@@ -1368,49 +1368,42 @@ h1 em, h2 em, h3 em{
   align-self:end;
   justify-self:center;
   position:relative;
-  width:38px;
-  height:52px;
-  margin-bottom:14px;
+  width:30px;
+  height:30px;
+  margin-bottom:16px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:var(--off);
-  border:1px solid var(--line-dark);
-  transition:transform .4s var(--ease), background .4s var(--ease);
+  color:var(--gray-dark);
+  transition:transform .4s var(--ease), color .4s var(--ease);
   opacity:0;
   transform:translateY(10px);
 }
+.ej__frame svg{ width:100%; height:100%; }
 .ej__track.is-visible .ej__frame{
   opacity:1;
   transform:translateY(0);
-  transition:transform .4s var(--ease), background .4s var(--ease), opacity .6s var(--ease) calc(var(--col) * 70ms);
-}
-.ej__frame span{
-  font-size:8.5px;
-  font-weight:600;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  color:var(--gray-dark);
-  text-align:center;
-  padding:0 3px;
+  transition:transform .4s var(--ease), color .4s var(--ease), opacity .6s var(--ease) calc(var(--col) * 70ms);
 }
 .ej__frame-rec{
   position:absolute;
-  top:6px; right:6px;
-  width:4px; height:4px;
+  top:-2px; right:-2px;
+  width:5px; height:5px;
   border-radius:50%;
-  background:var(--white);
+  background:var(--black);
   animation:ej-rec 1.8s ease-in-out infinite;
 }
-@keyframes ej-rec{ 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+@keyframes ej-rec{ 0%,100%{ opacity:1; } 50%{ opacity:.25; } }
 
 .ej__phase--live .ej__frame{
-  width:52px;
-  height:72px;
+  width:36px;
+  height:36px;
+  padding:9px;
+  color:var(--white);
   background:var(--black);
-  border-color:var(--black);
+  border-radius:50%;
 }
-.ej__phase--live .ej__frame span{ color:var(--white); }
+.ej__phase--live .ej__frame-rec{ background:var(--white); }
 
 @media (hover:hover){
   .ej__phase:hover .ej__frame{ transform:translateY(-4px) scale(1.05); }

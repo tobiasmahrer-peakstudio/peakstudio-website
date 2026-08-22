@@ -1005,35 +1005,61 @@ body{
    which already looks for a .masonry__video OR .film-frame
    ancestor — same play/pause behaviour, new chrome around it.
    ============================================================ */
-.film-showcase{ background:var(--black); padding:90px 0 100px; }
+.film-showcase{ background:var(--black); padding:84px 0 96px; overflow:hidden; }
 .film-showcase .eyebrow{ color:rgba(255,255,255,.45); }
 .film-showcase h2{ color:var(--white); font-size:clamp(28px,3.4vw,42px); max-width:20ch; }
 .film-showcase h2 em{ color:rgba(255,255,255,.4); }
 .film-showcase__sub{ color:rgba(255,255,255,.55); font-size:15px; line-height:1.65; max-width:56ch; margin-top:14px; }
 
+/* two much bigger phones, staggered with a slight opposing tilt and a
+   soft overlap instead of two small boxes centred in a lot of black —
+   the radial glow behind them gives the dark space a reason to be
+   there (a stage) instead of reading as empty */
 .film-showcase__row{
-  margin-top:56px;
-  display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:48px;
-  justify-items:center;
+  position:relative;
+  margin-top:44px;
+  display:flex; justify-content:center; align-items:flex-start;
+  flex-wrap:wrap;
+  gap:16px;
 }
+.film-showcase__row::before{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:min(1000px, 130%); aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 60%);
+  pointer-events:none;
+}
+.film-showcase__col{ position:relative; z-index:1; }
 
 .film-frame{
   position:relative;
-  width:100%; max-width:260px;
+  width:100%; max-width:clamp(240px, 27vw, 340px);
   aspect-ratio:9/19.5;
-  padding:9px;
-  border-radius:38px;
-  background:linear-gradient(160deg, #34332f, #0d0d0c 45%);
-  box-shadow:0 45px 90px -35px rgba(0,0,0,.65), inset 0 0 0 1px rgba(255,255,255,.08);
+  padding:10px;
+  border-radius:40px;
+  background:linear-gradient(160deg, #38372f, #0d0d0c 45%);
+  box-shadow:0 55px 110px -30px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.09);
+  transition:transform .45s var(--ease);
+}
+@media (min-width:700px){
+  /* the overlap/tilt lives entirely on the phone's own transform, not
+     on .film-showcase__col — a transform never shifts sibling layout,
+     so .film-frame__caption stays correctly centred under its own
+     column instead of sliding into the other caption */
+  .film-frame--left{ transform:rotate(-5deg) translate(22px, 18px); }
+  .film-frame--right{ transform:rotate(5deg) translate(-22px, -18px); }
+  .film-frame--left:hover, .film-frame--right:hover{ transform:rotate(0deg) translateY(-8px) scale(1.04); z-index:2; }
 }
 .film-frame__screen{
   position:relative; width:100%; height:100%;
-  border-radius:29px; overflow:hidden; background:#000;
+  border-radius:31px; overflow:hidden; background:#000;
   cursor:pointer;
 }
 .film-frame__notch{
-  position:absolute; top:13px; left:50%; transform:translateX(-50%);
-  width:74px; height:21px; background:#000; border-radius:999px; z-index:3;
+  position:absolute; top:15px; left:50%; transform:translateX(-50%);
+  width:84px; height:24px; background:#000; border-radius:999px; z-index:3;
 }
 .film-frame__screen img, .film-frame__screen video{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
@@ -1042,16 +1068,16 @@ body{
 .film-frame.is-playing .film-frame__screen img{ opacity:0; }
 .film-frame.is-playing .film-frame__screen video{ opacity:1; }
 .film-frame__play{
-  position:absolute; inset:0; margin:auto; width:54px; height:54px;
+  position:absolute; inset:0; margin:auto; width:64px; height:64px;
   display:flex; align-items:center; justify-content:center;
   background:rgba(255,255,255,.94); border-radius:50%; border:0; z-index:2;
   transition:transform .25s var(--ease), opacity .25s;
 }
 .film-frame__screen:hover .film-frame__play{ transform:scale(1.08); }
 .film-frame.is-playing .film-frame__play{ opacity:0; pointer-events:none; }
-.film-frame__play svg{ width:19px; height:19px; color:var(--black); margin-left:2px; }
+.film-frame__play svg{ width:22px; height:22px; color:var(--black); margin-left:2px; }
 
-.film-frame__caption{ margin-top:20px; text-align:center; }
+.film-frame__caption{ margin-top:24px; text-align:center; }
 .film-frame__tag{
   font-size:10.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
   color:rgba(255,255,255,.45);
@@ -1059,7 +1085,8 @@ body{
 .film-frame__title{ margin-top:5px; font-size:15px; font-weight:700; color:var(--white); }
 
 @media (max-width:700px){
-  .film-showcase__row{ grid-template-columns:1fr; gap:52px; max-width:280px; margin-left:auto; margin-right:auto; }
+  .film-showcase__row{ flex-direction:column; gap:52px; }
+  .film-frame{ max-width:280px; }
 }
 
 /* ============================================================

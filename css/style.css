@@ -1094,8 +1094,14 @@ body{
    type treatment via .case-story__text for a matching voice)
    ============================================================ */
 .case-story{ padding:80px 0 8px; }
-.case-story__text{ font-size:15px; color:var(--gray-dark); line-height:1.75; max-width:64ch; }
-.case-story__text + .case-story__text{ margin-top:16px; }
+.case-story__grid{
+  display:grid; grid-template-columns:repeat(2, 1fr); gap:48px;
+  margin-top:6px;
+}
+.case-story__text{ font-size:15px; color:var(--gray-dark); line-height:1.75; }
+@media (max-width:700px){
+  .case-story__grid{ grid-template-columns:1fr; gap:16px; }
+}
 
 /* ============================================================
    Case detail — day-strip: horizontally scrolling photo filmstrip

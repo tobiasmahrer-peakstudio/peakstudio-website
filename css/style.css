@@ -1141,7 +1141,7 @@ body{
 /* ============================================================
    Case detail — services/deliverables grid ("unser Können")
    ============================================================ */
-.case-services{ padding:36px 0 52px; }
+.case-services{ padding:26px 0 52px; }
 .case-services__grid{
   display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
   background:var(--line); border:1px solid var(--line);

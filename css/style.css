@@ -1034,8 +1034,14 @@ body{
 .film-showcase__col{ position:relative; z-index:1; }
 
 .film-frame{
+  /* a fixed width formula (not width:100% + max-width) deliberately —
+     .film-showcase__col is a flex item with no explicit width of its
+     own, so a percentage width here creates a circular sizing
+     dependency (child needs parent's resolved width, parent needs
+     child's content width) that some browsers resolve by collapsing
+     the frame down to a fraction of its intended size. */
   position:relative;
-  width:100%; max-width:clamp(240px, 27vw, 340px);
+  width:clamp(240px, 27vw, 340px);
   aspect-ratio:9/19.5;
   padding:10px;
   border-radius:40px;
@@ -1085,8 +1091,8 @@ body{
 .film-frame__title{ margin-top:5px; font-size:15px; font-weight:700; color:var(--white); }
 
 @media (max-width:700px){
-  .film-showcase__row{ flex-direction:column; gap:52px; }
-  .film-frame{ max-width:280px; }
+  .film-showcase__row{ flex-direction:column; align-items:center; gap:52px; }
+  .film-frame{ width:280px; }
 }
 
 /* ============================================================

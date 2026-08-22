@@ -741,7 +741,7 @@ body{
 .case-top__sub a{ color:var(--black); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--line); transition:text-decoration-color .2s; }
 .case-top__sub a:hover{ text-decoration-color:var(--black); }
 .case-top__meta{ display:flex; flex-direction:column; gap:14px; min-width:200px; }
-.case-top__meta div{ display:flex; justify-content:space-between; gap:20px; border-bottom:1px solid var(--line); padding-bottom:8px; }
+.case-top__meta div{ display:flex; justify-content:space-between; align-items:center; gap:20px; border-bottom:1px solid var(--line); padding-bottom:8px; }
 .case-top__meta span:first-child{ font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--gray); }
 .case-top__meta span:last-child{ font-size:13px; font-weight:600; text-align:right; }
 

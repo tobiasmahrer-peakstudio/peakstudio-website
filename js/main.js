@@ -74,8 +74,29 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const wrap = btn.closest('.masonry__video, .film-frame, .reel-tile');
       if (!wrap) return;
+      // once playing, this wrap has native <video controls> — further
+      // clicks inside it (e.g. the browser's own pause button) bubble
+      // up to this same listener, and calling play() unconditionally
+      // here was immediately overriding that pause, making the video
+      // impossible to stop. Bail out once it's already playing and let
+      // the native controls take it from here.
+      if (wrap.classList.contains('is-playing')) return;
       const video = wrap.querySelector('video');
       if (!video) return;
+
+      // only one reel/video plays at a time — starting this one pauses
+      // any other that's currently playing
+      document.querySelectorAll('[data-play-video].is-playing').forEach(other => {
+        if (other === wrap) return;
+        const otherVideo = other.querySelector('video');
+        if (otherVideo) {
+          otherVideo.pause();
+          otherVideo.muted = true;
+          otherVideo.removeAttribute('controls');
+        }
+        other.classList.remove('is-playing');
+      });
+
       wrap.classList.add('is-playing');
       video.muted = false;
       video.play();

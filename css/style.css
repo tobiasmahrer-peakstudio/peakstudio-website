@@ -1041,10 +1041,18 @@ body{
 .reel-tile.is-playing img{ opacity:0; }
 .reel-tile.is-playing video{ opacity:1; }
 .reel-tile__overlay{
+  /* pointer-events:none is the actual fix for "can't pause": this covers
+     the full tile (inset:0) and sits above the <video> in stacking order,
+     including over the strip at the bottom where the native play/pause
+     controls render once the video is playing. Without this, clicks
+     meant for those native controls were hitting this decorative overlay
+     instead and going nowhere — invisible in testing that pauses the
+     video via JS directly instead of a real click on the control bar. */
   position:absolute; inset:0;
   display:flex; flex-direction:column; justify-content:flex-end;
   padding:26px;
   background:linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
+  pointer-events:none;
 }
 .reel-tile__tag{
   font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;

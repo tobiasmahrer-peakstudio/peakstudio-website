@@ -1002,7 +1002,17 @@ body{
   overflow:hidden;
   display:block;
 }
-.case-hero-banner img, .case-hero-banner video{ width:100%; height:100%; object-fit:cover; display:block; }
+.case-hero-banner img, .case-hero-banner video{
+  /* inset:-1px (not 0/100%) deliberately overscans by a hairline: a video's
+     decoded frame can round to a fraction of a px shorter than a fractional
+     container height (68vh of a non-round viewport), leaving a 1px sliver
+     of the page background visible at the bottom edge. Overscanning and
+     letting the container's overflow:hidden clip it guarantees full
+     coverage regardless of rounding. */
+  position:absolute; inset:-1px;
+  width:calc(100% + 2px); height:calc(100% + 2px);
+  object-fit:cover; display:block;
+}
 @media (max-width:700px){
   .case-hero-banner{ height:42vh; min-height:260px; max-height:400px; }
 }

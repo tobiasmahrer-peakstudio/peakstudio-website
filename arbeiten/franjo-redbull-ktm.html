@@ -31,6 +31,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../css/style.css">
+<style>
+/* keeps the two-line break ("Dreifach-Olympiasieger" / "tauscht Skis
+   gegen Bike.") intact on mobile too — at the shared clamp()'s 32px
+   floor, "Dreifach-Olympiasieger" alone is wider than a 375px screen's
+   content area and wraps into a 3rd line; 28px is the largest size that
+   still fits it on one line. */
+@media (max-width:700px){
+  #franjoTitle{ font-size:28px; }
+}
+</style>
 </head>
 <body>
 
@@ -63,7 +73,7 @@
       <a href="index.html" class="case-back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zurück zu allen Projekten</a>
       <div class="case-top__row">
         <div>
-          <h1 class="case-top__title" style="max-width:none;">Dreifach-Olympiasieger<br>tauscht <em>Skis gegen Bike.</em></h1>
+          <h1 class="case-top__title" id="franjoTitle" style="max-width:none;">Dreifach-Olympiasieger<br>tauscht <em>Skis gegen Bike.</em></h1>
         </div>
       </div>
     </div>

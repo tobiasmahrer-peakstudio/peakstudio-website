@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  // masonry / film-frame video play buttons
+  // masonry / film-frame / reel-tile video play buttons
   document.querySelectorAll('[data-play-video]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const wrap = btn.closest('.masonry__video, .film-frame');
+      const wrap = btn.closest('.masonry__video, .film-frame, .reel-tile');
       if (!wrap) return;
       const video = wrap.querySelector('video');
       if (!video) return;

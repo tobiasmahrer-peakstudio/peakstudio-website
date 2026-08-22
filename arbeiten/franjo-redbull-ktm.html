@@ -87,34 +87,24 @@
       <h2>Zwei Reels, <em>ready to post.</em></h2>
       <p class="film-showcase__sub">Aus einem Drehtag wurden zwei fertig geschnittene Videos — eines erzählt die Geschichte hinter der Aktion, eines liefert die pure Action. Beide direkt einsatzbereit für Social Media.</p>
 
-      <div class="film-showcase__row">
-        <div class="film-showcase__col">
-          <div class="film-frame film-frame--left" data-play-video>
-            <div class="film-frame__screen">
-              <div class="film-frame__notch"></div>
-              <img src="../images/work-franjo-nightride-poster2.jpg" alt="Behind-the-Scenes Reel: Franjo von Allmen und die KTM bei Nacht">
-              <video src="../videos/franjo-nightride.mp4" preload="none" playsinline></video>
-              <button class="film-frame__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
-            </div>
+      <div class="reel-tiles">
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-franjo-nightride-poster2.jpg" alt="Behind-the-Scenes Reel: Franjo von Allmen und die KTM bei Nacht">
+          <video src="../videos/franjo-nightride.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Behind-the-Scenes</p>
+            <p class="reel-tile__title">Vom Ski zum Bike</p>
           </div>
-          <div class="film-frame__caption">
-            <p class="film-frame__tag">Behind-the-Scenes</p>
-            <p class="film-frame__title">Vom Ski zum Bike</p>
-          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
         </div>
-        <div class="film-showcase__col">
-          <div class="film-frame film-frame--right" data-play-video>
-            <div class="film-frame__screen">
-              <div class="film-frame__notch"></div>
-              <img src="../images/work-franjo-skitow-poster2.jpg" alt="Action-Reel: KTM mit Spike-Reifen auf der Skipiste">
-              <video src="../videos/franjo-skitow.mp4" preload="none" playsinline></video>
-              <button class="film-frame__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
-            </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-franjo-skitow-poster2.jpg" alt="Action-Reel: KTM mit Spike-Reifen auf der Skipiste">
+          <video src="../videos/franjo-skitow.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Action-Reel</p>
+            <p class="reel-tile__title">Spikes im Schnee</p>
           </div>
-          <div class="film-frame__caption">
-            <p class="film-frame__tag">Action-Reel</p>
-            <p class="film-frame__title">Spikes im Schnee</p>
-          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
         </div>
       </div>
     </div>

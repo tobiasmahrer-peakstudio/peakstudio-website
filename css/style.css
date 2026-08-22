@@ -1100,6 +1100,7 @@ body{
   margin-top:6px;
 }
 .case-story__text{ font-size:15px; color:var(--gray-dark); line-height:1.75; }
+.case-story__text + .case-story__text{ margin-top:16px; }
 @media (max-width:700px){
   .case-story__grid{ grid-template-columns:1fr; gap:16px; }
 }

@@ -69,38 +69,51 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  // masonry / film-frame / reel-tile video play buttons
+  // masonry / film-frame / reel-tile video play buttons — opens the
+  // video in the browser's native fullscreen player instead of playing
+  // it inline in the small card. Inline playback showed native <video
+  // controls> confined to the tile's cropped, rounded box, which
+  // mobile browsers clip/overlap in ways that don't reliably fix from
+  // CSS; fullscreen hands control rendering entirely to the OS, where
+  // it always has room, and sidesteps the problem instead of chasing it.
   document.querySelectorAll('[data-play-video]').forEach(btn => {
+    const wrap = btn.closest('.masonry__video, .film-frame, .reel-tile');
+    const video = wrap && wrap.querySelector('video');
+    if (!wrap || !video) return;
+
+    const resetVideo = () => {
+      video.pause();
+      video.muted = true;
+      video.removeAttribute('controls');
+      wrap.classList.remove('is-playing');
+    };
+    video.addEventListener('webkitendfullscreen', resetVideo);
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement !== video) resetVideo();
+    });
+
     btn.addEventListener('click', () => {
-      const wrap = btn.closest('.masonry__video, .film-frame, .reel-tile');
-      if (!wrap) return;
-      // once playing, this wrap has native <video controls> — further
-      // clicks inside it (e.g. the browser's own pause button) bubble
-      // up to this same listener, and calling play() unconditionally
-      // here was immediately overriding that pause, making the video
-      // impossible to stop. Bail out once it's already playing and let
-      // the native controls take it from here.
-      if (wrap.classList.contains('is-playing')) return;
-      const video = wrap.querySelector('video');
-      if (!video) return;
-
-      // only one reel/video plays at a time — starting this one pauses
-      // any other that's currently playing
-      document.querySelectorAll('[data-play-video].is-playing').forEach(other => {
-        if (other === wrap) return;
-        const otherVideo = other.querySelector('video');
-        if (otherVideo) {
-          otherVideo.pause();
-          otherVideo.muted = true;
-          otherVideo.removeAttribute('controls');
-        }
-        other.classList.remove('is-playing');
-      });
-
-      wrap.classList.add('is-playing');
       video.muted = false;
-      video.play();
       video.setAttribute('controls', '');
+
+      if (typeof video.webkitEnterFullscreen === 'function') {
+        // iOS Safari: dedicated native fullscreen video player: no
+        // standard Fullscreen API support on <video> itself there
+        video.play();
+        video.webkitEnterFullscreen();
+      } else if (video.requestFullscreen) {
+        video.requestFullscreen().then(() => video.play()).catch(() => {
+          // fullscreen was rejected at runtime (not just unsupported) —
+          // fall back to inline playback so the video is still visible
+          // instead of silently playing behind its own poster image
+          wrap.classList.add('is-playing');
+          video.play();
+        });
+      } else {
+        // no fullscreen support anywhere — fall back to the old inline playback
+        wrap.classList.add('is-playing');
+        video.play();
+      }
     });
   });
 

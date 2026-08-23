@@ -39,6 +39,15 @@
 @media (max-width:900px){
   .film-showcase__grid{ grid-template-columns:repeat(3, 1fr); }
 }
+/* the 900px override above matches all the way down to mobile too
+   (it comes later in the cascade than the shared stylesheet's own
+   700px rule), which was silently squashing the intro text and all
+   three reels into three illegibly narrow columns on phones instead
+   of letting them stack — restore the shared single-column mobile
+   layout explicitly. */
+@media (max-width:700px){
+  .film-showcase__grid{ grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>

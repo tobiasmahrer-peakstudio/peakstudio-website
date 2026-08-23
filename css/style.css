@@ -736,7 +736,7 @@ body{
 .case-back svg{ width:14px; height:14px; }
 .case-back:hover{ color:var(--black); }
 .case-top__row{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap; }
-.case-top__title{ font-size:clamp(32px,5vw,58px); line-height:1.02; max-width:16ch; }
+.case-top__title{ font-size:clamp(32px,5.6vw,68px); line-height:1.02; max-width:16ch; }
 .case-top__sub{ font-size:15px; color:var(--gray-dark); max-width:68ch; margin-top:16px; line-height:1.6; }
 .case-top__sub + .case-top__sub{ margin-top:12px; }
 .case-top__sub a{ color:var(--black); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--line); transition:text-decoration-color .2s; }

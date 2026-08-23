@@ -1061,6 +1061,14 @@ body{
 .reel-tile video{ opacity:0; transition:opacity .3s, transform 1s var(--ease); }
 .reel-tile.is-playing img{ opacity:0; }
 .reel-tile.is-playing video{ opacity:1; }
+/* mobile browsers draw the native <video controls> bar flush to the
+   video element's own edges — with the tile's border-radius still
+   active, its rounded bottom corners clipped the outer controls
+   (play/pause on the left, volume/fullscreen on the right). Squaring
+   the tile off only while playing keeps the rounded look for the
+   poster/thumbnail state but stops the live controls bar from being
+   cut off. */
+.reel-tile.is-playing{ border-radius:0; }
 .reel-tile__overlay{
   /* pointer-events:none is the actual fix for "can't pause": this covers
      the full tile (inset:0) and sits above the <video> in stacking order,

@@ -58,44 +58,97 @@
 </div>
 
 <main>
-  <section class="case-top">
+  <section class="case-top" style="padding-top:52px;">
     <div class="container">
       <a href="index.html" class="case-back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zurück zu allen Projekten</a>
       <div class="case-top__row">
         <div>
-          <p class="eyebrow">Video · Sport</p>
-          <h1 class="case-top__title">Die besten Tricks eines <em>ganzen Tages.</em></h1>
+          <h1 class="case-top__title" style="max-width:none;">Die besten Tricks eines<br><em>ganzen Tages.</em></h1>
           <p class="case-top__sub">Ein Tag im Snowpark, verdichtet auf die besten Tricks, das schönste Licht und den Sound der Kanten im Schnee.</p>
-        </div>
-        <div class="case-top__meta">
-          <div><span>Kunde</span><span>Swiss-Ski</span></div>
-          <div><span>Ort</span><span>Davos, Schweiz</span></div>
-          <div><span>Jahr</span><span>2026</span></div>
-          <div><span>Leistungen</span><span>Video, Schnitt, Colorgrading</span></div>
-          <div class="case-top__deliverables">
-            <span class="case-top__deliverables-label">Was wir geliefert haben</span>
-            <div class="case-top__deliverables-tags">
-          <span>Drehtag im Snowpark</span>
-          <span>Schnitt &amp; Colorgrading</span>
-          <span>Sounddesign</span>
-          <span>Aftermovie</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="masonry">
-    <div class="masonry__item"><img src="../images/work-ecdavos-jump.jpg" alt="Freeskier macht einen Trick-Grab hoch in der Luft über dem Snowpark Davos" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-ecdavos-gallery-race.jpg" alt="Aftermovie Davos Open">
-      <video src="../videos/ecdavos-aftermovie.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  <div class="case-hero-banner">
+    <video src="../videos/Web_Davos_Hero_compressed.mp4" poster="../images/work-ecdavos-jump.jpg" autoplay muted loop playsinline aria-label="Freeskier macht einen Trick-Grab hoch in der Luft über dem Snowpark Davos"></video>
+  </div>
+
+  <section class="film-showcase">
+    <div class="container">
+      <div class="film-showcase__grid" style="grid-template-columns:1.3fr 1fr;">
+        <div class="film-showcase__intro">
+          <h2>Ein Tag, <em>ein Film.</em></h2>
+          <p class="film-showcase__sub">Der Davos Open ist ein Stopp der Audi Snowboard Series und der Swiss Freeski Tour — ein Tag voller Läufe, Athlet:innen und Tricks im Snowpark Davos, verdichtet auf ein cineastisches Aftermovie.</p>
+        </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-ecdavos-gallery-race.jpg" alt="Aftermovie Davos Open">
+          <video src="../videos/ecdavos-aftermovie.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Aftermovie</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="masonry__item"><img src="../images/work-ecdavos-gallery-portrait.jpg" alt="Nahaufnahme eines Athleten mit Helm und Skibrille" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-ecdavos-gallery-grab.jpg" alt="Freeskier macht einen Grab-Trick vor Bergpanorama" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-ecdavos-gallery-podium.jpg" alt="Athlet:innen feiern auf dem Podest" loading="lazy"></div>
+  </section>
+
+  <section class="case-story">
+    <div class="container">
+      <p class="eyebrow">Der Auftrag</p>
+      <div class="case-story__grid">
+        <div class="case-story__col">
+          <p class="case-story__text">Im Auftrag von Swiss-Ski begleiteten wir den Davos Open — Stopp der Audi Snowboard Series und Swiss Freeski Tour — mit der Kamera durch den gesamten Wettkampftag im Snowpark Davos.</p>
+        </div>
+        <div class="case-story__col">
+          <p class="case-story__text">Aus Video, Schnitt und Colorgrading entstand ein Aftermovie, das den Tag auf seine besten Tricks, das schönste Licht und den Sound der Kanten im Schnee verdichtet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="day-strip-wrap">
+    <p class="eyebrow">Der Tag in Bildern</p>
+    <div class="day-strip">
+      <div class="day-strip__item"><img src="../images/work-ecdavos-gallery-portrait.jpg" alt="Nahaufnahme eines Athleten mit Helm und Skibrille" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-ecdavos-gallery-grab.jpg" alt="Freeskier macht einen Grab-Trick vor Bergpanorama" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-ecdavos-gallery-podium.jpg" alt="Athlet:innen feiern auf dem Podest" loading="lazy"></div>
+    </div>
+  </div>
+
+  <section class="case-services">
+    <div class="container">
+      <p class="eyebrow">Was wir geliefert haben</p>
+      <div class="case-services__grid">
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Drehtag im Snowpark</p>
+          <p class="case-services__tile-desc">Ein Kamerateam vor Ort, das den gesamten Wettkampftag begleitet — von den ersten Läufen am Morgen bis zur Siegerehrung am Abend.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Schnitt &amp; Colorgrading</p>
+          <p class="case-services__tile-desc">Aus Stunden an Rohmaterial wurde ein dichter, dynamisch geschnittener Film mit einem konsistenten, cinematischen Look.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Sounddesign</p>
+          <p class="case-services__tile-desc">Der Sound der Kanten im Schnee, der Menge und der Musik wurde gezielt abgemischt, damit der Film auch ohne Bild trägt.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Aftermovie</p>
+          <p class="case-services__tile-desc">Ein fertiges, teilbares Aftermovie für Swiss-Ski und die Partner der Audi Snowboard Series &amp; Swiss Freeski Tour.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-cta">
+    <div class="container">
+      <p class="eyebrow">Was steht bei dir an?</p>
+      <h2 style="max-width:none;">Auch dein Event verdient einen Film,<br><em>der bleibt.</em></h2>
+      <p class="case-cta__sub">Von der ersten Idee bis zum fertigen Aftermovie — wir begleiten deinen Event genauso persönlich wie den Davos Open.</p>
+      <div class="case-cta__actions">
+        <a href="../kontakt/index.html?service=Video%20%26%20Foto#kontakt" class="btn btn--ghost btn--on-dark">Projekt anfragen</a>
+      </div>
+    </div>
   </section>
 
   <section class="case-nav">

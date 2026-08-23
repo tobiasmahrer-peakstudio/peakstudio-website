@@ -58,58 +58,103 @@
 </div>
 
 <main>
-  <section class="case-top">
+  <section class="case-top" style="padding-top:52px;">
     <div class="container">
       <a href="index.html" class="case-back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zurück zu allen Projekten</a>
       <div class="case-top__row">
         <div>
-          <p class="eyebrow">Doku · Technik</p>
-          <h1 class="case-top__title">Handwerk auf <em>3000 Metern über Meer.</em></h1>
+          <h1 class="case-top__title" style="max-width:none;">Handwerk auf<br><em>3000 Metern über Meer.</em></h1>
           <p class="case-top__sub">Hochalpiner Rohrbau, dokumentiert zwischen Werkstatt, Pumpstation und 3000 Metern über Meer.</p>
-        </div>
-        <div class="case-top__meta">
-          <div><span>Kunde</span><span>Kilian Huber GmbH</span></div>
-          <div><span>Ort</span><span>Zermatt, Schweiz</span></div>
-          <div><span>Jahr</span><span>2026</span></div>
-          <div><span>Leistungen</span><span>Baudoku, Foto &amp; Video</span></div>
-          <div class="case-top__deliverables">
-            <span class="case-top__deliverables-label">Was wir geliefert haben</span>
-            <div class="case-top__deliverables-tags">
-          <span>Baudokumentation</span>
-          <span>Aufnahmen auf 3000 m ü. M.</span>
-          <span>Reels</span>
-          <span>Projekt-Doku</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="masonry">
-    <div class="masonry__item"><img src="../images/work-khuber-hero.jpg" alt="Helikopter fliegt bei Sonnenuntergang zu einer hochalpinen Baustelle an" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-khuber-blauherd-poster.jpg" alt="Pumpstation Blauherd Reel">
-      <video src="../videos/khuber-blauherd.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  <div class="case-hero-banner">
+    <img src="../images/work-khuber-hero.jpg" alt="Helikopter fliegt bei Sonnenuntergang zu einer hochalpinen Baustelle an">
+  </div>
+
+  <section class="film-showcase">
+    <div class="container">
+      <div class="film-showcase__grid">
+        <div class="film-showcase__intro">
+          <h2>Von der Werkstatt<br><em>auf den Gletscher.</em></h2>
+          <p class="film-showcase__sub">Für die Kilian Huber GmbH begleiten wir den hochalpinen Rohrleitungsbau dort, wo er stattfindet — in der Werkstatt im Tal genauso wie auf 3000 Metern über Meer, wo Material nur per Helikopter hinkommt.</p>
+        </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-khuber-blauherd-poster.jpg" alt="Pumpstation Blauherd Reel">
+          <video src="../videos/khuber-blauherd.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Auf 3000 m ü. M.</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-khuber-schweissen-poster.jpg" alt="In der Werkstatt Reel">
+          <video src="../videos/khuber-schweissen.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">In der Werkstatt</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="masonry__item"><img src="../images/work-khuber-gallery-fusion.jpg" alt="Mitarbeiter bedient eine Rohr-Stumpfschweissmaschine, Gletscherpanorama im Hintergrund" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-gallery-matterhorn.jpg" alt="Helikopter transportiert eine Rohrleitung oberhalb von Zermatt" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-khuber-schweissen-poster.jpg" alt="In der Werkstatt Reel">
-      <video src="../videos/khuber-schweissen.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  </section>
+
+  <section class="case-story">
+    <div class="container">
+      <p class="eyebrow">Der Auftrag</p>
+      <div class="case-story__grid">
+        <div class="case-story__col">
+          <p class="case-story__text">Im Auftrag der Kilian Huber GmbH dokumentieren wir laufende Bauprojekte in Zermatt — von der Rohrmontage in der Werkstatt über den Materialtransport per Helikopter bis zur Fusion hoch oben an der Pumpstation Blauherd.</p>
+        </div>
+        <div class="case-story__col">
+          <p class="case-story__text">Entstanden ist eine laufende Baudokumentation und ein Fundus an Social-Media-Content, der ein technisches Handwerk zeigt, das man sonst kaum zu Gesicht bekommt — präzise, alpin und auf 3000 Metern über Meer.</p>
+        </div>
+      </div>
     </div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-welding.jpg" alt="Schweisser bei der Arbeit an einem Stahlrohr, Funkenflug" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-gallery-pipes.jpg" alt="Mitarbeiter trägt Rohrsegmente über eine Bergwiese" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-gallery-worker.jpg" alt="Mitarbeiter bedient eine Rohrschweissmaschine vor Bergpanorama" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-slingload.jpg" alt="Helikopter transportiert eine Materiallast am Langseil" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-tunnel1.jpg" alt="Bauteam trägt eine Rohrleitung durch einen Stollen" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-tunnel2.jpg" alt="Mitarbeiter mit Stirnlampe kontrolliert eine Rohrleitung im Stollen" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-tunnel3.jpg" alt="Zwei Mitarbeiter positionieren mit einem Kettenzug ein Rohrstück" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-fusion1.jpg" alt="Mitarbeiter bedient die Rohrschweissmaschine, Alpenpanorama" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-fusion2.jpg" alt="Mitarbeiter bei der Rohrmontage vor Wolkenhimmel" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-khuber-strip-detail.jpg" alt="Nahaufnahme der Stumpfschweissmaschine" loading="lazy"></div>
+  </section>
+
+  <div class="day-strip-wrap">
+    <p class="eyebrow">Der Job in Bildern</p>
+    <div class="day-strip">
+      <div class="day-strip__item"><img src="../images/work-khuber-gallery-matterhorn.jpg" alt="Helikopter transportiert eine Rohrleitung oberhalb von Zermatt" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-slingload.jpg" alt="Helikopter transportiert eine Materiallast am Langseil" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-gallery-fusion.jpg" alt="Mitarbeiter bedient eine Rohr-Stumpfschweissmaschine, Gletscherpanorama im Hintergrund" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-welding.jpg" alt="Schweisser bei der Arbeit an einem Stahlrohr, Funkenflug" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-tunnel1.jpg" alt="Bauteam trägt eine Rohrleitung durch einen Stollen" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-tunnel2.jpg" alt="Mitarbeiter mit Stirnlampe kontrolliert eine Rohrleitung im Stollen" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-tunnel3.jpg" alt="Zwei Mitarbeiter positionieren mit einem Kettenzug ein Rohrstück" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-gallery-pipes.jpg" alt="Mitarbeiter trägt Rohrsegmente über eine Bergwiese" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-gallery-worker.jpg" alt="Mitarbeiter bedient eine Rohrschweissmaschine vor Bergpanorama" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-fusion1.jpg" alt="Mitarbeiter bedient die Rohrschweissmaschine, Alpenpanorama" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-fusion2.jpg" alt="Mitarbeiter bei der Rohrmontage vor Wolkenhimmel" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-khuber-strip-detail.jpg" alt="Nahaufnahme der Stumpfschweissmaschine" loading="lazy"></div>
+    </div>
+  </div>
+
+  <section class="case-services">
+    <div class="container">
+      <p class="eyebrow">Was wir geliefert haben</p>
+      <div class="case-services__grid">
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Baudokumentation</p>
+          <p class="case-services__tile-desc">Laufende fotografische und filmische Begleitung der Bauprojekte — von der Werkstatt bis zur alpinen Baustelle, projektübergreifend und über mehrere Einsätze hinweg.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Aufnahmen auf 3000 m ü. M.</p>
+          <p class="case-services__tile-desc">Dreh direkt an der Pumpstation Blauherd — dort, wo das Material per Helikopter ankommt und die Bedingungen den Produktionstag bestimmen.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Reels</p>
+          <p class="case-services__tile-desc">Kurzformatiger Video-Content aus Werkstatt und Baustelle für Instagram — nah am Handwerk, ohne Effekthascherei.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Projekt-Doku</p>
+          <p class="case-services__tile-desc">Ein wachsendes Bildarchiv, das einzelne Bauprojekte von Anfang bis Ende nachvollziehbar macht — nutzbar für Website, Referenzen und Ausschreibungen.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="case-results">
@@ -175,6 +220,17 @@
           </div>
         </div>
         <a href="https://instagram.com/kilian_huber_gmbh" target="_blank" rel="noopener" class="link-arrow ig-mock__link">Profil ansehen <svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-cta">
+    <div class="container">
+      <p class="eyebrow">Was steht bei dir an?</p>
+      <h2 style="max-width:none;">Auch dein Handwerk verdient Content,<br><em>der zeigt, was dahintersteckt.</em></h2>
+      <p class="case-cta__sub">Von der Werkstatt bis zur Baustelle — wir begleiten dein Projekt genauso persönlich wie das der Kilian Huber GmbH.</p>
+      <div class="case-cta__actions">
+        <a href="../kontakt/index.html?service=Video%20%26%20Foto#kontakt" class="btn btn--ghost btn--on-dark">Projekt anfragen</a>
       </div>
     </div>
   </section>

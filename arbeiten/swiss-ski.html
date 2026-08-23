@@ -31,6 +31,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../css/style.css">
+<style>
+/* four reel-tiles instead of the shared .film-showcase__grid's usual
+   intro+2 — Swiss-Ski is the only case with four local reels, so this
+   row is scoped to this page rather than widening the shared grid */
+.stmoritz-reels{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; margin-top:40px; }
+@media (max-width:900px){ .stmoritz-reels{ grid-template-columns:repeat(2, 1fr); gap:16px; } }
+@media (max-width:520px){ .stmoritz-reels{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; } }
+</style>
 </head>
 <body>
 
@@ -58,60 +66,119 @@
 </div>
 
 <main>
-  <section class="case-top">
+  <section class="case-top" style="padding-top:52px;">
     <div class="container">
       <a href="index.html" class="case-back"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6 9 12l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zurück zu allen Projekten</a>
       <div class="case-top__row">
         <div>
-          <p class="eyebrow">Sport · Event</p>
-          <h1 class="case-top__title">Acht Tage Rennsport, <em>hautnah eingefangen.</em></h1>
+          <h1 class="case-top__title" style="max-width:none;">Acht Tage Rennsport,<br><em>hautnah eingefangen.</em></h1>
           <p class="case-top__sub">Acht Tage FIS Cross Junior World Championships in St. Moritz — Ski Cross &amp; Snowboard Cross, hautnah mit der Kamera begleitet.</p>
-        </div>
-        <div class="case-top__meta">
-          <div><span>Kunde</span><span>Swiss-Ski</span></div>
-          <div><span>Ort</span><span>St. Moritz, Schweiz</span></div>
-          <div><span>Jahr</span><span>2026</span></div>
-          <div><span>Leistungen</span><span>Eventfoto, Aftermovies, Reels</span></div>
-          <div class="case-top__deliverables">
-            <span class="case-top__deliverables-label">Was wir geliefert haben</span>
-            <div class="case-top__deliverables-tags">
-          <span>Renn- &amp; Actionfoto</span>
-          <span>Tägliche Aftermovies</span>
-          <span>Off-Snow-Content</span>
-          <span>Gesamt-Aftermovie</span>
-          <span>3 BTS-Reels</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="masonry">
-    <div class="masonry__item"><img src="../images/work-stmoritz-hero.jpg" alt="Athlet im orangen Rennanzug an der Streckenbegrenzung" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-stmoritz-aftermovie-poster.jpg" alt="Aftermovie Swiss-Ski JWC">
-      <video src="../videos/stmoritz-aftermovie.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  <div class="case-hero-banner">
+    <img src="../images/work-stmoritz-hero.jpg" alt="Athlet im orangen Rennanzug an der Streckenbegrenzung">
+  </div>
+
+  <section class="film-showcase">
+    <div class="container">
+      <h2>Acht Tage, <em>ein Rausch.</em></h2>
+      <p class="film-showcase__sub">Für Swiss-Ski waren wir acht Tage vor Ort an der FIS Cross Junior World Championships in St. Moritz — mit täglichen Aftermovies, Athleten-Content und Off-Snow-Storys neben der Strecke.</p>
+      <div class="stmoritz-reels">
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-stmoritz-aftermovie-poster.jpg" alt="Aftermovie Swiss-Ski JWC">
+          <video src="../videos/stmoritz-aftermovie.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Aftermovie</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-stmoritz-skieinzel-poster.jpg" alt="Renntag Recap Reel">
+          <video src="../videos/stmoritz-ski-einzel.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Renntag-Recap</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-stmoritz-nils-poster.jpg" alt="Athletenporträt Reel">
+          <video src="../videos/stmoritz-nils.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Athletenporträt</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+        <div class="reel-tile" data-play-video>
+          <img src="../images/work-stmoritz-chwords-poster.jpg" alt="Znüni, Zvieri, Znacht Reel">
+          <video src="../videos/stmoritz-ch-words.mp4" preload="none" playsinline></video>
+          <div class="reel-tile__overlay">
+            <p class="reel-tile__tag">Off-Snow</p>
+          </div>
+          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="masonry__item"><img src="../images/work-stmoritz-track.jpg" alt="Athleten gehen die Rennstrecke im Schnee ab" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-stmoritz-chwords-poster.jpg" alt="Znüni, Zvieri, Znacht Reel">
-      <video src="../videos/stmoritz-ch-words.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  </section>
+
+  <section class="case-story">
+    <div class="container">
+      <p class="eyebrow">Der Auftrag</p>
+      <div class="case-story__grid">
+        <div class="case-story__col">
+          <p class="case-story__text">Im Auftrag von Swiss-Ski begleiteten wir die FIS Cross Junior World Championships in St. Moritz acht Tage lang vor Ort — mit Renn- und Actionfoto, täglichen Aftermovies und Content abseits der Strecke.</p>
+        </div>
+        <div class="case-story__col">
+          <p class="case-story__text">Neben Ski Cross und Snowboard Cross im Wettkampf entstanden auch Off-Snow-Storys und Athletenporträts — für ein Gesamtbild, das mehr zeigt als nur den Sport selbst.</p>
+        </div>
+      </div>
     </div>
-    <div class="masonry__item"><img src="../images/work-stmoritz-flags.jpg" alt="Sponsorenflaggen im Schnee" loading="lazy"></div>
-    <div class="masonry__item"><img src="../images/work-stmoritz-athlete.jpg" alt="Athlet in orangem Rennanzug wird von Helfer betreut" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-stmoritz-nils-poster.jpg" alt="Arbeiterporträt Reel">
-      <video src="../videos/stmoritz-nils.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  </section>
+
+  <div class="day-strip-wrap">
+    <p class="eyebrow">Acht Tage in Bildern</p>
+    <div class="day-strip">
+      <div class="day-strip__item"><img src="../images/work-stmoritz-track.jpg" alt="Athleten gehen die Rennstrecke im Schnee ab" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-stmoritz-athlete.jpg" alt="Athlet in orangem Rennanzug wird von Helfer betreut" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-stmoritz-flags.jpg" alt="Sponsorenflaggen im Schnee" loading="lazy"></div>
+      <div class="day-strip__item"><img src="../images/work-stmoritz-tunnel.jpg" alt="Silhouetten in einem beleuchteten Starttunnel" loading="lazy"></div>
     </div>
-    <div class="masonry__item"><img src="../images/work-stmoritz-tunnel.jpg" alt="Silhouetten in einem beleuchteten Starttunnel" loading="lazy"></div>
-    <div class="masonry__item masonry__video" data-play-video>
-      <img src="../images/work-stmoritz-skieinzel-poster.jpg" alt="Renntag Recap Reel">
-      <video src="../videos/stmoritz-ski-einzel.mp4" preload="none" playsinline></video>
-      <button class="masonry__play" aria-label="Video abspielen"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+  </div>
+
+  <section class="case-services">
+    <div class="container">
+      <p class="eyebrow">Was wir geliefert haben</p>
+      <div class="case-services__grid">
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Renn- &amp; Actionfoto</p>
+          <p class="case-services__tile-desc">Eventfotografie an acht Renntagen — Ski Cross und Snowboard Cross im Wettkampf, festgehalten in Bewegung und im entscheidenden Moment.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Aftermovies</p>
+          <p class="case-services__tile-desc">Tägliche Recap-Reels direkt vom Renntag sowie ein zusammenfassendes Gesamt-Aftermovie über alle acht Tage der Championships.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">Off-Snow-Content</p>
+          <p class="case-services__tile-desc">Storys abseits der Strecke — von Athletenporträts bis zu kleinen Momenten am Rand des Wettkampfs, die den Event greifbar machen.</p>
+        </div>
+        <div class="case-services__tile">
+          <p class="case-services__tile-title">3 BTS-Reels</p>
+          <p class="case-services__tile-desc">Drei Behind-the-Scenes-Reels, die zeigen, was zwischen den Rennläufen passiert — für Social Media aufbereitet und sofort einsatzbereit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-cta">
+    <div class="container">
+      <p class="eyebrow">Was steht bei dir an?</p>
+      <h2 style="max-width:none;">Auch dein Event verdient Content,<br><em>der hautnah dabei ist.</em></h2>
+      <p class="case-cta__sub">Von der Anreise bis zur Siegerehrung — wir begleiten deinen Event genauso persönlich wie die Junior World Championships.</p>
+      <div class="case-cta__actions">
+        <a href="../kontakt/index.html?service=Video%20%26%20Foto#kontakt" class="btn btn--ghost btn--on-dark">Projekt anfragen</a>
+      </div>
     </div>
   </section>
 

@@ -32,12 +32,13 @@
 
 <link rel="stylesheet" href="../css/style.css">
 <style>
-/* four reel-tiles instead of the shared .film-showcase__grid's usual
-   intro+2 — Swiss-Ski is the only case with four local reels, so this
-   row is scoped to this page rather than widening the shared grid */
-.stmoritz-reels{ display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; margin-top:40px; }
-@media (max-width:900px){ .stmoritz-reels{ grid-template-columns:repeat(2, 1fr); gap:16px; } }
-@media (max-width:520px){ .stmoritz-reels{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; } }
+/* three reel-tiles beside the intro text instead of the shared
+   .film-showcase__grid's usual 2 — the aftermovie tile was dropped
+   from this page, leaving three reels to sit alongside the intro */
+.film-showcase__grid{ grid-template-columns:1.3fr 1fr 1fr 1fr; }
+@media (max-width:900px){
+  .film-showcase__grid{ grid-template-columns:repeat(3, 1fr); }
+}
 </style>
 </head>
 <body>
@@ -84,16 +85,10 @@
 
   <section class="film-showcase">
     <div class="container">
-      <h2>Acht Tage, <em>ein Rausch.</em></h2>
-      <p class="film-showcase__sub">Für Swiss-Ski waren wir acht Tage vor Ort an der FIS Cross Junior World Championships in St. Moritz — mit täglichen Aftermovies, Athleten-Content und Off-Snow-Storys neben der Strecke.</p>
-      <div class="stmoritz-reels">
-        <div class="reel-tile" data-play-video style="aspect-ratio:16/9;">
-          <img src="../images/work-stmoritz-aftermovie-poster.jpg" alt="Aftermovie Swiss-Ski JWC">
-          <video src="../videos/stmoritz-aftermovie.mp4" preload="none" playsinline></video>
-          <div class="reel-tile__overlay">
-            <p class="reel-tile__tag">Aftermovie</p>
-          </div>
-          <button class="reel-tile__play" aria-label="Video abspielen" tabindex="-1"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l12-7L8 5Z" fill="currentColor"/></svg></button>
+      <div class="film-showcase__grid">
+        <div class="film-showcase__intro">
+          <h2>Acht Tage,<br><em>ein Rausch.</em></h2>
+          <p class="film-showcase__sub">Für Swiss-Ski waren wir acht Tage vor Ort an der FIS Cross Junior World Championships in St. Moritz — mit täglichen Aftermovies, Athleten-Content und Off-Snow-Storys neben der Strecke.</p>
         </div>
         <div class="reel-tile" data-play-video style="aspect-ratio:9/16;">
           <img src="../images/work-stmoritz-skieinzel-poster.jpg" alt="Renntag Recap Reel">

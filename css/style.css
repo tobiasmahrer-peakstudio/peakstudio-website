@@ -1082,7 +1082,15 @@ body{
   padding:26px;
   background:linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
   pointer-events:none;
+  transition:opacity .2s;
 }
+/* the tag/title label and its darkening gradient sit flush against the
+   same bottom edge where mobile browsers draw the native controls bar
+   (time, volume, fullscreen) — left visible during playback, the label
+   visually overlapped and washed out those controls, reading as if
+   they were cut off. Fading the overlay out once playing starts gives
+   the native bar a clean strip to render in. */
+.reel-tile.is-playing .reel-tile__overlay{ opacity:0; }
 .reel-tile__tag{
   font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
   color:rgba(255,255,255,.7);

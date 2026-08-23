@@ -1118,7 +1118,14 @@ body{
    ("Diashow") instead of a static grid wall
    ============================================================ */
 .day-strip-wrap{ padding:36px 0 8px; }
-.day-strip-wrap .eyebrow{ padding:0 var(--pad); margin-bottom:20px; display:block; }
+/* day-strip-wrap deliberately isn't inside .container so the photo
+   strip itself can bleed full-width past the 1440px reading column —
+   but that meant the eyebrow above it inherited plain edge padding
+   instead of .container's centering, so past 1440px it drifted away
+   from every other heading's left edge. This replicates .container's
+   left inset without opting the eyebrow into centered layout, so it
+   lines up regardless of the element's own display type. */
+.day-strip-wrap .eyebrow{ padding:0 var(--pad); padding-left:max(var(--pad), calc((100% - var(--container)) / 2 + var(--pad))); margin-bottom:20px; display:block; }
 .day-strip{
   display:flex; gap:12px; overflow-x:auto;
   scroll-snap-type:x proximity;

@@ -524,7 +524,26 @@ body{
 }
 
 @media (max-width:700px){
-  .team{ grid-template-columns:1fr; gap:48px; }
+  /* Same swipeable filmstrip UX as .day-strip (Franjo/Swiss-Ski case
+     galleries): horizontal scroll-snap instead of a stacked grid. The
+     negative margin cancels .container's own --pad and re-adds it as
+     padding, so the strip still starts flush with the rest of the page
+     but scrolls out to the true viewport edge — safe to do only inside
+     this mobile-only query, where .container never has a centering
+     offset of its own to fight with. */
+  .team{
+    display:flex;
+    grid-template-columns:none;
+    gap:16px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    margin:0 calc(var(--pad) * -1);
+    padding:4px var(--pad) 6px;
+  }
+  .team::-webkit-scrollbar{ display:none; }
+  .team-card{ flex:0 0 80%; scroll-snap-align:start; }
 }
 
 /* ============================================================

@@ -1053,13 +1053,11 @@ body{
 
 .case-nav{
   display:grid; grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--line);
 }
 .case-nav a{
   position:relative; padding:44px var(--pad); overflow:hidden;
   display:flex; flex-direction:column; justify-content:flex-end; min-height:220px;
 }
-.case-nav a:first-child{ border-right:1px solid var(--line); }
 .case-nav__bg{ position:absolute; inset:0; }
 .case-nav__bg::after{
   content:'';
@@ -1079,7 +1077,6 @@ body{
 
 @media (max-width:700px){
   .case-nav{ grid-template-columns:1fr; }
-  .case-nav a:first-child{ border-right:0; border-bottom:1px solid var(--line); }
   /* align-items:stretch (not flex-start) so .case-top__meta fills the
      full container width like every other text block on mobile, instead
      of shrinking to fit its own content and sitting narrow/off-centre */

@@ -265,7 +265,11 @@ body{
   position:fixed;
   top:calc(76px + env(safe-area-inset-top, 0px)); right:0; bottom:0; left:0;
   z-index:99;
-  background:var(--black);
+  /* same treatment as .header-dark .site-header, so the menu reads as a
+     seamless continuation of the header bar it drops down from */
+  background:rgba(13,13,12,.94);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   display:flex; flex-direction:column; align-items:center;
   padding:32px var(--pad);
   gap:6px;
@@ -275,8 +279,7 @@ body{
 }
 .mobile-nav.is-open{ opacity:1; visibility:visible; transform:translateY(0); }
 .mobile-nav a{
-  font-family:var(--serif); font-style:italic; font-weight:400;
-  font-size:22px; letter-spacing:0;
+  font-size:22px; font-weight:700; letter-spacing:-0.01em;
   color:var(--white); text-align:center;
   padding:14px 0; border-bottom:1px solid rgba(255,255,255,.15);
   width:100%;

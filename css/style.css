@@ -596,7 +596,7 @@ body{
    to match .film-showcase h2 (the Franjo case's "Ski aus, Motor an.") */
 #kontakt h2{ font-size:clamp(28px,3.4vw,42px); line-height:1.15; }
 .contact__grid{
-  margin-top:56px;
+  margin-top:28px;
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:64px; /* matches .team's gap so this grid's 3 columns line up with

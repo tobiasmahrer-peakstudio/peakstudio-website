@@ -543,7 +543,7 @@ body{
     padding:4px var(--pad) 6px;
   }
   .team::-webkit-scrollbar{ display:none; }
-  .team-card{ flex:0 0 80%; scroll-snap-align:start; }
+  .team-card{ flex:0 0 100%; scroll-snap-align:start; }
 }
 
 /* ============================================================

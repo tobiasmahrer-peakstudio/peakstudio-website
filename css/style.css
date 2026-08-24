@@ -492,7 +492,7 @@ body{
 .team-card__bio{ font-size:14px; color:var(--gray-dark); margin-top:14px; line-height:1.65; }
 .team-card__contact{ margin-top:18px; padding-bottom:24px; border-bottom:1px solid var(--line); }
 
-.app-btns{ display:flex; flex-wrap:wrap; gap:5px; justify-content:space-between; }
+.app-btns{ display:flex; flex-wrap:wrap; gap:8px; }
 .app-btn{
   display:inline-flex;
   align-items:center;
@@ -566,6 +566,9 @@ body{
   /* drop the start-year suffix and shrink the pills a touch further so
      all four still fit on one line at mobile card widths */
   .team-card__role-date{ display:none; }
+  /* mobile only — spread the pills to fill the card's width edge to
+     edge; on desktop they stay grouped closer together */
+  .app-btns{ justify-content:space-between; }
 }
 @media (max-width:340px){
   /* the 375px-tuned pill size above still wraps to two lines on the

@@ -2026,7 +2026,7 @@ body.is-home{ padding-top:0; }
   max-width:520px;
 }
 .hero-video__title{
-  font-size:clamp(38px, 4.8vw, 68px);
+  font-size:clamp(44px, 5.6vw, 80px);
   line-height:1.02;
   font-weight:700;
   letter-spacing:-0.03em;

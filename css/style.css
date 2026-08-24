@@ -541,6 +541,11 @@ body{
     scrollbar-width:none;
     margin:0 calc(var(--pad) * -1);
     padding:4px var(--pad) 6px;
+    /* without this, the browser's scroll-snap engine aligns the first
+       card's start edge to the content edge (ignoring padding) and
+       auto-scrolls past the left padding on load, leaving the card
+       flush against the screen edge instead of centred in the grid */
+    scroll-padding:4px var(--pad) 6px;
   }
   .team::-webkit-scrollbar{ display:none; }
   .team-card{ flex:0 0 100%; scroll-snap-align:start; }

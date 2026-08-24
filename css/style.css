@@ -2079,7 +2079,7 @@ body.is-home{ padding-top:0; }
    and "Leistungen"; tighten both sides, kept equal top/bottom so the logo
    row stays centred in the bar */
 .is-home .clients{ padding-top:32px; padding-bottom:32px; }
-.services.services--light{ background:var(--bg); color:var(--black); padding-top:56px; padding-bottom:48px; }
+.services.services--light{ background:var(--bg); color:var(--black); padding-top:56px; padding-bottom:60px; }
 .services.services--light .eyebrow{ color:var(--gray); }
 .services.services--light h2{ color:var(--black); font-size:clamp(28px,4.8vw,58px); line-height:1.02; } /* matches .case-top__title's size */
 .services.services--light h2 em{ color:var(--black); }

@@ -543,9 +543,34 @@ body{
 .contact__grid{
   margin-top:56px;
   display:grid;
-  grid-template-columns:1.1fr 0.9fr;
-  gap:80px;
+  grid-template-columns:repeat(3, 1fr);
+  gap:40px;
+  align-items:start;
 }
+/* Contact form styled to match .pricing-card--featured (the "Beliebteste
+   Wahl" pillar on Leistungen) — same dark gradient, radius and shadow —
+   spanning two of the grid's three columns so the Studio/Direkter-Draht
+   info sits alongside it in the third. */
+.contact-form{
+  grid-column:span 2;
+  background:radial-gradient(130% 100% at 100% 0%, #333230 0%, var(--black) 55%);
+  border:1px solid var(--black);
+  border-radius:20px;
+  padding:40px 36px;
+  color:var(--white);
+  box-shadow:0 40px 70px -32px rgba(0,0,0,.5);
+}
+.contact-form .field label{ color:rgba(255,255,255,.6); }
+.contact-form .field input, .contact-form .field textarea{
+  color:var(--white); border-bottom-color:rgba(255,255,255,.25);
+}
+.contact-form .field input::placeholder, .contact-form .field textarea::placeholder{ color:rgba(255,255,255,.35); }
+.contact-form .field input:focus, .contact-form .field textarea:focus{ border-color:var(--white); }
+.contact-form .btn--primary{ background:var(--white); color:var(--black); border-color:var(--white); }
+.contact-form .btn--primary:hover{ background:transparent; color:var(--white); }
+.contact-form .contact-form__note{ color:rgba(255,255,255,.75); }
+.contact-form .contact-form__note.is-success{ color:#7bd67e; }
+.contact-form .contact-form__note.is-error{ color:#ff8a75; }
 .field{ margin-bottom:24px; }
 .field label{
   display:block; font-size:10.5px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
@@ -580,8 +605,9 @@ body{
 .contact-card__btn:hover{ border-color:var(--black); }
 .contact-card__btn svg{ width:14px; height:14px; }
 
-@media (max-width:800px){
+@media (max-width:900px){
   .contact__grid{ grid-template-columns:1fr; gap:48px; }
+  .contact-form{ grid-column:auto; padding:32px 26px; }
 }
 
 /* ============================================================

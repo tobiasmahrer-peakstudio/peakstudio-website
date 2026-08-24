@@ -69,6 +69,70 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
+  // infinite-loop team carousel (mobile only — see .team's
+  // max-width:700px rules in style.css, which turn it into a horizontal
+  // scroll-snap strip). Clones the first/last card to the opposite end
+  // so a swipe past the last person lands seamlessly back on the first
+  // instead of dead-ending. Clones are hidden outright on desktop via
+  // .team-card--clone{ display:none } and never receive the .reveal
+  // fade-in (stripped below) since they only ever flash on screen for a
+  // moment mid-loop-jump, not scroll into view like normal content.
+  const teamTrack = document.querySelector('.team');
+  if (teamTrack) {
+    const realCards = Array.from(teamTrack.querySelectorAll('.team-card'));
+    if (realCards.length > 1) {
+      const firstClone = realCards[0].cloneNode(true);
+      const lastClone = realCards[realCards.length - 1].cloneNode(true);
+      [firstClone, lastClone].forEach(clone => {
+        clone.classList.add('team-card--clone');
+        clone.classList.remove('reveal', 'is-visible');
+        clone.setAttribute('aria-hidden', 'true');
+        clone.querySelectorAll('a[href]').forEach(a => a.setAttribute('tabindex', '-1'));
+      });
+      teamTrack.insertBefore(lastClone, realCards[0]);
+      teamTrack.appendChild(firstClone);
+
+      const isLoopActive = () => window.matchMedia('(max-width:700px)').matches;
+      const cardStep = () => {
+        const gap = parseFloat(getComputedStyle(teamTrack).columnGap) || 16;
+        return realCards[0].getBoundingClientRect().width + gap;
+      };
+      // DOM order is now [lastClone, ...realCards, firstClone] — real
+      // cards sit at step-indices 1..N, so resting on the first real
+      // card means scrolling one step in from 0 (the prepended clone).
+      const FIRST_INDEX = 1;
+      const LAST_INDEX = realCards.length;
+
+      if (isLoopActive()) teamTrack.scrollLeft = FIRST_INDEX * cardStep();
+
+      let settleTimer = null;
+      teamTrack.addEventListener('scroll', () => {
+        if (!isLoopActive()) return;
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(() => {
+          const step = cardStep();
+          const max = teamTrack.scrollWidth - teamTrack.clientWidth;
+          if (teamTrack.scrollLeft < 4) {
+            teamTrack.scrollLeft = LAST_INDEX * step; // was on the prepended clone -> jump to the real last card
+          } else if (teamTrack.scrollLeft > max - 4) {
+            teamTrack.scrollLeft = FIRST_INDEX * step; // was on the appended clone -> jump to the real first card
+          }
+        }, 120);
+      }, { passive: true });
+
+      let resizeTimer = null;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (!isLoopActive()) return;
+          const step = cardStep();
+          const nearest = Math.min(Math.max(Math.round(teamTrack.scrollLeft / step), FIRST_INDEX), LAST_INDEX);
+          teamTrack.scrollLeft = nearest * step;
+        }, 150);
+      });
+    }
+  }
+
   // masonry / film-frame / reel-tile video play buttons. On mobile this
   // opens the browser's native fullscreen player instead of playing
   // inline in the small card — inline playback there showed native

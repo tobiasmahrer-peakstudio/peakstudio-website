@@ -480,6 +480,9 @@ body{
   gap:64px;
 }
 .team-card{ display:flex; flex-direction:column; }
+/* clones main.js adds for the mobile infinite-loop carousel — inert on
+   desktop's grid, only take part in the flex strip below 700px */
+.team-card--clone{ display:none; }
 .team-card__media{ aspect-ratio:4/5; overflow:hidden; border-radius:4px; background:var(--off); }
 .team-card__media img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
 .team-card:hover .team-card__media img{ transform:scale(1.02); }
@@ -549,6 +552,7 @@ body{
   }
   .team::-webkit-scrollbar{ display:none; }
   .team-card{ flex:0 0 100%; scroll-snap-align:start; }
+  .team-card--clone{ display:flex; }
   /* drop the start-year suffix and shrink the pills a touch further so
      all four still fit on one line at mobile card widths */
   .team-card__role-date{ display:none; }

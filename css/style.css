@@ -544,6 +544,12 @@ body{
   }
   .team::-webkit-scrollbar{ display:none; }
   .team-card{ flex:0 0 100%; scroll-snap-align:start; }
+  /* drop the start-year suffix and shrink the pills a touch further so
+     all four still fit on one line at mobile card widths */
+  .team-card__role-date{ display:none; }
+  .app-btns{ gap:5px; }
+  .app-btn{ padding:6px 8px; font-size:10px; gap:4px; }
+  .app-btn svg{ width:11px; height:11px; }
 }
 
 /* ============================================================

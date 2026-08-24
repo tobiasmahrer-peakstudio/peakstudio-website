@@ -539,7 +539,12 @@ body{
     grid-template-columns:none;
     gap:16px;
     overflow-x:auto;
-    scroll-snap-type:x proximity;
+    /* mandatory (not proximity) so a swipe always settles fully on the
+       next card — proximity only snaps when momentum happens to stop
+       near a snap point, so a firmer flick could coast past a card
+       (or stop half-between two) instead of landing exactly one
+       person over every time */
+    scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
     margin:0 calc(var(--pad) * -1);

@@ -561,9 +561,21 @@ body{
   /* drop the start-year suffix and shrink the pills a touch further so
      all four still fit on one line at mobile card widths */
   .team-card__role-date{ display:none; }
-  .app-btns{ gap:5px; }
+  /* pills are sized to just fit four-across at the narrowest supported
+     width — space-between stretches the gaps (not the pills) to fill
+     wider cards, so WhatsApp and Instagram land flush with the card's
+     edges instead of leaving the extra width unused on the right */
+  .app-btns{ gap:5px; justify-content:space-between; }
   .app-btn{ padding:6px 8px; font-size:10px; gap:4px; }
   .app-btn svg{ width:11px; height:11px; }
+}
+@media (max-width:340px){
+  /* the 375px-tuned pill size above still wraps to two lines on the
+     narrowest phones (e.g. 320px iPhone SE) — shrink a bit further so
+     all four stay on one row there too */
+  .app-btns{ gap:3px; }
+  .app-btn{ padding:5px 6px; font-size:9px; gap:3px; }
+  .app-btn svg{ width:10px; height:10px; }
 }
 
 /* ============================================================

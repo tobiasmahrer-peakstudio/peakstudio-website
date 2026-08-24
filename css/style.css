@@ -1899,8 +1899,14 @@ body.is-home{ padding-top:0; }
   align-items:flex-end;
 }
 .hero-video video{
-  position:absolute; inset:0;
-  width:100%; height:100%; object-fit:cover;
+  /* inset:-1px (not 0/100%) deliberately overscans by a hairline — same fix
+     as .case-hero-banner above: height:82vh/82svh is a fractional pixel
+     value, and a video's decoded frame can round a fraction of a px short
+     of that, leaving a 1px sliver of the page background (--bg) visible at
+     the bottom edge. Overscanning and letting the section's overflow:hidden
+     clip it guarantees full coverage regardless of rounding. */
+  position:absolute; inset:-1px;
+  width:calc(100% + 2px); height:calc(100% + 2px); object-fit:cover;
 }
 .hero-video__scrim{
   position:absolute; inset:0;

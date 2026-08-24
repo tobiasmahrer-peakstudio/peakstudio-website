@@ -537,7 +537,12 @@ body{
   .team{
     display:flex;
     grid-template-columns:none;
-    gap:16px;
+    /* must be >= --pad: at rest, the viewport window sits exactly one
+       step (card + gap) into the scrollable content, so anything less
+       than the side padding leaves the tail of the previous card (or
+       the start of the next) peeking into view at the edge — a flash
+       of the neighbouring photo instead of a clean single-card view */
+    gap:var(--pad);
     overflow-x:auto;
     /* mandatory (not proximity) so a swipe always settles fully on the
        next card — proximity only snaps when momentum happens to stop

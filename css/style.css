@@ -620,6 +620,9 @@ body{
   color:var(--white);
   box-shadow:0 40px 70px -32px rgba(0,0,0,.5);
 }
+.contact-form .eyebrow{ color:rgba(255,255,255,.5); }
+.contact-form h2{ color:var(--white); margin-bottom:28px; }
+.contact-form h2 em{ color:rgba(255,255,255,.5); }
 .contact-form .field label{ color:rgba(255,255,255,.6); }
 .contact-form .field input, .contact-form .field textarea{
   color:var(--white); border-bottom-color:rgba(255,255,255,.25);

@@ -581,7 +581,8 @@ body{
   margin-top:56px;
   display:grid;
   grid-template-columns:repeat(3, 1fr);
-  gap:40px;
+  gap:64px; /* matches .team's gap so this grid's 3 columns line up with
+               the team cards above it (same container/padding context) */
   align-items:start;
 }
 /* Contact form styled to match .pricing-card--featured (the "Beliebteste

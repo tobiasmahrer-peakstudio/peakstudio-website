@@ -1156,7 +1156,7 @@ body{
 .film-showcase--light{ background:var(--bg); color:var(--black); }
 .film-showcase--light .eyebrow{ color:var(--gray); }
 .film-showcase--light h2{ color:var(--black); }
-.film-showcase--light h2 em{ color:var(--gray); }
+.film-showcase--light h2 em{ color:var(--black); }
 .film-showcase--light .film-showcase__sub{ color:var(--gray-dark); }
 
 /* three columns: intro text, then the two reels — instead of a full-

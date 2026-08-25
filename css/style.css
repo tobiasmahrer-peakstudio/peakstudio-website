@@ -962,7 +962,7 @@ body{
 .growth-svg__dot{ fill:var(--white); stroke:var(--black); stroke-width:4; }
 .growth-svg__value{ fill:var(--white); font-family:'Inter',sans-serif; font-size:16px; font-weight:600; }
 .growth-svg__value--total{ font-size:19px; font-weight:800; fill:var(--black); }
-.growth-svg__date{ fill:rgba(255,255,255,.45); font-family:'Inter',sans-serif; font-size:10.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; }
+.growth-svg__date{ fill:rgba(255,255,255,.45); font-family:'Inter',sans-serif; font-size:9.9px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; }
 .growth-svg__bar{ fill:rgba(255,255,255,.28); }
 .growth-svg__bar--total{ fill:var(--white); }
 

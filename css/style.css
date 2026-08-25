@@ -1027,43 +1027,6 @@ body{
 .case-press__text a{ color:var(--white); text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(255,255,255,.4); transition:text-decoration-color .2s; }
 .case-press__text a:hover{ text-decoration-color:var(--white); }
 
-/* light-on-dark -> dark-on-light preview variant for .case-results and
-   everything nested inside it (growth chart, stat row, ig mock, press
-   grid) — scoped under this modifier so the shared dark styling used
-   elsewhere (e.g. Kilian Huber's results section) is untouched */
-.case-results--light{ background:var(--bg); color:var(--black); }
-.case-results--light .eyebrow{ color:var(--gray); }
-.case-results--light h2{ color:var(--black); }
-.case-results--light h2 em{ color:var(--gray); }
-.case-results--light .case-results__sub{ color:var(--gray-dark); }
-.case-results--light .growth-chart{ border-top-color:var(--line); }
-.case-results--light .growth-chart__label{ color:var(--gray); }
-.case-results--light .growth-chart__arrow{ color:var(--gray); }
-.case-results--light .growth-chart__period{ color:var(--gray-dark); }
-.case-results--light .growth-chart__period strong{ color:var(--black); }
-.case-results--light .growth-svg__preline{ stroke:rgba(0,0,0,.3); }
-.case-results--light .growth-svg__line{ stroke:rgba(0,0,0,.8); }
-.case-results--light .growth-svg__projection{ stroke:rgba(0,0,0,.45); }
-.case-results--light .growth-svg__dot{ fill:var(--black); stroke:var(--bg); }
-.case-results--light .growth-svg__value{ fill:var(--black); }
-.case-results--light .growth-svg__date{ fill:var(--gray); }
-.case-results--light .growth-svg__bar{ fill:rgba(0,0,0,.15); }
-.case-results--light .growth-svg__bar--total{ fill:var(--black); }
-.case-results--light .stat-row{ border-top-color:var(--line); }
-.case-results--light .stat-tile{ border-right-color:var(--line); }
-.case-results--light .stat-tile__label{ color:var(--gray); }
-@media (max-width:640px){
-  .case-results--light .stat-tile:nth-child(3), .case-results--light .stat-tile:nth-child(4){ border-top-color:var(--line); }
-}
-.case-results--light .ig-mock-wrap{ border-top-color:var(--line); }
-.case-results--light .ig-mock{ background:var(--white); border:1px solid var(--line); }
-.case-results--light .ig-mock__link{ color:rgba(0,0,0,.7); }
-.case-results--light .ig-mock__link:hover{ color:var(--black); }
-.case-results--light .case-press{ border-top-color:var(--line); }
-.case-results--light .case-press__text{ color:var(--gray-dark); }
-.case-results--light .case-press__text a{ color:var(--black); text-decoration-color:var(--line); }
-.case-results--light .case-press__text a:hover{ text-decoration-color:var(--black); }
-
 /* ============================================================
    Reel showcase (live Instagram embeds within a case detail page)
    ============================================================ */

@@ -1150,6 +1150,15 @@ body{
   .film-showcase__cols{ grid-template-columns:1fr; gap:16px; }
 }
 
+/* light-on-dark -> dark-on-light preview variant, scoped so the shared
+   dark styling used on the other case pages (Franjo, Swiss-Ski, EC
+   Davos, Kilian Huber) is untouched */
+.film-showcase--light{ background:var(--bg); color:var(--black); }
+.film-showcase--light .eyebrow{ color:var(--gray); }
+.film-showcase--light h2{ color:var(--black); }
+.film-showcase--light h2 em{ color:var(--gray); }
+.film-showcase--light .film-showcase__sub{ color:var(--gray-dark); }
+
 /* three columns: intro text, then the two reels — instead of a full-
    width heading block sitting above a separate two-up row */
 .film-showcase__grid{

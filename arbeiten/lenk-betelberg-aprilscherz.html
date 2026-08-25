@@ -37,9 +37,9 @@
    Instagram reel links) — the shared .reel-link is styled for a light
    background, so give it a dark-bg variant scoped to this section only */
 .film-showcase .reel-links{ margin-top:30px; }
-.film-showcase .reel-link{ color:var(--white); border-color:rgba(255,255,255,.25); }
-.film-showcase .reel-link:hover{ border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.08); }
-.film-showcase .reel-link__arrow{ opacity:.6; }
+.film-showcase:not(.film-showcase--light) .reel-link{ color:var(--white); border-color:rgba(255,255,255,.25); }
+.film-showcase:not(.film-showcase--light) .reel-link:hover{ border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.08); }
+.film-showcase:not(.film-showcase--light) .reel-link__arrow{ opacity:.6; }
 </style>
 </head>
 <body>
@@ -87,7 +87,7 @@
     <img src="../images/work-lenk-hero.png" alt="Baustelle des neuen Bergrestaurants am Betelberg, Schauplatz des vermeintlichen Dino-Funds" style="object-position:47% 32%">
   </div>
 
-  <section class="film-showcase">
+  <section class="film-showcase film-showcase--light">
     <div class="container">
       <h2 style="max-width:none;"><em>Sensationeller Fund:</em><br>Dinosaurier-Ei am Lenker Betelberg gefunden</h2>
       <div class="film-showcase__cols">

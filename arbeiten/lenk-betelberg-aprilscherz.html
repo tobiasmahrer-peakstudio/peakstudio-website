@@ -40,6 +40,12 @@
 .film-showcase:not(.film-showcase--light) .reel-link{ color:var(--white); border-color:rgba(255,255,255,.25); }
 .film-showcase:not(.film-showcase--light) .reel-link:hover{ border-color:rgba(255,255,255,.6); background:rgba(255,255,255,.08); }
 .film-showcase:not(.film-showcase--light) .reel-link__arrow{ opacity:.6; }
+
+/* negative (inverted) pill style so the reel links stand out against
+   the now-light .film-showcase--light background */
+.film-showcase--light .reel-link{ background:var(--black); color:var(--white); border-color:var(--black); }
+.film-showcase--light .reel-link:hover{ background:var(--gray-dark); border-color:var(--gray-dark); }
+.film-showcase--light .reel-link__arrow{ opacity:.6; }
 </style>
 </head>
 <body>

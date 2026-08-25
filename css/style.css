@@ -1168,6 +1168,13 @@ body{
   align-items:start;
 }
 .film-showcase__intro{ padding-top:76px; }
+
+/* four-column variant, raster-matched to .case-story__grid below it (same
+   48px gap — combining 2 of these columns + the gap between them equals
+   one .case-story__grid column, so the text edge lines up across sections) */
+.film-showcase__grid--4col{ grid-template-columns:repeat(4, 1fr); gap:48px; }
+.film-showcase__grid--4col .film-showcase__intro{ grid-column:span 2; }
+
 .reel-tile{
   position:relative;
   aspect-ratio:3/4;

@@ -1015,9 +1015,13 @@ body{
 .ig-mock__link{ margin-top:28px; color:rgba(255,255,255,.85); }
 .ig-mock__link:hover{ color:var(--white); }
 
+.case-press-grid{ display:grid; grid-template-columns:1fr 1fr; gap:0 48px; }
 .case-press{
   margin-top:56px; padding-top:36px;
   border-top:1px solid rgba(255,255,255,.14);
+}
+@media (max-width:700px){
+  .case-press-grid{ grid-template-columns:1fr; }
 }
 .case-press__text{ color:rgba(255,255,255,.7); font-size:14.5px; line-height:1.65; max-width:62ch; }
 .case-press__text a{ color:var(--white); text-decoration:underline; text-underline-offset:3px; text-decoration-color:rgba(255,255,255,.4); transition:text-decoration-color .2s; }

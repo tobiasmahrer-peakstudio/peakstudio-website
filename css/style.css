@@ -1130,6 +1130,14 @@ body{
 .film-showcase__sub{ color:rgba(255,255,255,.55); font-size:15px; line-height:1.65; max-width:68ch; margin-top:14px; }
 .film-showcase__sub + .film-showcase__sub{ margin-top:12px; }
 
+/* two-column variant, matching .case-story__grid's layout — used when
+   the intro text stands alone (no reel-tile grid alongside it) */
+.film-showcase__cols{ display:grid; grid-template-columns:repeat(2, 1fr); gap:48px; margin-top:14px; }
+.film-showcase__cols .film-showcase__sub{ margin-top:0; max-width:none; }
+@media (max-width:700px){
+  .film-showcase__cols{ grid-template-columns:1fr; gap:16px; }
+}
+
 /* three columns: intro text, then the two reels — instead of a full-
    width heading block sitting above a separate two-up row */
 .film-showcase__grid{

@@ -1191,6 +1191,15 @@ body{
   .reel-tile{ max-width:360px; margin-left:auto; margin-right:auto; width:100%; }
 }
 
+/* light-background reel section (unlike .film-showcase, deliberately
+   no dark section background — used where the case page's surrounding
+   sections are on the default light bg) */
+.reel-showcase{ padding:50px 0 60px; }
+.reel-showcase__grid{ display:grid; grid-template-columns:repeat(2, minmax(0,300px)); gap:28px; }
+@media (max-width:700px){
+  .reel-showcase__grid{ grid-template-columns:1fr; gap:44px; justify-items:center; }
+}
+
 /* ============================================================
    Case detail — narrative section (uses .reel-showcase__intro's
    type treatment via .case-story__text for a matching voice)

@@ -832,6 +832,14 @@ body{
 .case-top__sub + .case-top__sub{ margin-top:12px; }
 .case-top__sub a{ color:var(--black); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--line); transition:text-decoration-color .2s; }
 .case-top__sub a:hover{ text-decoration-color:var(--black); }
+
+/* two-column lead text, matching .case-story__grid's layout used
+   further down under "Der Auftrag" */
+.case-top__sub-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:48px; margin-top:16px; }
+.case-top__sub-grid .case-top__sub{ margin-top:0; }
+@media (max-width:700px){
+  .case-top__sub-grid{ grid-template-columns:1fr; gap:12px; }
+}
 .case-top__cols{ display:grid; grid-template-columns:repeat(3, 1fr); gap:64px; margin-top:32px; } /* matches .team's gap so columns line up with the team cards below (same container/padding context) */
 .case-top__col .case-top__sub{ margin-top:0; }
 .case-top__col .case-top__sub + .case-top__sub{ margin-top:12px; }

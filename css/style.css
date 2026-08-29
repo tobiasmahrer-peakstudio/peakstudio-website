@@ -927,15 +927,15 @@ body{
 .case-results__sub{ color:rgba(255,255,255,.55); font-size:15px; line-height:1.65; max-width:56ch; margin-top:16px; }
 
 .growth-chart{
-  margin-top:64px; padding-top:48px;
+  margin-top:50px;
 }
 .growth-chart__label{
   font-size:10.5px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
   color:rgba(255,255,255,.45); margin-bottom:12px;
 }
-.growth-chart__divider{ border-top:1px solid rgba(255,255,255,.14); margin-bottom:32px; }
+.growth-chart__divider{ border-top:1px solid rgba(255,255,255,.14); margin-bottom:31px; }
 .growth-chart__body{
-  display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:center;
+  display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start;
 }
 .growth-chart__value{
   font-size:clamp(32px,4.2vw,52px); font-weight:700; letter-spacing:-0.02em;
@@ -968,7 +968,7 @@ body{
 .growth-svg__bar{ fill:rgba(255,255,255,.28); }
 .growth-svg__bar--total{ fill:var(--white); }
 
-.stat-row__head{ display:block; margin-top:64px; margin-bottom:12px; }
+.stat-row__head{ display:block; margin-top:44px; margin-bottom:12px; }
 .stat-row{
   display:grid; grid-template-columns:repeat(4, 1fr);
   border-top:1px solid rgba(255,255,255,.14);

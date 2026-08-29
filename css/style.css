@@ -966,7 +966,7 @@ body{
 .growth-svg__bar{ fill:rgba(255,255,255,.28); }
 .growth-svg__bar--total{ fill:var(--white); }
 
-.stat-row__head{ display:block; margin-top:64px; padding-top:48px; border-top:1px solid rgba(255,255,255,.14); margin-bottom:64px; }
+.stat-row__head{ display:block; margin-top:64px; margin-bottom:40px; }
 .stat-row{
   display:grid; grid-template-columns:repeat(4, 1fr);
   border-top:1px solid rgba(255,255,255,.14);

@@ -924,7 +924,7 @@ body{
 .mobile-break{ display:none; }
 @media (max-width:700px){ .mobile-break{ display:inline; } }
 .case-results .eyebrow{ color:rgba(255,255,255,.45); }
-.case-results h2{ color:var(--white); font-size:clamp(30px,3.6vw,46px); max-width:18ch; }
+.case-results h2{ color:var(--white); font-size:clamp(30px,3.6vw,46px); max-width:18ch; line-height:1.15; }
 .case-results h2 em{ color:var(--white); }
 .case-results__sub{ color:rgba(255,255,255,.55); font-size:15px; line-height:1.65; max-width:56ch; margin-top:16px; }
 

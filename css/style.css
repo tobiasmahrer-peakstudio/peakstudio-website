@@ -921,6 +921,8 @@ body{
 
 .case-results{ background:var(--black); color:var(--white); padding:110px 0 100px; }
 .case-results--untitled{ padding-top:64px; }
+.mobile-break{ display:none; }
+@media (max-width:700px){ .mobile-break{ display:inline; } }
 .case-results .eyebrow{ color:rgba(255,255,255,.45); }
 .case-results h2{ color:var(--white); font-size:clamp(30px,3.6vw,46px); max-width:18ch; }
 .case-results h2 em{ color:var(--white); }

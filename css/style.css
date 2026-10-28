@@ -723,4 +723,4 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .jwall + .stoerer-wrap{ height:0; }
 /* white space between the last photos and the footer = the space between header and first photos (case-top paddings + the back link) */
 .jwall{ padding-bottom:calc(clamp(56px, 10vh, 120px) + clamp(56px, 9vh, 110px) + var(--back-h, 45px)); }
-@media (max-width:600px){ .jwall{ padding-bottom:120px; } }  /* phone: a bit less */
+@media (max-width:600px){ .jwall{ padding-bottom:calc(clamp(56px, 9vh, 110px) + 22px); } }  /* phone: same gap as between "Zurück zum Case" and the first photo */

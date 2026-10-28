@@ -195,6 +195,8 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 .pgrid--random > :nth-child(n+4){ display:none; }
 /* two columns: second row swapped (blue left, case right) for a checkerboard; one column keeps the source order case / blue / case / blue */
 @media (min-width:601px){ .pgrid--2 > :nth-child(4){ order:1; } .pgrid--2 > :nth-child(3){ order:2; } }
+/* homepage 4 tiles: on tablet/desktop as low as the Projekte stripes (100vw / 3); phone keeps its layout */
+@media (min-width:601px){ .pgrid--home .ptile{ aspect-ratio:3/2; } }
 .ptile{ position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--soft); display:block; transition:background .45s; }
 .ptile img, .ptile video{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease), filter .6s, opacity .6s; }
 .ptile::after{

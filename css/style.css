@@ -204,6 +204,9 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 @media (min-width:601px){ .pgrid--home .ptile{ aspect-ratio:3/2; } }
 .ptile{ position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--soft); display:block; transition:background .45s; }
 .ptile img, .ptile video{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease), filter .6s, opacity .6s; }
+/* photo fills the tile exactly (block + absolute): no thin blue line of the tile background between stacked tiles on phones */
+.ptile > img, .ptile > video{ position:absolute; inset:0; display:block; }
+.ptile:has(> img), .ptile:has(> video){ background:#0d0d0c; }  /* photo tiles: dark base instead of blue, so no blue hairline shows at the seams (hover still turns blue) */
 .ptile::after{
   content:""; position:absolute; inset:0; background:var(--accent); mix-blend-mode:multiply;
   opacity:0; transition:opacity .45s var(--ease);
@@ -360,6 +363,10 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 }
 .film:hover .film__play{ transform:translate(-50%,-50%) scale(1.08); }
 .film.is-playing .film__play, .film.is-playing > img{ display:none; }
+/* big photo with the round 'Album' button: links to the case's photo page */
+.film--album{ display:block; color:inherit; }
+.film--album img{ transition:transform 1.1s var(--ease); }
+.film--album:hover img{ transform:scale(1.03); }
 
 /* Statement */
 .statement{ padding-block:clamp(72px, 14vh, 170px) 0; }  /* little space below: the next block brings its own top padding */
@@ -390,8 +397,8 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 /* Lenk: the three reels as links with their emoji in front */
 .acts{ display:flex; flex-direction:column; align-items:flex-start; gap:clamp(20px, 3vh, 30px); }
 .acts .emo{ font-size:22px; line-height:1; letter-spacing:0; margin-right:4px; }
-/* Lenk: blue band, same structure as the text rows (label left, text right) */
-.band{ background:var(--accent); }
+/* Lenk: news band, same structure as the text rows (label left, text right); no blue background (case look like Davos / Rope) */
+.band{ background:none; }
 .band .acts{ margin-top:clamp(32px, 5vh, 48px); }
 
 /* CTA */

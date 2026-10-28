@@ -121,7 +121,7 @@
   });
 
   /* Click-to-play film */
-  document.querySelectorAll('.film').forEach(f => {
+  document.querySelectorAll('.film:not(.film--album)').forEach(f => {
     f.addEventListener('click', () => {
       if (f.classList.contains('is-playing')) return;
       const v = f.querySelector('video');

@@ -278,6 +278,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 /* two text rows in a row: don't add up both paddings */
 .row + .row{ padding-top:clamp(8px, 2vh, 24px); }
 .row__label{ padding-top:.5em; }
+@media (max-width:900px){ .row__label:empty{ display:none; } }  /* text block without label: no empty line on phones */
 .row__body{ font-size:clamp(17px, 1.35vw, 20px); line-height:1.6; max-width:40em; }
 .row__body p{ margin:0 0 1.1em; } .row__body p:last-child{ margin-bottom:0; }
 .row__body h3{ font-size:clamp(24px, 2.4vw, 34px); line-height:1.12; letter-spacing:-.02em; font-weight:800; margin:0 0 .8em; }

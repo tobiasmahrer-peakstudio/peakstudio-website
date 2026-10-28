@@ -194,8 +194,9 @@
     });
   }
 
-  /* Cursor dot */
-  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  /* Cursor dot (switched off 2026-10-28; set to true to bring the blue follower dot back) */
+  const CURSOR_DOT = false;
+  if (CURSOR_DOT && matchMedia('(hover:hover) and (pointer:fine)').matches) {
     const dot = document.createElement('div');
     dot.className = 'dot';
     document.body.appendChild(dot);

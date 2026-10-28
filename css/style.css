@@ -367,6 +367,9 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .film--album{ display:block; color:inherit; }
 .film--album img{ transition:transform 1.1s var(--ease); }
 .film--album:hover img{ transform:scale(1.03); }
+/* album button = turning ring 'Album · Album …' with the arrow in the middle (same as the Störer) */
+.film__play--ring{ padding:0; }
+.film__play--ring .stoerer__ring{ position:absolute; inset:0; width:100%; height:100%; }
 /* two portrait photos side by side (Kilian Huber), 8px white gap like the photo pages */
 .film--pair{ display:grid; grid-template-columns:1fr 1fr; gap:8px; aspect-ratio:8/5; background:none; }
 .film--pair img{ position:static; width:100%; height:100%; object-fit:cover; }

@@ -711,3 +711,13 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 /* pull quote inside running text (Rope: "restlos ausverkauft" between the first two paragraphs) */
 .row__body .pullquote{ margin:clamp(48px, 7vw, 96px) 0; }
 .row__body .pullquote p{ font-size:clamp(30px, 4.4vw, 64px); line-height:1.08; letter-spacing:-.025em; font-weight:800; margin:0; max-width:16em; }
+
+/* "Alle Bilder" page: justified rows (full width, one height per row, every photo keeps its format) */
+/* spacing taken from ileniatesoro.com: 8px between photos, 28px between rows, 20px white margin left and right on desktop, edge to edge on phone/tablet below 768px (1:1 like the reference) */
+.jwall{ display:flex; flex-direction:column; gap:28px; padding:0 20px 28px; }
+@media (max-width:767px){ .jwall{ padding-inline:0; } }
+.jrow{ display:flex; gap:8px; }
+.jrow figure{ margin:0; flex:var(--r) 1 0; aspect-ratio:var(--r); overflow:hidden; background:var(--soft); }
+.jrow img{ display:block; width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
+.jrow figure:hover img{ transform:scale(1.03); }
+.jwall + .stoerer-wrap{ height:0; }

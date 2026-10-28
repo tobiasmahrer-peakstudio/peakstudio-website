@@ -1,80 +1,214 @@
-// ===== header scroll state =====
-const header = document.getElementById('header');
-const onScroll = () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-};
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
+(() => {
+  const root = document.documentElement;
+  const head = document.querySelector('.site-head');
+  const hero = head.hasAttribute('data-hero') ? document.querySelector('.reel--hero') : null;
 
-// ===== mobile nav =====
-const burger = document.getElementById('burger');
-const mobileNav = document.getElementById('mobileNav');
+  /* Menu */
+  const burger = document.querySelector('.burger');
+  if (burger) {
+    burger.addEventListener('click', () => {
+      const open = root.classList.toggle('menu-open');
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.menu a').forEach(a => a.addEventListener('click', () => {
+      root.classList.remove('menu-open');
+      document.body.style.overflow = '';
+    }));
+  }
 
-burger.addEventListener('click', () => {
-  const isOpen = mobileNav.classList.toggle('is-open');
-  burger.classList.toggle('is-active', isOpen);
-  burger.setAttribute('aria-expanded', String(isOpen));
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-
-mobileNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileNav.classList.remove('is-open');
-    burger.classList.remove('is-active');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
-});
-
-// ===== scroll reveal =====
-const revealEls = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('is-visible'), i % 4 * 90);
-      revealObserver.unobserve(entry.target);
+  /* Header: hide on scroll down, show on scroll up (Latviaplan) */
+  let lastY = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (!root.classList.contains('menu-open')) {
+      head.classList.toggle('is-hidden', y > lastY && y > 120);
     }
-  });
-}, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-revealEls.forEach(el => revealObserver.observe(el));
-
-// ===== video players (film-frame + phone-mock reels) =====
-document.querySelectorAll('[data-play-video]').forEach(button => {
-  const frame = button.closest('.film-frame, .phone-mock');
-  const video = frame ? frame.querySelector('video') : null;
-  if (!video) return;
-
-  button.addEventListener('click', () => {
-    frame.classList.add('is-playing');
-    video.controls = true;
-    video.play();
-  });
-
-  video.addEventListener('pause', () => {
-    if (video.currentTime === 0 || video.ended) {
-      frame.classList.remove('is-playing');
-      video.controls = false;
+    lastY = y;
+    if (hero) {
+      const over = y < hero.offsetHeight - head.offsetHeight;
+      head.classList.toggle('is-clear', over);
+      head.classList.toggle('on-dark', over);
     }
+  }, { passive: true });
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* Hero word rotator: old word slides up and out, new word slides up in from below.
+     Parking a word back below the line must happen without transition,
+     otherwise it sweeps visibly through the line and two words overlap. */
+  const park = el => {
+    el.style.transition = 'none';
+    el.classList.remove('is-in', 'is-out');
+    void el.offsetWidth;
+    el.style.transition = '';
+  };
+  document.querySelectorAll('.rotator').forEach(r => {
+    const words = [...r.children];
+    let i = 0;
+    words.forEach(park);
+    words[0].classList.add('is-in');
+    setInterval(() => {
+      const cur = words[i];
+      i = (i + 1) % words.length;
+      const next = words[i];
+      park(next);
+      cur.classList.replace('is-in', 'is-out');
+      next.classList.add('is-in');
+      setTimeout(() => { if (!cur.classList.contains('is-in')) park(cur); }, 900);
+    }, 2200);
   });
-});
 
-// ===== contact form (mailto fallback — no backend) =====
-const form = document.getElementById('contactForm');
-const formNote = document.getElementById('formNote');
-
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-
-    const subject = encodeURIComponent(`Projektanfrage von ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:tobiasmahrer@outlook.com?subject=${subject}&body=${body}`;
-
-    formNote.textContent = 'Dein E-Mail-Programm öffnet sich gleich — vielen Dank für deine Nachricht!';
-    form.reset();
+  /* Case pages: show a random pick of the other projects */
+  document.querySelectorAll('.pgrid--random').forEach(g => {
+    const tiles = [...g.children];
+    for (let i = tiles.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+    tiles.forEach(t => g.appendChild(t));
   });
-}
+
+  /* Album strips: swipe / trackpad natively; with a mouse they can also be dragged */
+  document.querySelectorAll('.strip__track').forEach(t => {
+    let down = false, x0 = 0, s0 = 0, moved = false;
+    t.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; moved = false; x0 = e.clientX; s0 = t.scrollLeft;
+      t.style.scrollSnapType = 'none'; t.style.cursor = 'grabbing';
+    });
+    addEventListener('pointermove', e => {
+      if (!down) return;
+      const dx = e.clientX - x0;
+      if (Math.abs(dx) > 3) moved = true;
+      t.scrollLeft = s0 - dx;
+    });
+    addEventListener('pointerup', () => {
+      if (!down) return;
+      down = false; t.style.scrollSnapType = ''; t.style.cursor = '';
+    });
+    t.addEventListener('dragstart', e => e.preventDefault());
+    t.addEventListener('click', e => { if (moved) e.preventDefault(); }, true);
+  });
+
+  /* Lazy autoplay for muted loops: play only when on screen */
+  const vio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const v = e.target;
+      if (e.isIntersecting) { v.play().catch(() => {}); } else { v.pause(); }
+    });
+  }, { threshold: .25 });
+  document.querySelectorAll('video[data-auto]').forEach(v => vio.observe(v));
+
+  /* Sound toggles */
+  document.querySelectorAll('[data-sound]').forEach(btn => {
+    const v = document.getElementById(btn.dataset.sound) || btn.parentElement.querySelector('video');
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('video').forEach(o => { if (o !== v) o.muted = true; });
+      document.querySelectorAll('[data-sound]').forEach(b => b.classList.remove('is-on'));
+      v.muted = !v.muted;
+      btn.classList.toggle('is-on', !v.muted);
+      if (btn.dataset.labelOn) btn.textContent = v.muted ? btn.dataset.labelOff : btn.dataset.labelOn;
+      v.play().catch(() => {});
+    });
+  });
+
+  /* Click-to-play film */
+  document.querySelectorAll('.film').forEach(f => {
+    f.addEventListener('click', () => {
+      if (f.classList.contains('is-playing')) return;
+      const v = f.querySelector('video');
+      document.querySelectorAll('video').forEach(o => { if (o !== v) o.muted = true; });
+      v.controls = true; v.muted = false;
+      f.classList.add('is-playing');
+      v.play();
+    });
+  });
+
+  /* Leistungen: the four links work like a dropdown — nothing is open at first,
+     a click opens that service below the intro (and closes the others),
+     clicking the open one again closes it */
+  const jump = document.querySelector('.jump');
+  if (jump) {
+    const links = [...jump.querySelectorAll('a[href^="#"]')];
+    const panels = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const show = id => {
+      const target = panels.find(p => p.id === id) || null;
+      panels.forEach(p => { p.hidden = p !== target; });
+      links.forEach(a => {
+        const on = !!target && a.getAttribute('href') === '#' + target.id;
+        a.classList.toggle('is-active', on);
+        a.setAttribute('aria-expanded', on);
+      });
+      if (target) target.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+      return target;
+    };
+    const initial = show(location.hash.slice(1));
+    if (initial) requestAnimationFrame(() => initial.scrollIntoView());
+    links.forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      if (a.classList.contains('is-active')) {
+        show(null);
+        history.replaceState(null, '', location.pathname + location.search);
+        return;
+      }
+      const target = show(id);
+      history.replaceState(null, '', '#' + id);
+      target.scrollIntoView({ behavior: 'smooth' });
+    }));
+    addEventListener('hashchange', () => { const t = show(location.hash.slice(1)); if (t) t.scrollIntoView(); });
+  }
+
+  /* Prefill the message from ?service= (e.g. "Shooting anfragen") */
+  const svc = new URLSearchParams(location.search).get('service');
+  const msg = document.getElementById('f-msg');
+  if (svc && msg && !msg.value) msg.value = 'Anfrage: ' + svc + '\n\n';
+
+  /* Touch: first tap greys out the tile and shows the title, second tap opens it */
+  if (matchMedia('(hover:none)').matches) {
+    const tiles = document.querySelectorAll('a.ptile:not(.ptile--plain)');  /* iMac links open directly */
+    tiles.forEach(t => t.addEventListener('click', e => {
+      if (t.classList.contains('is-active')) return;
+      e.preventDefault();
+      tiles.forEach(o => o.classList.remove('is-active'));
+      t.classList.add('is-active');
+    }));
+    /* team tiles: tap toggles name + function */
+    const team = document.querySelectorAll('.ptile--team, .ptile--soon');
+    team.forEach(t => t.addEventListener('click', () => {
+      const on = !t.classList.contains('is-active');
+      team.forEach(o => o.classList.remove('is-active'));
+      t.classList.toggle('is-active', on);
+    }));
+    document.addEventListener('click', e => {
+      if (!e.target.closest('a.ptile')) tiles.forEach(o => o.classList.remove('is-active'));
+      if (!e.target.closest('.ptile--team, .ptile--soon')) team.forEach(o => o.classList.remove('is-active'));
+    });
+  }
+
+  /* Cursor dot */
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    document.body.appendChild(dot);
+    let x = -100, y = -100, dx = x, dy = y;
+    addEventListener('mousemove', e => { x = e.clientX; y = e.clientY; dot.classList.add('is-on'); });
+    document.addEventListener('mouseleave', () => dot.classList.remove('is-on'));
+    document.addEventListener('mouseover', e => {
+      dot.classList.toggle('is-big', !!e.target.closest('a, button, .film, label, input, textarea, select'));
+    });
+    (function loop() {
+      dx += (x - dx) * .22; dy += (y - dy) * .22;
+      dot.style.transform = `translate(${dx}px, ${dy}px)`;
+      requestAnimationFrame(loop);
+    })();
+  }
+})();

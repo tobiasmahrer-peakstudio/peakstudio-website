@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- Placeholder mood graphic for the "Hike & Bike" case (Lenk-Simmental Tourismus): replace with a real photo -->
+  <rect width="800" height="800" fill="#0d0d0c"/>
+  <!-- mountain ridges -->
+  <path d="M0 470 L120 360 L190 410 L310 250 L400 340 L470 290 L590 170 L690 300 L800 230 L800 800 L0 800 Z" fill="#9ee3f2" opacity=".18"/>
+  <path d="M0 540 L140 430 L250 500 L360 390 L480 480 L600 380 L720 470 L800 430 L800 800 L0 800 Z" fill="#9ee3f2" opacity=".35"/>
+  <path d="M590 170 L620 210 L600 205 L575 230 L560 205 Z" fill="#fff" opacity=".85"/>
+  <path d="M310 250 L335 285 L318 282 L300 300 L290 275 Z" fill="#fff" opacity=".7"/>
+  <!-- trail (hike) -->
+  <path d="M60 760 C 200 700, 140 640, 300 640 S 520 690, 470 620 S 380 560, 520 530" fill="none" stroke="#9ee3f2" stroke-width="5" stroke-dasharray="2 16" stroke-linecap="round"/>
+  <!-- ground -->
+  <path d="M0 690 C 200 660, 420 700, 800 650" fill="none" stroke="#fff" stroke-width="3" opacity=".25"/>
+  <!-- speed lines -->
+  <g stroke="#9ee3f2" stroke-width="6" stroke-linecap="round" opacity=".9">
+    <path d="M70 520 H190"/><path d="M110 560 H230"/><path d="M60 600 H160"/>
+  </g>
+  <!-- mountain bike, tilted for motion -->
+  <g transform="rotate(-8 460 590)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="330" cy="610" r="92" stroke-width="22"/>
+    <circle cx="600" cy="610" r="92" stroke-width="22"/>
+    <!-- knobby tread -->
+    <circle cx="330" cy="610" r="106" stroke-width="9" stroke-dasharray="7 9"/>
+    <circle cx="600" cy="610" r="106" stroke-width="9" stroke-dasharray="7 9"/>
+    <circle cx="330" cy="610" r="62" stroke-width="3" opacity=".5"/>
+    <circle cx="600" cy="610" r="62" stroke-width="3" opacity=".5"/>
+    <circle cx="330" cy="610" r="10" fill="#fff" stroke="none"/>
+    <circle cx="600" cy="610" r="10" fill="#fff" stroke="none"/>
+    <g stroke-width="14">
+      <path d="M330 610 L455 615"/>            <!-- chainstay -->
+      <path d="M330 610 L420 490"/>            <!-- seatstay -->
+      <path d="M455 615 L420 490"/>            <!-- seat tube -->
+      <path d="M420 490 L555 470"/>            <!-- top tube -->
+      <path d="M455 615 L560 500" stroke-width="20"/>  <!-- down tube -->
+      <path d="M555 470 L578 540" stroke-width="20"/>  <!-- suspension fork (stanchion) -->
+      <path d="M578 540 L600 610"/>            <!-- fork lower -->
+      <path d="M555 470 L548 438"/><path d="M515 446 L590 428"/>   <!-- stem + wide flat bar -->
+      <path d="M410 462 L452 458"/>            <!-- saddle -->
+      <path d="M420 490 L414 462"/>            <!-- seat post -->
+    </g>
+    <circle cx="455" cy="615" r="18" stroke-width="10"/>
+  </g>
+</svg>

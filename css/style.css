@@ -119,6 +119,11 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 .intro-screen{ min-height:100vh; min-height:100svh; display:flex; flex-direction:column; }
 .intro-screen .intro{ flex:1; display:flex; flex-direction:column; justify-content:center; padding-top:calc(var(--head) + clamp(20px, 4vh, 48px)); padding-bottom:clamp(28px, 5vh, 56px); }
 .intro.intro--full{ padding-top:calc(var(--head) + clamp(20px, 4vh, 48px)); padding-bottom:clamp(28px, 5vh, 56px); }
+/* Projekte + Leistungen share one grid: the title starts at the same height below the header on both pages
+   (Leistungen looked optically centred with this offset; Projekte now matches it exactly) */
+.intro-screen .intro, .intro.intro--full{ justify-content:flex-start; padding-top:calc(var(--head) + 20vh); }
+.intro-screen > .intro{ width:100%; align-self:stretch; }  /* same left edge as Leistungen (the flex column must not shrink the wrap) */
+@media (max-width:600px){ .intro-screen .intro, .intro.intro--full{ padding-top:calc(var(--head) + 14vh); } }
 @media (max-width:600px){ .intro--full .lead{ font-size:17px; } .intro--full .jump{ margin-top:28px; gap:14px; } }
 .intro__links{ display:flex; flex-wrap:wrap; gap:12px; margin-top:36px; }
 

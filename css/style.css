@@ -165,7 +165,7 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 .reel__title{
   margin:0; font-size:clamp(44px, 6vw, 88px); line-height:1.02; letter-spacing:-.03em; font-weight:800;
 }
-.reel__desc{ margin:22px 0 0; font-size:clamp(15px, 1.2vw, 17px); line-height:1.6; color:#fff; font-weight:700; text-transform:uppercase; max-width:42ch; text-wrap:balance; }
+.reel__desc{ margin:22px 0 0; font-size:clamp(15px, 1.2vw, 17px); line-height:1.6; color:#fff; font-weight:700; max-width:42ch; text-wrap:balance; }
 .nw{ white-space:nowrap; }
 .br-m{ display:none; }
 /* desktop-only line breaks */

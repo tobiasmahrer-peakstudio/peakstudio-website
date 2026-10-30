@@ -52,7 +52,8 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 
 /* ---------- Header ---------- */
 .site-head{
-  position:fixed; inset:0 0 auto 0; z-index:50; height:var(--head);
+  position:fixed; inset:0 0 auto 0; z-index:50; height:calc(var(--head) + env(safe-area-inset-top));
+  padding-top:env(safe-area-inset-top);  /* iPhone: page runs behind the status bar (viewport-fit=cover), header content stays below it */
   display:flex; align-items:center; justify-content:space-between;
   padding-inline:clamp(20px, 2.8vw, 40px);
   background:var(--paper);

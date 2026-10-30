@@ -475,6 +475,8 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .jump a.is-active{ font-weight:700; }  /* open dropdown bold, like the current page in the header */
 
 .svc{ scroll-margin-top:var(--head); }
+/* desktop: Web Design and Events are short — the closing pitch starts below the fold when the dropdown opens */
+@media (min-width:901px){ #web > .wrap, #events > .wrap{ min-height:100svh; } }
 .svc__head{ display:grid; grid-template-columns:1fr; gap:24px; padding-top:clamp(28px, 4vh, 48px); padding-bottom:clamp(36px, 6vh, 64px); }
 .svc__head p{ font-size:clamp(17px, 1.35vw, 20px); line-height:1.6; margin:18px 0 0; max-width:38em; }
 .svc__foot{ padding-block:clamp(32px, 5vh, 56px) clamp(64px, 11vh, 130px); display:flex; flex-wrap:wrap; gap:18px 28px; align-items:center; }

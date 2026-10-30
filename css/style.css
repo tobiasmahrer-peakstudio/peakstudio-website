@@ -62,6 +62,8 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 .site-head.is-clear{ background:transparent; }
 .logo{ display:block; height:var(--logo); }
 .logo img{ height:100%; width:auto; }
+/* header logo moved down so its top edge sits level with the menu (cap height of the links; on mobile the top burger line) */
+.site-head .logo{ position:relative; top:calc(var(--logo) / 2 - 4.25px); }
 .logo .logo--w{ display:none; }
 .site-head.on-dark .logo--b{ display:none; }
 .site-head.on-dark .logo--w{ display:block; }
@@ -69,7 +71,7 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 .site-head.is-clear{ background:transparent; }
 
 .head-right{ display:flex; align-items:center; gap:28px; }
-.head-nav{ display:flex; gap:28px; font-size:13px; font-weight:400; letter-spacing:.1em; text-transform:uppercase; }
+.head-nav{ display:flex; gap:28px; font-size:13px; font-weight:400; letter-spacing:.1em; text-transform:uppercase;  }
 .head-nav a{ position:relative; padding-block:4px; }
 /* open page: bold, the others regular */
 .head-nav a[aria-current="page"]{ font-weight:700; }
@@ -634,6 +636,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
   :root{ --head:72px; --logo:38px; }
   .head-nav{ display:none; }
   .burger{ display:block; }
+  .site-head .logo{ top:calc(var(--logo) / 2 - 8px); }
   .pgrid{ grid-template-columns:repeat(2, 1fr); }
   .pgrid--random > :nth-child(n+3){ display:none; }  /* tablet: one row = two projects */
   .row, .case-meta, .svc__head{ grid-template-columns:1fr; }

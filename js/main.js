@@ -32,6 +32,35 @@
     }
   }, { passive: true });
 
+  /* iPhone Safari: at the very top of the page it fills the status bar with the page background colour.
+     On the homepage that colour follows the top edge of the playing video (sampled a few times per second),
+     so the bar continues the video instead of showing a white or black strip. */
+  if (hero && root.classList.contains('has-hero')) {
+    const v = hero.querySelector('video');
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const c = document.createElement('canvas');
+    c.width = 8; c.height = 1;
+    const ctx = c.getContext('2d', { willReadFrequently: true });
+    const sample = () => {
+      if (scrollY < hero.offsetHeight && v.readyState >= 2 && v.videoWidth) {
+        try {
+          /* object-fit:cover crops the sides: sample only the visible middle part of the top rows */
+          const vis = Math.min(1, (hero.offsetWidth / hero.offsetHeight) / (v.videoWidth / v.videoHeight));
+          const sw = v.videoWidth * vis, sx = (v.videoWidth - sw) / 2;
+          ctx.drawImage(v, sx, 0, sw, Math.max(2, v.videoHeight * .03), 0, 0, 8, 1);
+          const d = ctx.getImageData(0, 0, 8, 1).data;
+          let r = 0, g = 0, b = 0;
+          for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; }
+          const col = `rgb(${Math.round(r / 8)}, ${Math.round(g / 8)}, ${Math.round(b / 8)})`;
+          root.style.setProperty('--top-tint', col);
+          if (meta) meta.content = col;
+        } catch (e) {}
+      }
+      setTimeout(sample, 250);
+    };
+    sample();
+  }
+
   /* Reveal on scroll */
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {

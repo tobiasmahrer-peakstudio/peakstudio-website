@@ -158,7 +158,7 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
 /* iPhone Safari draws the page behind its status bar and the floating bottom toolbar: the hero fills the
    large viewport (behind both bars) so no white strip shows above it and the footer does not peek out below;
    the text moves up by the toolbar height so it stays visible. Dark page background for the top tint. */
-html.has-hero{ background:#000; }
+html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }  /* --top-tint: colour of the video's top edge, set by main.js */
 .reel--hero{ height:100vh; height:100lvh; }
 .reel--hero .reel__content{ padding-bottom:calc(clamp(48px, 9vh, 96px) + (100lvh - 100svh)); }
 /* Darkening over the hero video (top for the header, bottom for the text) — switched off 2026-10-30;

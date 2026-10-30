@@ -162,6 +162,8 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
    status bar with the colour of a fixed bar at the top edge — without one, the video itself shows behind it */
 html.has-hero .site-head.is-clear{ position:absolute; }
 html.has-hero.menu-open .site-head{ position:fixed; }
+/* iPhone: header starts a bit lower on the homepage, so nothing of it touches the top edge behind the status bar */
+@media (max-width:900px){ html.has-hero .site-head.is-clear{ top:24px; } }
 html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }  /* --top-tint: colour of the video's top edge, set by main.js */
 .reel--hero{ height:100vh; height:100lvh; }
 .reel--hero .reel__content{ padding-bottom:calc(clamp(48px, 9vh, 96px) + (100lvh - 100svh)); }

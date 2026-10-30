@@ -472,6 +472,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .jump a svg{ width:22px; height:11px; transition:transform .45s var(--ease); }
 .jump a:hover svg{ transform:translateX(5px); }
 .jump a.is-active svg{ transform:rotate(90deg); }
+.jump a.is-active{ font-weight:700; }  /* open dropdown bold, like the current page in the header */
 
 .svc{ scroll-margin-top:var(--head); }
 .svc__head{ display:grid; grid-template-columns:1fr; gap:24px; padding-top:clamp(28px, 4vh, 48px); padding-bottom:clamp(36px, 6vh, 64px); }

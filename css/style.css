@@ -197,11 +197,13 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
     linear-gradient(125deg, #0b2545 0%, #164c8a 35%, #6cc6e6 62%, #ffffff 100%);
 }
 .reel--gradient .reel__content{ color:var(--deep); }
-.reel--gradient .reel__desc, .reel--gradient .reel__links a{ color:var(--deep); }
+.reel--gradient .reel__desc{ color:var(--deep); }
+.reel--gradient .reel__links a{ color:var(--deep); }
 /* claim above the subline, left-aligned, white, in Unbounded Black (wide, heavy display face) */
 .reel__claim{
   margin:0 0 clamp(12px, 2.4vh, 28px); font-family:'Unbounded', 'Schibsted Grotesk', sans-serif; font-weight:900; text-transform:uppercase;
-  font-size:min(13vw, 15svh); line-height:.95; letter-spacing:-.01em; color:#fff;
+  font-size:min(13.8vw, 17.5svh); line-height:.95; letter-spacing:-.01em; color:#fff;
+  margin-left:-.06em;  /* D and P start .06em right of the line origin in Unbounded: pull them onto the subline edge */
 }
 .reel__desc{ margin:22px 0 0; font-size:clamp(15px, 1.2vw, 17px); line-height:1.6; color:#fff; font-weight:700; max-width:42ch; text-wrap:balance; }
 .nw{ white-space:nowrap; }
@@ -249,10 +251,11 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
   content:""; position:absolute; inset:0; background:var(--accent); mix-blend-mode:multiply;
   opacity:0; transition:opacity .45s var(--ease);
 }
-/* Hover: Duotone in Akzentfarbe, Bild weicher und transparenter */
-.ptile:hover, .ptile.is-active{ background:var(--accent); }
-.ptile:hover img, .ptile.is-active img{ transform:scale(1.045); filter:grayscale(1) contrast(.85) brightness(1.1); opacity:.42; }
-.ptile:hover::after, .ptile.is-active::after{ opacity:.55; }
+/* Hover: photo only zooms in slightly, title in white (no blue overlay since 2026-11-09;
+   the former blue duotone was: background var(--accent), img grayscale(1) contrast(.85) brightness(1.1) opacity .42, ::after opacity .55) */
+.ptile:hover, .ptile.is-active{ background:#0d0d0c; }
+.ptile:hover img, .ptile.is-active img{ transform:scale(1.045); }
+.ptile:hover .ptile__label, .ptile.is-active .ptile__label{ color:#fff; text-shadow:0 1px 18px rgba(0,0,0,.45); }  /* soft shadow keeps the title readable on bright photos */
 .ptile__label{
   position:absolute; inset:0; z-index:1; padding:24px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;

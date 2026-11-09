@@ -10,6 +10,16 @@
   --line:var(--accent);      /* Trennlinien */
   --muted:var(--ink);        /* Nebentext: schwarz, keine Grautöne */
   --font:'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  /* "wild" mesh gradient (dark blue, ice blue, white): homepage hero and the round buttons */
+  --peak-gradient:radial-gradient(40% 55% at 0% 10%, #061528 0%, rgba(6,21,40,0) 75%),
+    radial-gradient(45% 60% at 22% 38%, #0f3d75 0%, rgba(15,61,117,0) 72%),
+    radial-gradient(42% 46% at 100% 30%, #9ee3f2 0%, rgba(158,227,242,0) 70%),
+    radial-gradient(38% 42% at 70% 30%, #2b78c8 0%, rgba(43,120,200,0) 72%),
+    radial-gradient(50% 40% at 100% 100%, #ffffff 0%, rgba(255,255,255,0) 80%),
+    radial-gradient(55% 40% at 55% 85%, #e9fafd 0%, rgba(233,250,253,0) 75%),
+    radial-gradient(45% 40% at 5% 95%, #9ee3f2 0%, rgba(158,227,242,0) 75%),
+    linear-gradient(125deg, #0b2545 0%, #164c8a 35%, #6cc6e6 62%, #ffffff 100%);
+  --display:'Unbounded', 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;  /* headlines & titles (since 2026-11-09) */
   --gutter:clamp(20px, 10vw, 144px);
   --head:88px;
   --logo:46px;              /* Logo-Höhe überall (Header & Footer) */
@@ -186,15 +196,7 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
 .reel--gradient{
   --deep:#0b2545;
   /* "wild" mesh gradient: soft overlapping colour clouds instead of straight bands */
-  background:
-    radial-gradient(40% 55% at 0% 10%, #061528 0%, rgba(6,21,40,0) 75%),
-    radial-gradient(45% 60% at 22% 38%, #0f3d75 0%, rgba(15,61,117,0) 72%),
-    radial-gradient(42% 46% at 100% 30%, #9ee3f2 0%, rgba(158,227,242,0) 70%),
-    radial-gradient(38% 42% at 70% 30%, #2b78c8 0%, rgba(43,120,200,0) 72%),
-    radial-gradient(50% 40% at 100% 100%, #ffffff 0%, rgba(255,255,255,0) 80%),
-    radial-gradient(55% 40% at 55% 85%, #e9fafd 0%, rgba(233,250,253,0) 75%),
-    radial-gradient(45% 40% at 5% 95%, #9ee3f2 0%, rgba(158,227,242,0) 75%),
-    linear-gradient(125deg, #0b2545 0%, #164c8a 35%, #6cc6e6 62%, #ffffff 100%);
+  background:var(--peak-gradient);
 }
 .reel--gradient .reel__content{ color:var(--deep); }
 .reel--gradient .reel__desc{ color:var(--deep); }
@@ -729,6 +731,8 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
   background:var(--accent); color:#0d0d0c; display:grid; place-items:center;
   box-shadow:0 24px 50px -24px rgba(0,0,0,.45); transition:transform .5s var(--ease);
 }
+/* round buttons (Störer, Album) in the homepage gradient, white type (test since 2026-11-09; before: background var(--accent), type #0d0d0c) */
+.stoerer, .film__play--ring{ background:var(--peak-gradient); color:#fff; }
 .stoerer:hover{ transform:translateY(50%) scale(1.06); }
 .stoerer__ring{ position:absolute; inset:0; width:100%; height:100%; animation:pk-spin 18s linear infinite; }
 .stoerer__ring text{ font-size:8.6px; font-weight:600; letter-spacing:0; text-transform:uppercase; fill:currentColor; }
@@ -785,3 +789,22 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 /* white space between the last photos and the footer = the space between header and first photos (case-top paddings + the back link) */
 .jwall{ padding-bottom:calc(clamp(56px, 10vh, 120px) + clamp(56px, 9vh, 110px) + var(--back-h, 45px)); }
 @media (max-width:600px){ .jwall{ padding-bottom:calc(clamp(56px, 9vh, 110px) + 22px); } }  /* phone: same gap as between "Zurück zum Case" and the first photo */
+
+/* ==========================================================================
+   Headlines & titles in Unbounded Black (since 2026-11-09). Unbounded runs much wider than
+   Schibsted Grotesk, so the sizes are about 18% smaller than the original rules above.
+   Delete this block to go back to Schibsted Grotesk ExtraBold.
+   ========================================================================== */
+.h1, .h2, .reel__title, .menu__links a, .ptile__label b, .ptile--cta h2, .row__body h3,
+.statement p, .row__body .pullquote p, .stats b, .pk-card__price{
+  font-family:var(--display); font-weight:900; letter-spacing:-.01em;
+}
+.h1{ font-size:clamp(28px, 4.3vw, 62px); line-height:1.08; }
+.h2{ font-size:clamp(24px, 2.7vw, 36px); line-height:1.12; }
+.menu__links a{ font-size:clamp(34px, 7.4vw, 86px); line-height:1.1; }
+.ptile__label b, .ptile--cta h2{ font-size:clamp(20px, 2vw, 30px); line-height:1.15; }
+.row__body h3{ font-size:clamp(20px, 2vw, 28px); line-height:1.18; }
+.statement p, .row__body .pullquote p{ font-size:clamp(25px, 3.6vw, 52px); line-height:1.12; }
+.stats b{ font-size:clamp(22px, 2.2vw, 32px); }
+.pk-card__price{ font-size:clamp(22px, 2.5vw, 28px); }
+.cta:not(.cta--big):not(.cta--page) .h1{ font-size:clamp(26px, 3.2vw, 48px); }

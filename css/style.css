@@ -218,6 +218,14 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
   background:var(--peak-gradient);
 }
 .reel--gradient .reel__content{ color:var(--deep); }
+/* claim animation "Schieben": once the page has loaded (and the loading screen is gone) the three lines slide in
+   from the left one after the other and spring back a little */
+.reel__claim .ln{ display:block; transform:translateX(-100vw); }  /* fully off screen until the slide starts */
+.is-loaded .reel__claim .ln{ animation:claim-slide .9s cubic-bezier(.2, 1.4, .4, 1) both; }
+.is-loaded .reel__claim .ln:nth-child(2){ animation-delay:.12s; }
+.is-loaded .reel__claim .ln:nth-child(3){ animation-delay:.24s; }
+@keyframes claim-slide{ from{ transform:translateX(-100vw); } to{ transform:none; } }
+@media (prefers-reduced-motion:reduce){ .reel__claim .ln{ transform:none; } .is-loaded .reel__claim .ln{ animation:none; } }
 .reel--gradient .reel__desc{ color:var(--deep); }
 .reel--gradient .reel__links a{ color:var(--deep); }
 /* claim above the subline, left-aligned, white, in Unbounded Black (wide, heavy display face) */
@@ -774,7 +782,10 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
   position:absolute; inset:0; background:var(--peak-gradient); color:#0b2545; display:grid; place-items:center;
   opacity:0; animation:loader-in .3s ease .35s forwards;
 }
-.loader__ring{ width:clamp(120px, 12vw, 160px); height:auto; border-radius:50%; background:#fff; box-shadow:0 24px 50px -24px rgba(0,0,0,.45); animation:pk-spin 9s linear infinite; }
+.loader__ring{ width:clamp(120px, 12vw, 160px); height:auto; animation:pk-spin 9s linear infinite; grid-area:1/1; }
+/* the white disc and its shadow sit on a separate, non-rotating layer behind the turning text
+   (on the rotating SVG itself iOS Safari drew the shadow as a turning square) */
+.loader__in::before{ content:""; grid-area:1/1; width:clamp(120px, 12vw, 160px); aspect-ratio:1; border-radius:50%; background:#fff; box-shadow:0 24px 50px -24px rgba(0,0,0,.45); }
 .loader__ring text{ font-size:8.6px; font-weight:600; letter-spacing:0; text-transform:uppercase; fill:currentColor; }
 @keyframes loader-in{ to{ opacity:1; } }
 .is-loaded .loader{ opacity:0; visibility:hidden; }

@@ -255,7 +255,9 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
    the former blue duotone was: background var(--accent), img grayscale(1) contrast(.85) brightness(1.1) opacity .42, ::after opacity .55) */
 .ptile:hover, .ptile.is-active{ background:#0d0d0c; }
 .ptile:hover img, .ptile.is-active img{ transform:scale(1.045); }
-.ptile:hover .ptile__label, .ptile.is-active .ptile__label{ color:#fff; text-shadow:0 1px 18px rgba(0,0,0,.45); }  /* soft shadow keeps the title readable on bright photos */
+/* titles on photo tiles stay white, also while fading out after hover (soft shadow keeps them readable on bright photos) */
+.ptile:hover .ptile__label, .ptile.is-active .ptile__label,
+.ptile:has(> img) .ptile__label, .ptile:has(> video) .ptile__label{ color:#fff; text-shadow:0 1px 18px rgba(0,0,0,.45); }
 .ptile__label{
   position:absolute; inset:0; z-index:1; padding:24px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;

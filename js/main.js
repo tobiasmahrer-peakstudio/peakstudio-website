@@ -1,7 +1,7 @@
 (() => {
   const root = document.documentElement;
   const head = document.querySelector('.site-head');
-  const hero = head.hasAttribute('data-hero') ? document.querySelector('.reel--hero') : null;
+  const hero = head.hasAttribute('data-hero') ? document.querySelector('.reel--hero, .intro-screen--grad') : null;
 
   /* Menu */
   const burger = document.querySelector('.burger');

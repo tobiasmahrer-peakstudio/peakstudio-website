@@ -155,7 +155,16 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
    (Leistungen looked optically centred with this offset; Projekte now matches it exactly) */
 .intro-screen .intro, .intro.intro--full{ justify-content:flex-start; padding-top:calc(var(--head) + 20vh); }
 @media (max-width:600px){ .intro-screen .intro, .intro.intro--full{ padding-top:calc(var(--head) + 14vh); } }
-.intro-screen > .intro{ width:100%; align-self:stretch; }  /* same left edge as Leistungen (the flex column must not shrink the wrap) */
+.intro-screen > .intro{ width:100%; align-self:stretch; }
+/* Projekte: the first screen (title, lead, logo strip) on the homepage gradient, text in white, logos in dark blue */
+.intro-screen--grad{ background:var(--peak-gradient); }
+.intro-screen--grad .h1, .intro-screen--grad .lead{ color:#fff; }
+.intro-screen--grad .clients img{ filter:brightness(0) invert(11%) sepia(46%) saturate(2700%) hue-rotate(198deg) brightness(92%); }
+html.has-hero:has(.intro-screen--grad){ --top-tint:#0b2545; }
+.intro-screen--grad .jump a{ color:#fff; }
+.intro-screen--grad .intro--full{ min-height:100vh; min-height:100svh; }
+/* Leistungen subpages (since 2026-11-09): intro with back link, then the service content and the closing pitch */
+.svc-intro{ padding-bottom:clamp(36px, 6vh, 64px); }  /* same left edge as Leistungen (the flex column must not shrink the wrap) */
 @media (max-width:600px){ .intro--full .lead{ font-size:17px; } .intro--full .jump{ margin-top:28px; gap:14px; } }
 .intro__links{ display:flex; flex-wrap:wrap; gap:12px; margin-top:36px; }
 
@@ -315,6 +324,40 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .imac__neck{ width:20cqw; height:10cqw; background:linear-gradient(90deg, #c4c4c0, #e4e4e0 50%, #c4c4c0); clip-path:polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
 .imac__foot{ width:24cqw; height:1.4cqw; background:#cfcfcb; border-radius:0 0 1cqw 1cqw; box-shadow:0 10px 18px -8px rgba(0,0,0,.4); }
 .ptile--web:hover .imac, .ptile--web.is-active .imac{ transform:scale(1.03); }
+/* Web Design project tile/stripe (since 2026-11-09): realistic iMac 24" in silver on dark blue from the gradient,
+   the screen shows our gradient. All parts are sized in em: 100em = iMac width, set via font-size per layout */
+.ptile--web-empty, .ptile--web-empty:hover, .ptile--web-empty.is-active{ background:#0f3d75; }
+.ptile--web-empty .ptile__label{ color:#fff; }
+.ptile--web-empty .imac{ font-size:.74cqw; width:100em; }
+@media (min-width:601px){ .pgrid--rows .ptile--web-empty .imac{ font-size:.27cqw; } }
+.ptile--web-empty .imac__screen{
+  aspect-ratio:auto; padding:2.6em 2.6em 2.4em; border-radius:2.2em 2.2em 0 0;
+  background:linear-gradient(180deg, #fbfbfa, #f1f1ef); box-shadow:inset 0 0 0 .22em #d9dad7;
+}
+.imac__glass{
+  display:block; aspect-ratio:16/9; border-radius:.35em; position:relative; overflow:hidden;
+  background:var(--peak-gradient); box-shadow:0 0 0 .45em #0d0d0e;  /* thin black edge between display and white bezel */
+}
+.imac__glass::after{  /* soft reflection across the glass */
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(118deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 38%, rgba(255,255,255,0) 38.5%);
+}
+.ptile--web-empty .imac__chin{
+  width:100%; height:12.5em; border-radius:0 0 2.2em 2.2em;
+  background:linear-gradient(180deg, #e6e8ea 0%, #d6d9dc 60%, #c9ccd0 100%);
+  box-shadow:inset 0 .25em 0 rgba(255,255,255,.7), 0 3em 5em -3em rgba(0,0,0,.55);
+}
+.ptile--web-empty .imac__neck{
+  width:26em; height:18em; clip-path:polygon(2% 0, 98% 0, 100% 100%, 0 100%);
+  background:linear-gradient(90deg, #a9adb2 0%, #d9dcdf 18%, #eef0f1 50%, #d9dcdf 82%, #a9adb2 100%);
+  box-shadow:inset 0 2.5em 2em -1.5em rgba(0,0,0,.3);  /* shade right under the chin */
+}
+.ptile--web-empty .imac__foot{
+  width:27em; height:1.3em; border-radius:0 0 .7em .7em;
+  background:linear-gradient(180deg, #c3c6ca, #9fa3a8);
+  box-shadow:0 1.6em 2.6em -.8em rgba(0,0,0,.55);
+}
+
 .ptile--web:hover .imac__screen img, .ptile--web.is-active .imac__screen img{ transform:none; filter:none; opacity:1; }
 
 /* CTA in the grid: same size as a case tile, not a link itself */
@@ -559,9 +602,11 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 }
 .pk-card:hover{ border-color:#8f8d84; transform:translateY(-4px); }
 .pk-card--featured{
-  background:#0d0d0c; border-color:#0d0d0c; color:#fff;
+  /* homepage gradient (before 2026-11-09: black #0d0d0c); a dark blue veil over the lower half keeps the white list readable on the light end */
+  background:linear-gradient(180deg, rgba(11,37,69,0) 35%, rgba(11,37,69,.6) 100%), var(--peak-gradient); border-color:transparent; color:#fff;
+  background-origin:border-box;  /* gradient also under the (transparent) border: no dark repeated edge around the card */
 }
-.pk-card--featured:hover{ border-color:#0d0d0c; }
+.pk-card--featured:hover{ border-color:transparent; }
 /* black featured card: all its text white (the blue Störer on top keeps its black text) */
 .pk-card--featured .pk-card__name, .pk-card--featured .pk-card__desc, .pk-card--featured .pk-card__list li{ color:#fff; }
 .pk-card__badge{
@@ -844,3 +889,28 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .h1, .h2, .row__body h3, .statement p, .row__body .pullquote p, .ptile__label b, .ptile--cta h2{ text-wrap:balance; }
 .intro .h1, .case-top .h1, .cta .h1{ max-width:20em; }
 
+
+/* Atelier: airy album (since 2026-11-09) — photos in their own format scattered over a 12-column grid with lots of white space */
+.airy{ display:grid; grid-template-columns:repeat(12, 1fr); column-gap:clamp(12px, 2vw, 32px); row-gap:clamp(40px, 7vw, 120px);
+  padding:clamp(48px, 8vw, 120px) var(--gutter) clamp(72px, 10vw, 160px); max-width:1440px; margin:0 auto; align-items:start; }
+.airy__item{ margin:0; overflow:hidden; background:#0d0d0c; }
+.airy__item img{ display:block; width:100%; height:auto; transition:transform 1.1s var(--ease); }
+.airy__item:hover img{ transform:scale(1.04); }
+.airy__item:nth-child(7n+1){ grid-column:1 / span 6; }
+.airy__item:nth-child(7n+2){ grid-column:8 / span 4; margin-top:clamp(60px, 12vw, 220px); }
+.airy__item:nth-child(7n+3){ grid-column:2 / span 3; }
+.airy__item:nth-child(7n+4){ grid-column:6 / span 6; margin-top:clamp(40px, 8vw, 140px); }
+.airy__item:nth-child(7n+5){ grid-column:9 / span 4; }
+.airy__item:nth-child(7n+6){ grid-column:1 / span 5; margin-top:clamp(-120px, -6vw, -40px); }
+.airy__item:nth-child(7n+7){ grid-column:7 / span 4; margin-top:clamp(30px, 5vw, 90px); }
+@media (max-width:700px){
+  .airy{ grid-template-columns:repeat(6, 1fr); padding-inline:16px; }
+  .airy__item:nth-child(n){ margin-top:0; }
+  .airy__item:nth-child(7n+1){ grid-column:1 / span 5; }
+  .airy__item:nth-child(7n+2){ grid-column:3 / span 4; }
+  .airy__item:nth-child(7n+3){ grid-column:1 / span 3; }
+  .airy__item:nth-child(7n+4){ grid-column:2 / span 5; }
+  .airy__item:nth-child(7n+5){ grid-column:1 / span 4; }
+  .airy__item:nth-child(7n+6){ grid-column:2 / span 5; }
+  .airy__item:nth-child(7n+7){ grid-column:4 / span 3; }
+}

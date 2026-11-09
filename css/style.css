@@ -198,9 +198,10 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
 }
 .reel--gradient .reel__content{ color:var(--deep); }
 .reel--gradient .reel__desc, .reel--gradient .reel__links a{ color:var(--deep); }
+/* claim above the subline, left-aligned, white, in Unbounded Black (wide, heavy display face) */
 .reel__claim{
-  margin:0 0 clamp(8px, 2vh, 24px); font-size:clamp(56px, 13vw, 220px); line-height:.88; letter-spacing:-.035em;
-  font-weight:900; text-transform:uppercase; color:var(--deep);
+  margin:0 0 clamp(12px, 2.4vh, 28px); font-family:'Unbounded', 'Schibsted Grotesk', sans-serif; font-weight:900; text-transform:uppercase;
+  font-size:min(13vw, 15svh); line-height:.95; letter-spacing:-.01em; color:#fff;
 }
 .reel__desc{ margin:22px 0 0; font-size:clamp(15px, 1.2vw, 17px); line-height:1.6; color:#fff; font-weight:700; max-width:42ch; text-wrap:balance; }
 .nw{ white-space:nowrap; }

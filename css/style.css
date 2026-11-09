@@ -162,9 +162,8 @@ button{ font:inherit; color:inherit; background:none; border:0; padding:0; curso
    status bar with the colour of a fixed bar at the top edge — without one, the video itself shows behind it */
 html.has-hero .site-head.is-clear{ position:absolute; }
 html.has-hero.menu-open .site-head{ position:fixed; }
-/* iPhone: header starts a bit lower on the homepage, so nothing of it touches the top edge behind the status bar */
-@media (max-width:900px){ html.has-hero .site-head.is-clear{ top:24px; } }
-html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }  /* --top-tint: colour of the video's top edge, set by main.js */
+html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }
+html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bars in its dark blue */  /* --top-tint: colour of the video's top edge, set by main.js */
 .reel--hero{ height:100vh; height:100lvh; }
 .reel--hero .reel__content{ padding-bottom:calc(clamp(48px, 9vh, 96px) + (100lvh - 100svh)); }
 /* Darkening over the hero video (top for the header, bottom for the text) — switched off 2026-10-30;
@@ -182,6 +181,26 @@ html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }  /* --top
 }
 .reel__title{
   margin:0; font-size:clamp(44px, 6vw, 88px); line-height:1.02; letter-spacing:-.03em; font-weight:800;
+}
+/* Gradient hero (test): dark blue at the top under the white header, ice blue, white at the bottom; claim and text in dark blue */
+.reel--gradient{
+  --deep:#0b2545;
+  /* "wild" mesh gradient: soft overlapping colour clouds instead of straight bands */
+  background:
+    radial-gradient(40% 55% at 0% 10%, #061528 0%, rgba(6,21,40,0) 75%),
+    radial-gradient(45% 60% at 22% 38%, #0f3d75 0%, rgba(15,61,117,0) 72%),
+    radial-gradient(42% 46% at 100% 30%, #9ee3f2 0%, rgba(158,227,242,0) 70%),
+    radial-gradient(38% 42% at 70% 30%, #2b78c8 0%, rgba(43,120,200,0) 72%),
+    radial-gradient(50% 40% at 100% 100%, #ffffff 0%, rgba(255,255,255,0) 80%),
+    radial-gradient(55% 40% at 55% 85%, #e9fafd 0%, rgba(233,250,253,0) 75%),
+    radial-gradient(45% 40% at 5% 95%, #9ee3f2 0%, rgba(158,227,242,0) 75%),
+    linear-gradient(125deg, #0b2545 0%, #164c8a 35%, #6cc6e6 62%, #ffffff 100%);
+}
+.reel--gradient .reel__content{ color:var(--deep); }
+.reel--gradient .reel__desc, .reel--gradient .reel__links a{ color:var(--deep); }
+.reel__claim{
+  margin:0 0 clamp(8px, 2vh, 24px); font-size:clamp(56px, 13vw, 220px); line-height:.88; letter-spacing:-.035em;
+  font-weight:900; text-transform:uppercase; color:var(--deep);
 }
 .reel__desc{ margin:22px 0 0; font-size:clamp(15px, 1.2vw, 17px); line-height:1.6; color:#fff; font-weight:700; max-width:42ch; text-wrap:balance; }
 .nw{ white-space:nowrap; }

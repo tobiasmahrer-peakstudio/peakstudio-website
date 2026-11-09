@@ -35,8 +35,9 @@
   /* iPhone Safari: at the very top of the page it fills the status bar with the page background colour.
      On the homepage that colour follows the top edge of the playing video (sampled a few times per second),
      so the bar continues the video instead of showing a white or black strip. */
-  if (hero && root.classList.contains('has-hero')) {
-    const v = hero.querySelector('video');
+  const heroVideo = hero && hero.querySelector('video');
+  if (heroVideo && root.classList.contains('has-hero')) {
+    const v = heroVideo;
     const meta = document.querySelector('meta[name="theme-color"]');
     const c = document.createElement('canvas');
     c.width = 8; c.height = 1;

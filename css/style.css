@@ -789,6 +789,12 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .site-foot span{ color:#fff; display:block; }
 /* equal-width digits only in the address lines (3600 / 3775 align); punctuation elsewhere stays normal */
 .foot-grid span{ font-variant-numeric:tabular-nums; }
+/* footer: Instagram, WhatsApp and e-mail as round icon buttons below the contact details (since 2026-11-11) */
+.foot-social{ display:flex !important; gap:10px; margin-top:16px; }
+.foot-social a{ width:42px; height:42px; display:grid; place-items:center; border:1.5px solid rgba(255,255,255,.35); border-radius:50%; color:#fff;
+  transition:background .3s, border-color .3s, transform .3s var(--ease); }
+.foot-social a:hover{ background:var(--peak-gradient); border-color:transparent; transform:scale(1.08); }
+.foot-social svg{ width:20px; height:20px; }
 /* bottom row uses the same columns as the grid above, so the keywords line up with "Peak Studio" / "Navigation" */
 .foot-bottom{ margin-top:clamp(48px, 8vh, 80px); display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:12px 32px; color:#fff; font-size:13px; }
 .foot-bottom span + span{ grid-column:2 / -1; }
@@ -984,3 +990,18 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
   .airy__item:nth-child(7n+6){ grid-column:2 / span 5; }
   .airy__item:nth-child(7n+7){ grid-column:4 / span 3; }
 }
+
+/* Atelier flairs (ATELIER_FLAIRS in tools/build.py, since 2026-11-11): the page stays white, a few soft blurred clouds
+   in the colours of the homepage gradient float behind the content and drift very slowly */
+.flair-page{ position:relative; overflow:clip; isolation:isolate; }
+.flair-page > :not(.flair){ position:relative; z-index:1; }
+.flair{ position:absolute; z-index:0; pointer-events:none; border-radius:50%; filter:blur(clamp(24px, 3.5vw, 50px)); opacity:.85;
+  animation:flair-drift 22s ease-in-out infinite alternate; will-change:transform; }
+.flair--a{ width:clamp(340px, 46vw, 760px); aspect-ratio:1.1; top:calc(var(--head) + 30px); right:-14%;  /* not cut at the top (nor by the header), only at the side */
+  background:radial-gradient(42% 42% at 42% 48%, #2b78c8 0%, rgba(43,120,200,0) 72%), radial-gradient(50% 50% at 62% 52%, #9ee3f2 0%, rgba(158,227,242,0) 74%); }
+.flair--b{ width:clamp(280px, 36vw, 600px); aspect-ratio:1; top:36%; left:-10%; animation-duration:28s; animation-delay:-8s;
+  background:radial-gradient(48% 48% at 50% 50%, #9ee3f2 0%, rgba(158,227,242,0) 72%), radial-gradient(32% 32% at 60% 42%, #164c8a 0%, rgba(22,76,138,0) 72%); }
+.flair--c{ width:clamp(260px, 32vw, 520px); aspect-ratio:1.25; bottom:2%; right:8%; animation-duration:25s; animation-delay:-14s;
+  background:radial-gradient(48% 48% at 45% 50%, #6cc6e6 0%, rgba(108,198,230,0) 72%), radial-gradient(34% 38% at 64% 46%, #0f3d75 0%, rgba(15,61,117,0) 72%); opacity:.75; }
+@keyframes flair-drift{ from{ transform:translate(0, 0) scale(1); } to{ transform:translate(-4%, 6%) scale(1.12); } }
+@media (prefers-reduced-motion:reduce){ .flair{ animation:none; } }

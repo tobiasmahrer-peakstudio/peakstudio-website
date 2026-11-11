@@ -375,7 +375,7 @@ html.has-hero:has(.reel--photo){ --top-tint:#000; }  /* gradient hero: bars in i
 /* … except Web Design, April April, Davos and St. Moritz (Swiss-Ski): left-aligned */
 .pgrid--rows a[href$="web-design.html"] .ptile__label, .pgrid--rows a[href$="aprilscherz.html"] .ptile__label, .pgrid--rows a[href$="ec-davos.html"] .ptile__label, .pgrid--rows a[href$="swiss-ski.html"] .ptile__label{ align-items:flex-start; text-align:left; }
 /* Projekte stripes: case titles in capitals (since 2026-11-11) */
-.pgrid--rows .ptile__label b{ text-transform:uppercase; max-width:none; }  /* no 12em cap: in capitals long words (MARKENBEGLEITUNG) overflowed it and looked off-centre */
+.pgrid--rows .ptile__label b, .pgrid--random .ptile__label b{ text-transform:uppercase; max-width:none; }  /* also the 'more projects' tiles on the case pages (2026-11-11) */  /* no 12em cap: in capitals long words (MARKENBEGLEITUNG) overflowed it and looked off-centre */
 
 /* Web design mood tile: an iMac (24", silver) with our homepage on screen */
 /* web case: iMacs in the project tile grid, on white, no hover effect */
@@ -487,6 +487,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .media-full{ width:100%; position:relative; background:var(--soft); }
 .media-full img, .media-full video{ width:100%; height:auto; max-height:100vh; object-fit:cover; }
 .media-full.tall img{ aspect-ratio:16/9; }
+.media-full img[src$="work-stmoritz-gallery-hoch-03.jpg"]{ object-position:50% 30%; }  /* team photo: heads and skis both in the wide crop */
 
 .split{ display:grid; grid-template-columns:1fr 1fr; }
 .split > *{ min-width:0; }

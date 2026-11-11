@@ -242,4 +242,118 @@
       requestAnimationFrame(loop);
     })();
   }
+  /* Claim "Einschlag" (CLAIM_FX = 'impact' in tools/build.py): when PEAK lands, ripples run over the hero surface
+     like water after a stone; after that, snowflakes keep drifting down and each one leaves small ripples where it
+     touches the water. A canvas between gradient and text; each ring is a dark trough followed by a bright crest,
+     getting wider and fainter as it travels. Runs only while the hero is on screen.
+     (Tried and dropped on 2026-11-11: ice cracks, then ice floes.) */
+  const claim = document.querySelector('.reel__claim--impact');
+  if (claim && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    const reel = claim.closest('.reel');
+    const peakLn = claim.querySelectorAll('.ln')[2];
+    const cv = document.createElement('canvas');
+    cv.className = 'reel__ice';
+    cv.setAttribute('aria-hidden', 'true');
+    reel.insertBefore(cv, reel.firstChild);
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, dpr = 1, running = false, visible = true, last = 0, nextFlake = 0;
+    const ripples = [], flakes = [];
+
+    const size = () => {
+      dpr = Math.min(2, devicePixelRatio || 1);
+      W = reel.clientWidth; H = reel.clientHeight;
+      cv.width = W * dpr; cv.height = H * dpr;
+    };
+    /* impact point: the middle of the word PEAK, a bit below its centre */
+    const impact = () => {
+      const r = document.createRange();
+      r.selectNodeContents(peakLn);
+      const t = r.getBoundingClientRect(), b = reel.getBoundingClientRect();
+      return { x: t.left - b.left + t.width * .5, y: t.top - b.top + t.height * .62 };
+    };
+
+    /* a ripple: rings starting at the given delays, travelling at speed (px/ms), gone after dur ms */
+    const ripple = (x, y, o) => ripples.push(Object.assign({ x, y, t0: performance.now() }, o));
+    const ring = (rp, el, delay, n) => {
+      const t = el - delay;
+      if (t <= 0) return;
+      const r = t * rp.speed * (1 - n * .06);
+      const w = rp.w + r * .09;
+      const amp = Math.max(0, 1 - t / (rp.dur - delay)) * (1 - n * .15) * Math.min(1, t / 90) * rp.amp;
+      if (amp <= 0) return;
+      const g = ctx.createRadialGradient(rp.x, rp.y, Math.max(0, r - w * 1.6), rp.x, rp.y, r + w);
+      g.addColorStop(0, 'rgba(4,30,70,0)');
+      g.addColorStop(.3, `rgba(4,30,70,${.22 * amp})`);      // trough
+      g.addColorStop(.55, 'rgba(255,255,255,0)');
+      g.addColorStop(.75, `rgba(255,255,255,${.42 * amp})`); // crest catching the light
+      g.addColorStop(.9, `rgba(230,250,255,${.12 * amp})`);
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(rp.x, rp.y, r + w, 0, Math.PI * 2); ctx.fill();
+    };
+
+    /* snowflakes: soft white dots that sway down and land at a random spot on the water */
+    const addFlake = () => {
+      const sz = 2 + Math.random() * 3;
+      flakes.push({
+        x: Math.random() * W, y: -10, size: sz,
+        land: H * (.15 + Math.random() * .8),
+        vy: .06 + sz * .01 + Math.random() * .03,        // px/ms: bigger flakes fall a bit faster
+        sway: 12 + Math.random() * 22, ph: Math.random() * 6.28, fr: .0012 + Math.random() * .0012,
+        x0: 0, gone: 0
+      });
+      flakes[flakes.length - 1].x0 = flakes[flakes.length - 1].x;
+    };
+
+    const frame = now => {
+      if (!running) return;
+      const dt = Math.min(50, now - (last || now)); last = now;
+      if (now > nextFlake && flakes.length < 9) { addFlake(); nextFlake = now + 500 + Math.random() * 1100; }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const rp = ripples[i], el = now - rp.t0;
+        if (el > rp.dur) { ripples.splice(i, 1); continue; }
+        rp.waves.forEach((d, n) => ring(rp, el, d, n));
+        if (rp.flash && el < 450) {                          // splash of light at the PEAK hit
+          const k = 1 - el / 450, fl = ctx.createRadialGradient(rp.x, rp.y, 0, rp.x, rp.y, 220);
+          fl.addColorStop(0, `rgba(255,255,255,${.55 * k})`); fl.addColorStop(1, 'rgba(255,255,255,0)');
+          ctx.fillStyle = fl; ctx.beginPath(); ctx.arc(rp.x, rp.y, 220, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      for (let i = flakes.length - 1; i >= 0; i--) {
+        const f = flakes[i];
+        let a = 1, sz = f.size;
+        if (!f.gone) {
+          f.y += f.vy * dt; f.ph += f.fr * dt; f.x = f.x0 + Math.sin(f.ph) * f.sway;
+          if (f.y >= f.land) {                               // touches the water: small ripples, flake melts away
+            f.gone = now;
+            ripple(f.x, f.y, { waves: [0, 180, 380], speed: .08 + f.size * .015, dur: 2600, amp: .8 + f.size * .1, w: 6 });
+          }
+        } else {
+          const k = (now - f.gone) / 260;
+          if (k >= 1) { flakes.splice(i, 1); continue; }
+          a = 1 - k; sz = f.size * (1 + k * .8);
+        }
+        const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, sz * 2.2);
+        g.addColorStop(0, `rgba(255,255,255,${.95 * a})`); g.addColorStop(.45, `rgba(255,255,255,${.6 * a})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(f.x, f.y, sz * 2.2, 0, Math.PI * 2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    };
+    const start = () => { if (running || !visible) return; running = true; last = 0; requestAnimationFrame(frame); };
+
+    let hit = false;
+    peakLn.addEventListener('animationend', e => {
+      if (e.animationName !== 'claim-slam' || hit) return;
+      hit = true; size();
+      const o = impact();
+      const reach = Math.hypot(Math.max(o.x, W - o.x), Math.max(o.y, H - o.y));
+      ripple(o.x, o.y, { waves: [0, 170, 360, 600, 880], speed: reach / 2300, dur: 3200, amp: 1, w: 14, flash: true });
+      nextFlake = performance.now() + 900;                  // first flakes shortly after the big splash
+      start();
+    });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && hit) start(); else running = false; }).observe(reel);
+    addEventListener('resize', () => { if (hit) size(); });
+  }
 })();

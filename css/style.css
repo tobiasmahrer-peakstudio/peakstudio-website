@@ -556,6 +556,8 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 /* album button = turning ring 'Album · Album …' with the arrow in the middle (same as the Störer) */
 .film__play--ring{ padding:0; width:clamp(118px, 10vw, 150px); letter-spacing:0; box-shadow:0 24px 50px -24px rgba(0,0,0,.45); }  /* = Störer: same size, shadow, type */
 .film__play--ring .stoerer__ring{ position:absolute; inset:0; width:100%; height:100%; }
+.film__play--ring .stoerer__arrow:has(.play-tri){ display:grid; place-items:center; width:100%; }
+.film__play--ring .play-tri{ width:30%; height:auto; }  /* play sign in the middle of the Aftermovie ring */
 /* two portrait photos side by side (Kilian Huber), 8px white gap like the photo pages */
 .film--pair{ display:grid; grid-template-columns:1fr 1fr; gap:8px; aspect-ratio:8/5; background:none; }
 .film--pair img{ position:static; width:100%; height:100%; object-fit:cover; }
@@ -908,6 +910,8 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
    (on the rotating SVG itself iOS Safari drew the shadow as a turning square) */
 .loader__in::before{ content:""; grid-area:1/1; width:clamp(120px, 12vw, 160px); aspect-ratio:1; border-radius:50%; background:#fff; box-shadow:0 24px 50px -24px rgba(0,0,0,.45); }
 .loader__ring text{ font-size:8.6px; font-weight:600; letter-spacing:0; text-transform:uppercase; fill:currentColor; }
+/* since 2026-11-11 the loading screen is only the gradient: no white disc, no turning ring (remove this line to bring them back) */
+.loader__ring, .loader__in::before{ display:none; }
 @keyframes loader-in{ to{ opacity:1; } }
 .is-loaded .loader{ opacity:0; visibility:hidden; }
 @media (prefers-reduced-motion:reduce){ .loader__ring{ animation:none; } }
@@ -993,7 +997,10 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 
 /* Atelier flairs (ATELIER_FLAIRS in tools/build.py, since 2026-11-11): the page stays white, a few soft blurred clouds
    in the colours of the homepage gradient float behind the content and drift very slowly */
-.flair-page{ position:relative; overflow:clip; isolation:isolate; }
+.flair-page{ position:relative; overflow-x:clip; overflow-y:visible; isolation:isolate; }
+/* flairs may run on below their section (no hard cut line, e.g. above the Störer on Leistungen); the footer covers them */
+.site-foot{ position:relative; z-index:2; }
+.stoerer-wrap{ z-index:3; }  /* the Störer disc sits on the seam and stays above the footer */
 .flair-page > :not(.flair){ position:relative; z-index:1; }
 .flair{ position:absolute; z-index:0; pointer-events:none; border-radius:50%; filter:blur(clamp(24px, 3.5vw, 50px)); opacity:.85;
   animation:flair-drift 16s ease-in-out infinite alternate; will-change:transform; transform-origin:50% 0; }  /* grows downwards only */

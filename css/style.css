@@ -1021,4 +1021,4 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .flair-page--sub .flair--b{ left:auto; right:-12%; top:30%; }
 .flair-page--sub .flair--c{ right:auto; left:12%; bottom:6%; }
 /* test 2026-11-11: headlines on the white flair pages in the dark blue of the gradient instead of black (remove to go back) */
-.flair-page .h1{ color:#2b78c8; }  /* the blue of the homepage gradient (tested before: #0f3d75, #1f6fe0, #0088ff) */
+.flair-page .h1{ color:#003e9a; }  /* the deep gradient blue #164c8a as the homepage renders it (contrast 1.3, saturate 1.15); tested before: #0f3d75, #1f6fe0, #0088ff, #2b78c8, #0578ef, #005bc5 */

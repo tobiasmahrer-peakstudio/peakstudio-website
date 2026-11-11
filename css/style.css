@@ -1049,3 +1049,10 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
   .case-top, .flair-page > section.intro:first-of-type, main > section.intro:first-child{ min-height:100vh; min-height:100svh; box-sizing:border-box; }
   .media-full img, .media-full video{ height:100vh; height:100svh; max-height:none; object-fit:cover; }
 }
+/* hero photo: tent under the stars (2026-11-11). The tent sits low in the photo, so the text goes to the top (reel--text-top)
+   and the crop keeps the tent near the bottom edge on every screen: landscape shows a band ending just below the tent,
+   portrait screens show the whole height (tent at ~83 %) */
+.reel__photo[src$="atelier-05-zelt-sternenhimmel.jpg"]{ object-position:50% 100%; }
+@media (min-aspect-ratio:1/1){ .reel__photo[src$="atelier-05-zelt-sternenhimmel.jpg"]{ object-position:50% 79%; } }
+.reel--text-top .reel__content{ top:calc(var(--head) + clamp(16px, 6vh, 64px)); bottom:auto; padding-bottom:0; }
+.reel--text-top .reel__photo-shade{ background:linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.2) 40%, rgba(0,0,0,0) 60%); }

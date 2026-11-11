@@ -1056,3 +1056,20 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 @media (min-aspect-ratio:1/1){ .reel__photo[src$="atelier-05-zelt-sternenhimmel.jpg"]{ object-position:50% 79%; } }
 .reel--text-top .reel__content{ top:calc(var(--head) + clamp(16px, 6vh, 64px)); bottom:auto; padding-bottom:0; }
 .reel--text-top .reel__photo-shade{ background:linear-gradient(180deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,.2) 40%, rgba(0,0,0,0) 60%); }
+/* hero photo "Titelbild" (2026-11-11): person with a light beam under the Milky Way. Landscape: whole photo, text bottom left
+   over the lake; portrait screens: crop centred on the person, text at the top so the person and beam stay free */
+.reel__photo[src*="hero-titelbild"]{ object-position:50% 50%; }
+@media (max-aspect-ratio:1/1){
+  .reel__photo[src*="hero-titelbild"]{ object-position:41% 50%; }
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__content{ top:calc(var(--head) + clamp(16px, 6vh, 64px)); bottom:auto; padding-bottom:0; }
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__photo-shade{ background:linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 40%, rgba(0,0,0,0) 60%); }
+}
+/* Titelbild on landscape screens: the person stands left of centre at mid height, so the text moves to the bottom right
+   (right-aligned, claim a bit smaller to fit the right half) and the person, the beam and the sky stay free */
+@media (min-aspect-ratio:1/1){
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__content{ text-align:right; }
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__desc{ margin-left:auto; }
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__claim{ font-size:min(7.6vw, 13svh); margin-left:0; margin-right:-.04em; }
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__links{ justify-content:flex-end; }
+  .reel--photo:has(.reel__photo[src*="hero-titelbild"]) .reel__photo-shade{ background:linear-gradient(-20deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 40%, rgba(0,0,0,0) 65%); }
+}

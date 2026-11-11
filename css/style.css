@@ -201,7 +201,8 @@ html.has-hero:has(.intro-screen--grad){ --top-tint:#0b2545; }
 html.has-hero .site-head.is-clear{ position:absolute; }
 html.has-hero.menu-open .site-head{ position:fixed; }
 html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }
-html.has-hero:has(.reel--gradient), html.has-hero:has(.reel--wall){ --top-tint:#0b2545; }  /* gradient hero: bars in its dark blue */  /* --top-tint: colour of the video's top edge, set by main.js */
+html.has-hero:has(.reel--gradient), html.has-hero:has(.reel--wall){ --top-tint:#0b2545; }
+html.has-hero:has(.reel--photo){ --top-tint:#000; }  /* gradient hero: bars in its dark blue */  /* --top-tint: colour of the video's top edge, set by main.js */
 .reel--hero{ height:100vh; height:100lvh; }
 .reel--hero .reel__content{ padding-bottom:calc(clamp(48px, 9vh, 96px) + (100lvh - 100svh)); }
 /* Darkening over the hero video (top for the header, bottom for the text) — switched off 2026-10-30;
@@ -275,8 +276,14 @@ html.has-hero:has(.reel--gradient), html.has-hero:has(.reel--wall){ --top-tint:#
 .reel--gradient .reel__desc{ color:var(--deep); }
 /* Image wall hero (HERO_STYLE = 'wall' in tools/build.py, since 2026-11-11): a tilted wall of case photos,
    five columns drifting slowly up and down against each other, shaded dark blue towards the bottom left for the text */
+/* Photo hero (HERO_STYLE = 'photo', since 2026-11-11): one photo full screen, slow zoom, a soft shade bottom left for the text */
+.reel--photo{ background:#000; }
+.reel__photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%; animation:photo-zoom 24s ease-out both; }
+@keyframes photo-zoom{ from{ transform:scale(1.08); } to{ transform:scale(1); } }
+.reel__photo-shade{ position:absolute; inset:0; background:linear-gradient(20deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,0) 70%); }
+@media (prefers-reduced-motion:reduce){ .reel__photo{ animation:none; } }
 .reel--wall{ background:#0b2545; }
-.reel--wall .reel__claim, .reel--gradient .reel__claim{ font-size:min(11.6vw, 17.5svh); }  /* "MOMENTS." is wider than "DESERVE": a bit smaller so it fits on phones */
+.reel--wall .reel__claim, .reel--gradient .reel__claim, .reel--photo .reel__claim{ font-size:min(11.6vw, 17.5svh); }  /* "MOMENTS." is wider than "DESERVE": a bit smaller so it fits on phones */
 .wall{ position:absolute; inset:-25% -10%; display:grid; grid-template-columns:repeat(5, 1fr); gap:14px; transform:rotate(-9deg); }
 .wall__col{ display:flex; flex-direction:column; gap:14px; animation:wall-up 70s linear infinite; will-change:transform; }
 .wall__col:nth-child(even){ animation-name:wall-down; animation-duration:85s; }

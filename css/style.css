@@ -1013,3 +1013,12 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 /* flairs on the Projekte / Leistungen intros (INTRO_FLAIRS): the first sits to the right of the headline, the second low on the left */
 .flair-page--intro .flair--b{ top:auto; bottom:-12%; left:-12%; }
 .flair-page--intro .intro--full{ min-height:100vh; min-height:100svh; }
+/* each page its own placement (2026-11-11): Projekte = right + low left (above), Leistungen = left + low right,
+   Leistungen subpages = left, middle right, low left (Atelier keeps right, middle left, low right) */
+.flair-page--svc .flair--a{ right:auto; left:-16%; top:calc(var(--head) + 90px); }
+.flair-page--svc .flair--b{ left:auto; right:-10%; bottom:-8%; width:clamp(300px, 42vw, 680px); }
+.flair-page--sub .flair--a{ right:auto; left:-18%; width:clamp(300px, 40vw, 640px); }
+.flair-page--sub .flair--b{ left:auto; right:-12%; top:30%; }
+.flair-page--sub .flair--c{ right:auto; left:12%; bottom:6%; }
+/* test 2026-11-11: headlines on the white flair pages in the dark blue of the gradient instead of black (remove to go back) */
+.flair-page .h1{ color:#0088ff; }  /* luminous blue, leaning to cyan rather than violet (tested before: #0f3d75, #1f6fe0) */

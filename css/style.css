@@ -272,7 +272,9 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
 .pgrid--rows .ptile{ aspect-ratio:3/1; }
 @media (max-width:600px){ .pgrid--rows .ptile{ aspect-ratio:4/3; } }
 /* Rope stripe: frame a bit higher so head and sled poles are not cut */
-.pgrid--rows a[href$="rope-fitness-bern.html"] img{ object-position:50% 40%; }
+.pgrid--rows a[href$="rope-fitness-bern.html"] img[src$="quer-02.jpg"]{ object-position:50% 40%; }
+/* HYROX thumb since 2026-11-11 (portrait, two women running): crop so their faces stay in the stripe */
+.ptile img[src$="work-rope-gallery-hoch-34.jpg"]{ object-position:50% 44%; }
 .ptile img[src$="work-hikebike.jpg"]{ object-position:50% 46%; }
 /* case pages: random selection of other projects (main.js picks, fallback = first 3) */
 .pgrid--random > :nth-child(n+4){ display:none; }
@@ -295,7 +297,7 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
 .ptile:hover img, .ptile.is-active img{ transform:scale(1.045); }
 /* titles on photo tiles stay white, also while fading out after hover (soft shadow keeps them readable on bright photos) */
 .ptile:hover .ptile__label, .ptile.is-active .ptile__label,
-.ptile:has(> img) .ptile__label, .ptile:has(> video) .ptile__label{ color:#fff; text-shadow:0 1px 18px rgba(0,0,0,.45); }
+.ptile:has(> img) .ptile__label, .ptile:has(> video) .ptile__label{ color:#fff; text-shadow:0 2px 40px rgba(0,0,0,.4), 0 0 90px rgba(0,0,0,.3); }  /* wide soft glow (2026-11-11; before: 0 1px 18px rgba(0,0,0,.45)) */
 .ptile__label{
   position:absolute; inset:0; z-index:1; padding:24px;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
@@ -306,6 +308,12 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
 .ptile__label small{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
 .ptile__label b{ font-size:clamp(24px, 2.4vw, 36px); line-height:1.1; letter-spacing:-.02em; font-weight:800; max-width:12em; transition-delay:.05s; }
 .ptile:hover .ptile__label > *, .ptile.is-active .ptile__label > *{ opacity:1; transform:none; }
+/* Projekte stripes: case title right-aligned (since 2026-11-11; before centred like the tiles — remove this rule to restore) */
+.pgrid--rows .ptile__label{ align-items:flex-end; text-align:right; padding:24px clamp(24px, 6vw, 96px); }
+/* … except Web Design, April April, Davos and St. Moritz (Swiss-Ski): left-aligned */
+.pgrid--rows a[href$="web-design.html"] .ptile__label, .pgrid--rows a[href$="aprilscherz.html"] .ptile__label, .pgrid--rows a[href$="ec-davos.html"] .ptile__label, .pgrid--rows a[href$="swiss-ski.html"] .ptile__label{ align-items:flex-start; text-align:left; }
+/* Projekte stripes: case titles in capitals (since 2026-11-11) */
+.pgrid--rows .ptile__label b{ text-transform:uppercase; max-width:none; }  /* no 12em cap: in capitals long words (MARKENBEGLEITUNG) overflowed it and looked off-centre */
 
 /* Web design mood tile: an iMac (24", silver) with our homepage on screen */
 /* web case: iMacs in the project tile grid, on white, no hover effect */
@@ -821,11 +829,11 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 
 /* Loading screen (see LOADER in tools/build.py): the homepage gradient full screen with a white disc in the middle,
    "Peak Studio" turning around it in dark blue (since 2026-11-09; before: ice blue screen, black ring text).
-   The inner layer fades in after a short delay (fast loads never see it); once shown it stays about 2 s (script in LOADER) */
+   The inner layer fades in after a short delay (fast loads never see it); once shown it stays about 0.8 s (script in LOADER); since 2026-11-11 it appears only after 1 s (was .35 s) */
 .loader{ position:fixed; inset:0; z-index:1000; pointer-events:none; transition:opacity .5s ease, visibility 0s .5s; }
 .loader__in{
   position:absolute; inset:0; background:var(--peak-gradient); color:#0b2545; display:grid; place-items:center;
-  opacity:0; animation:loader-in .3s ease .35s forwards;
+  opacity:0; animation:loader-in .3s ease 1s forwards;
 }
 .loader__ring{ width:clamp(120px, 12vw, 160px); height:auto; animation:pk-spin 9s linear infinite; grid-area:1/1; }
 /* the white disc and its shadow sit on a separate, non-rotating layer behind the turning text

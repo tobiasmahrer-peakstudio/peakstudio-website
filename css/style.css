@@ -227,6 +227,28 @@ html.has-hero:has(.reel--gradient){ --top-tint:#0b2545; }  /* gradient hero: bar
   background:var(--peak-gradient);
 }
 .reel--gradient .reel__content{ color:var(--deep); }
+/* motion (since 2026-11-11, made stronger the same day; first version: 26s/19s, drift ±4%/4deg, clouds ±8%): the gradient sits on an oversized layer that drifts, turns and breathes slowly,
+   and two extra colour clouds (blue, ice blue) wander on their own, slower rhythm on top. Remove these rules for the still gradient. */
+.reel--gradient::before, .reel--gradient::after{ content:""; position:absolute; pointer-events:none; will-change:transform; }
+.reel--gradient::before{ inset:-15%; background:var(--peak-gradient); animation:grad-drift 16s ease-in-out infinite alternate;
+  filter:contrast(1.3) saturate(1.15); }  /* more contrast on the hero only (2026-11-11); buttons, menu etc. keep the plain gradient */
+.reel--gradient::after{
+  inset:-20%; mix-blend-mode:soft-light; opacity:1;
+  background:radial-gradient(30% 35% at 65% 35%, #2b78c8 0%, rgba(43,120,200,0) 70%),
+             radial-gradient(28% 32% at 30% 70%, #9ee3f2 0%, rgba(158,227,242,0) 70%);
+  animation:grad-clouds 11s ease-in-out infinite alternate;
+}
+@keyframes grad-drift{
+  0%{ transform:translate(0, 0) scale(1); }
+  50%{ transform:translate(-8%, 7%) scale(1.1); }
+  100%{ transform:translate(7%, -6%) scale(1.04); }
+}
+@keyframes grad-clouds{
+  0%{ transform:translate(0, 0) scale(1); }
+  50%{ transform:translate(16%, -12%) scale(1.3); }
+  100%{ transform:translate(-14%, 10%) scale(.9); }
+}
+@media (prefers-reduced-motion:reduce){ .reel--gradient::before, .reel--gradient::after{ animation:none; } }
 /* claim animation "Schieben": once the page has loaded (and the loading screen is gone) the three lines slide in
    from the left one after the other and spring back a little */
 .reel__claim .ln{ display:block; transform:translateX(-100vw); }  /* fully off screen until the slide starts */

@@ -6,7 +6,7 @@
   --ink:#0d0d0c;
   --paper:#ffffff;
   --accent:#9ee3f2;          /* Gletschereis — die einzige Farbe neben Schwarz und Weiss */
-  --soft:var(--accent);      /* Flächen & Platzhalter */
+  --soft:var(--accent);      /* Flächen (image placeholders no longer use it: since 2026-11-11 loading images show no blue) */
   --line:var(--accent);      /* Trennlinien */
   --muted:var(--ink);        /* Nebentext: schwarz, keine Grautöne */
   --font:'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif;
@@ -202,7 +202,7 @@ html.has-hero .site-head.is-clear{ position:absolute; }
 html.has-hero.menu-open .site-head{ position:fixed; }
 html.has-hero, html.has-hero body{ background:var(--top-tint, #000); }
 html.has-hero:has(.reel--gradient), html.has-hero:has(.reel--wall){ --top-tint:#0b2545; }
-html.has-hero:has(.reel--photo){ --top-tint:#000; }  /* gradient hero: bars in its dark blue */  /* --top-tint: colour of the video's top edge, set by main.js */
+html.has-hero:has(.reel--photo), html.has-hero:has(.reel--video){ --top-tint:#000; }  /* gradient hero: bars in its dark blue */  /* --top-tint: colour of the video's top edge, set by main.js */
 .reel--hero{ height:100vh; height:100lvh; }
 .reel--hero .reel__content{ padding-bottom:calc(clamp(48px, 9vh, 96px) + (100lvh - 100svh)); }
 /* Darkening over the hero video (top for the header, bottom for the text) — switched off 2026-10-30;
@@ -278,6 +278,14 @@ html.has-hero:has(.reel--photo){ --top-tint:#000; }  /* gradient hero: bars in i
    five columns drifting slowly up and down against each other, shaded dark blue towards the bottom left for the text */
 /* Photo hero (HERO_STYLE = 'photo', since 2026-11-11): one photo full screen, slow zoom, a soft shade bottom left for the text */
 .reel--photo{ background:#000; }
+/* Video hero (HERO_STYLE = 'video'): same full-screen cover and shade as the photo, without the slow zoom */
+.reel--video{ background:#000; }
+.reel__video{ animation:none; object-position:50% 50%; }
+/* video hero: fades to black over ~100 px at the top and bottom edge, so the film has no hard edge (2026-11-11) */
+.reel--video .reel__photo-shade{
+  background:linear-gradient(180deg, #000 0, rgba(0,0,0,0) 100px), linear-gradient(0deg, #000 0, rgba(0,0,0,0) 100px),
+             linear-gradient(20deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,0) 70%);
+}
 .reel__photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 45%; animation:photo-zoom 24s ease-out both; }
 @keyframes photo-zoom{ from{ transform:scale(1.08); } to{ transform:scale(1); } }
 /* landscape screens show only a band of the portrait photo: take a lower band so the two people stand in the upper half, above the text */
@@ -285,7 +293,7 @@ html.has-hero:has(.reel--photo){ --top-tint:#000; }  /* gradient hero: bars in i
 .reel__photo-shade{ position:absolute; inset:0; background:linear-gradient(20deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 45%, rgba(0,0,0,0) 70%); }
 @media (prefers-reduced-motion:reduce){ .reel__photo{ animation:none; } }
 .reel--wall{ background:#0b2545; }
-.reel--wall .reel__claim, .reel--gradient .reel__claim, .reel--photo .reel__claim{ font-size:min(11.6vw, 17.5svh); }  /* "MOMENTS." is wider than "DESERVE": a bit smaller so it fits on phones */
+.reel--wall .reel__claim, .reel--gradient .reel__claim, .reel--photo .reel__claim, .reel--video .reel__claim{ font-size:min(11.6vw, 17.5svh); }  /* "MOMENTS." is wider than "DESERVE": a bit smaller so it fits on phones */
 .wall{ position:absolute; inset:-25% -10%; display:grid; grid-template-columns:repeat(5, 1fr); gap:14px; transform:rotate(-9deg); }
 .wall__col{ display:flex; flex-direction:column; gap:14px; animation:wall-up 70s linear infinite; will-change:transform; }
 .wall__col:nth-child(even){ animation-name:wall-down; animation-duration:85s; }
@@ -344,7 +352,7 @@ html.has-hero:has(.reel--photo){ --top-tint:#000; }  /* gradient hero: bars in i
 @media (min-width:601px){ .pgrid--2 > :nth-child(4){ order:1; } .pgrid--2 > :nth-child(3){ order:2; } }
 /* homepage 4 tiles: on tablet/desktop as low as the Projekte stripes (100vw / 3); phone keeps its layout */
 @media (min-width:601px){ .pgrid--home .ptile{ aspect-ratio:3/2; } }
-.ptile{ position:relative; aspect-ratio:1/1; overflow:hidden; background:var(--soft); display:block; transition:background .45s; }
+.ptile{ position:relative; aspect-ratio:1/1; overflow:hidden; background:transparent; display:block; transition:background .45s; }
 .ptile img, .ptile video{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease), filter .6s, opacity .6s; }
 /* photo fills the tile exactly (block + absolute): no thin blue line of the tile background between stacked tiles on phones */
 .ptile > img, .ptile > video{ position:absolute; inset:0; display:block; }
@@ -484,7 +492,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .meta dt{ font-weight:700; }
 .meta dd{ margin:0 0 16px; color:var(--ink); }
 
-.media-full{ width:100%; position:relative; background:var(--soft); }
+.media-full{ width:100%; position:relative; background:transparent; }
 .media-full img, .media-full video{ width:100%; height:auto; max-height:100vh; object-fit:cover; }
 .media-full.tall img{ aspect-ratio:16/9; }
 .media-full img[src$="work-stmoritz-gallery-hoch-03.jpg"]{ object-position:50% 30%; }  /* team photo: heads and skis both in the wide crop */
@@ -533,7 +541,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .gallery{ display:grid; grid-template-columns:repeat(3, 1fr); }
 .gallery.g2{ grid-template-columns:repeat(2, 1fr); }
 .gallery.g4{ grid-template-columns:repeat(4, 1fr); }
-.gallery figure{ margin:0; overflow:hidden; aspect-ratio:4/5; background:var(--soft); }
+.gallery figure{ margin:0; overflow:hidden; aspect-ratio:4/5; background:transparent; }
 .gallery.land figure{ aspect-ratio:3/2; }
 .gallery img{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
 .gallery figure:hover img{ transform:scale(1.03); }
@@ -642,7 +650,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 }
 .strip__track::-webkit-scrollbar{ display:none; }
 @media (hover:hover) and (pointer:fine){ .strip__track{ cursor:grab; } }
-.strip__item{ flex:0 0 auto; height:460px; scroll-snap-align:start; background:var(--soft); }
+.strip__item{ flex:0 0 auto; height:460px; scroll-snap-align:start; background:transparent; }
 .strip__item img{ height:100%; width:auto; display:block; object-fit:cover; }
 @media (max-width:900px){ .strip__item{ height:380px; } }
 @media (max-width:560px){ .strip__item{ height:300px; } }
@@ -926,7 +934,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 
 /* "Alle Bilder" page: mixed portrait/landscape photos as a masonry wall with white gaps */
 .photo-wall{ column-count:5; column-gap:var(--wall-gap); padding:0 var(--wall-gap) var(--wall-gap); --wall-gap:clamp(8px, 1vw, 14px); }
-.photo-wall figure{ margin:0 0 var(--wall-gap); break-inside:avoid; overflow:hidden; background:var(--soft); }
+.photo-wall figure{ margin:0 0 var(--wall-gap); break-inside:avoid; overflow:hidden; background:transparent; }
 .photo-wall img{ display:block; width:100%; height:auto; transition:transform 1.1s var(--ease); }
 .photo-wall figure:hover img{ transform:scale(1.03); }
 @media (max-width:1300px){ .photo-wall{ column-count:4; } }
@@ -942,7 +950,7 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .jwall{ display:flex; flex-direction:column; gap:28px; padding:0 var(--gutter) 28px; max-width:1440px; margin-inline:auto; }  /* desktop: same left/right edge as the page text (.wrap, e.g. 'Zurück zum Case') */
 @media (max-width:767px){ .jwall{ padding-inline:0; } }
 .jrow{ display:flex; gap:8px; }
-.jrow figure{ margin:0; flex:var(--r) 1 0; aspect-ratio:var(--r); overflow:hidden; background:var(--soft); }
+.jrow figure{ margin:0; flex:var(--r) 1 0; aspect-ratio:var(--r); overflow:hidden; background:transparent; }
 .jrow img{ display:block; width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
 .jrow figure:hover img{ transform:scale(1.03); }
 .jwall + .stoerer-wrap{ height:0; }
@@ -1034,3 +1042,10 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .flair-page--sub .flair--c{ right:auto; left:12%; bottom:6%; }
 /* test 2026-11-11: headlines on the white flair pages in the dark blue of the gradient instead of black (remove to go back) */
 /* titles back to black on 2026-11-11; the blue tests were: .flair-page .h1{ color:#003e9a; } — the deep gradient blue #164c8a as the homepage renders it (contrast 1.3, saturate 1.15); tested before: #0f3d75, #1f6fe0, #0088ff, #2b78c8, #0578ef, #005bc5 */
+
+/* Mobile = one screen at a time, like on desktop (since 2026-11-11): the first block of every page fills the screen, so the
+   next content only appears when scrolling, and full-width photos / films fill the screen too (cropped to cover) */
+@media (max-width:760px){
+  .case-top, .flair-page > section.intro:first-of-type, main > section.intro:first-child{ min-height:100vh; min-height:100svh; box-sizing:border-box; }
+  .media-full img, .media-full video{ height:100vh; height:100svh; max-height:none; object-fit:cover; }
+}

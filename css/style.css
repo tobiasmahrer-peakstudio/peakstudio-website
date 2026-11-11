@@ -996,14 +996,19 @@ a.ptile--plain:hover .mockup{ transform:scale(1.03); }
 .flair-page{ position:relative; overflow:clip; isolation:isolate; }
 .flair-page > :not(.flair){ position:relative; z-index:1; }
 .flair{ position:absolute; z-index:0; pointer-events:none; border-radius:50%; filter:blur(clamp(24px, 3.5vw, 50px)); opacity:.85;
-  animation:flair-drift 22s ease-in-out infinite alternate; will-change:transform; }
-.flair--a{ width:clamp(340px, 46vw, 760px); aspect-ratio:1.1; top:calc(var(--head) + 30px); right:-14%;  /* not cut at the top (nor by the header), only at the side */
+  animation:flair-drift 16s ease-in-out infinite alternate; will-change:transform; transform-origin:50% 0; }  /* grows downwards only */
+.flair--a{ width:clamp(340px, 46vw, 760px); aspect-ratio:1.1; top:calc(var(--head) + 70px); right:-14%;  /* not cut at the top (nor by the header), only at the side */
   background:radial-gradient(42% 42% at 42% 48%, #2b78c8 0%, rgba(43,120,200,0) 72%), radial-gradient(50% 50% at 62% 52%, #9ee3f2 0%, rgba(158,227,242,0) 74%); }
-.flair--b{ width:clamp(280px, 36vw, 600px); aspect-ratio:1; top:36%; left:-10%; animation-duration:28s; animation-delay:-8s;
+.flair--b{ width:clamp(280px, 36vw, 600px); aspect-ratio:1; top:36%; left:-10%; animation-duration:19s; animation-delay:-6s; animation-name:flair-drift-b;
   background:radial-gradient(48% 48% at 50% 50%, #9ee3f2 0%, rgba(158,227,242,0) 72%), radial-gradient(32% 32% at 60% 42%, #164c8a 0%, rgba(22,76,138,0) 72%); }
-.flair--c{ width:clamp(260px, 32vw, 520px); aspect-ratio:1.25; bottom:2%; right:8%; animation-duration:25s; animation-delay:-14s;
+.flair--c{ width:clamp(260px, 32vw, 520px); aspect-ratio:1.25; bottom:2%; right:8%; animation-duration:17s; animation-delay:-11s; animation-name:flair-drift-c;
   background:radial-gradient(48% 48% at 45% 50%, #6cc6e6 0%, rgba(108,198,230,0) 72%), radial-gradient(34% 38% at 64% 46%, #0f3d75 0%, rgba(15,61,117,0) 72%); opacity:.75; }
-@keyframes flair-drift{ from{ transform:translate(0, 0) scale(1); } to{ transform:translate(-4%, 6%) scale(1.12); } }
+/* livelier drift (2026-11-11): wanders sideways and down, breathes in size and strength, never moves above its start
+   so nothing gets cut at the top or under the header */
+@keyframes flair-drift{ 0%{ transform:translate(0, 0) scale(1); opacity:.85; } 35%{ transform:translate(-10%, 8%) scale(1.12); opacity:.7; }
+  70%{ transform:translate(-3%, 16%) scale(.94); opacity:.9; } 100%{ transform:translate(6%, 6%) scale(1.06); opacity:.8; } }
+@keyframes flair-drift-b{ 0%{ transform:translate(0, 0) scale(1); } 40%{ transform:translate(14%, 6%) scale(1.15); } 100%{ transform:translate(4%, 14%) scale(.92); } }
+@keyframes flair-drift-c{ 0%{ transform:translate(0, 0) scale(1); } 50%{ transform:translate(-12%, 8%) scale(1.12); } 100%{ transform:translate(8%, 3%) scale(.95); } }
 @media (prefers-reduced-motion:reduce){ .flair{ animation:none; } }
 /* flairs on the Projekte / Leistungen intros (INTRO_FLAIRS): the first sits to the right of the headline, the second low on the left */
 .flair-page--intro .flair--b{ top:auto; bottom:-12%; left:-12%; }
